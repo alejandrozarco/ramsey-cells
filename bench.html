@@ -1,0 +1,328 @@
+<title>Ramsey Witness Bench</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#FBFBFC; --panel:#FFFFFF; --sunk:#F3F4F7;
+  --ink:#16181D; --ink-2:#585F6C; --ink-3:#8A90A0;
+  --rule:#E2E5EC; --rule-2:#CDD2DD;
+  --e1:#3E6FB0; --e1-dim:#C8D6E8; --e1-hot:#28518A;
+  --e2:#C89B4A; --e2-dim:#EEE3CC; --e2-hot:#9A7530;
+  --ok:#2E7D5B; --ok-bg:#E7F2EC; --bad:#B4443A; --bad-bg:#F8E9E7;
+  --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#131519; --panel:#1A1D23; --sunk:#212530;
+  --ink:#EDEFF3; --ink-2:#A2AAB8; --ink-3:#6E7686;
+  --rule:#2B303A; --rule-2:#3C424F;
+  --e1:#5B8FD4; --e1-dim:#293748; --e1-hot:#8FB6E8;
+  --e2:#D6AE63; --e2-dim:#3A3223; --e2-hot:#EAC98A;
+  --ok:#5BB98C; --ok-bg:#1B2E26; --bad:#E0776C; --bad-bg:#33211F;
+}}
+:root[data-theme="dark"]{
+  --ground:#131519; --panel:#1A1D23; --sunk:#212530;
+  --ink:#EDEFF3; --ink-2:#A2AAB8; --ink-3:#6E7686;
+  --rule:#2B303A; --rule-2:#3C424F;
+  --e1:#5B8FD4; --e1-dim:#293748; --e1-hot:#8FB6E8;
+  --e2:#D6AE63; --e2-dim:#3A3223; --e2-hot:#EAC98A;
+  --ok:#5BB98C; --ok-bg:#1B2E26; --bad:#E0776C; --bad-bg:#33211F;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+     font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:38px 24px 72px}
+header{border-bottom:1px solid var(--rule);padding-bottom:20px;margin-bottom:26px}
+h1{font-size:23px;font-weight:600;margin:0 0 5px;letter-spacing:-.01em;text-wrap:balance}
+.lede{color:var(--ink-2);margin:0;max-width:62ch;font-size:14.5px}
+.cols{display:grid;grid-template-columns:minmax(280px,340px) 1fr;gap:28px;align-items:start}
+@media(max-width:820px){.cols{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px}
+label{display:block;font-size:11.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;
+      color:var(--ink-3);margin-bottom:6px}
+textarea,input,select{width:100%;font-family:var(--mono);font-size:12.5px;background:var(--sunk);
+      color:var(--ink);border:1px solid var(--rule-2);border-radius:6px;padding:9px 10px}
+textarea{height:150px;resize:vertical;line-height:1.45}
+:focus-visible{outline:2px solid var(--e1);outline-offset:1px}
+.row{display:flex;gap:9px;margin-top:13px;flex-wrap:wrap}
+button{font-family:var(--sans);font-size:13.5px;font-weight:500;padding:8px 15px;border-radius:6px;
+       border:1px solid var(--rule-2);background:var(--panel);color:var(--ink);cursor:pointer}
+button.primary{background:var(--e1);border-color:var(--e1);color:#fff}
+button:hover{border-color:var(--ink-3)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.chip{font-size:12px;padding:4px 9px;border-radius:20px;border:1px solid var(--rule-2);
+      background:var(--sunk);color:var(--ink-2);cursor:pointer}
+.chip:hover{border-color:var(--e1);color:var(--e1)}
+.verdict{display:flex;align-items:center;gap:10px;padding:13px 15px;border-radius:8px;margin-bottom:16px;
+         font-weight:500;font-size:15px}
+.verdict.ok{background:var(--ok-bg);color:var(--ok)} .verdict.bad{background:var(--bad-bg);color:var(--bad)}
+.verdict.idle{background:var(--sunk);color:var(--ink-2);font-weight:400}
+.dot{width:9px;height:9px;border-radius:50%;background:currentColor;flex:none}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
+th,td{text-align:left;padding:7px 0;border-bottom:1px solid var(--rule)}
+th{font-size:11.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+canvas{display:block;max-width:100%;border:1px solid var(--rule);border-radius:8px;background:var(--panel)}
+.legend{display:flex;gap:16px;margin-top:11px;font-size:12.5px;color:var(--ink-2);flex-wrap:wrap;align-items:center}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block;vertical-align:-1px;margin-right:6px}
+.nav{display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap;font-size:13.5px}
+.nav .mono{font-family:var(--mono);color:var(--ink);min-width:11em}
+.hint{font-size:12.5px;color:var(--ink-3);margin-top:9px;line-height:1.55}
+.err{color:var(--bad);font-size:13px;margin-top:8px}
+h2{font-size:15px;font-weight:600;margin:0 0 12px}
+.note{border-top:1px solid var(--rule);margin-top:34px;padding-top:20px;color:var(--ink-2);
+      font-size:13.5px;max-width:70ch}
+.note code{font-family:var(--mono);font-size:12.5px;background:var(--sunk);padding:1px 5px;border-radius:3px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<div class="wrap">
+<header>
+  <h1>Ramsey Witness Bench</h1>
+  <p class="lede">Paste an edge coloring, name the graphs it must avoid, and check it. The verification
+  runs here in your browser, independently of whatever produced the coloring.</p>
+</header>
+<div class="cols">
+  <div>
+    <div class="panel">
+      <label for="spec">Avoid, per color</label>
+      <input id="spec" value="K3x5,K2x5" spellcheck="false">
+      <div class="hint"><code>K3x5</code> is complete bipartite K<sub>3,5</sub>; <code>K3</code> is a
+      triangle, <code>K4</code> a clique on 4. One entry per color, comma separated.</div>
+      <label for="wit" style="margin-top:16px">Coloring &mdash; one edge per line, <code>i j c</code></label>
+      <textarea id="wit" spellcheck="false"></textarea>
+      <div class="row">
+        <button class="primary" id="run">Check it</button>
+        <button id="clear">Clear</button>
+      </div>
+      <div id="err" class="err"></div>
+      <label style="margin-top:17px">Load an example</label>
+      <div class="chips" id="chips"></div>
+    </div>
+  </div>
+  <div>
+    <div id="verdict" class="verdict idle"><span class="dot"></span><span id="vtext">Nothing checked yet.</span></div>
+    <canvas id="cv" width="620" height="620"></canvas>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--e1)"></span>color 1</span>
+      <span><span class="sw" style="background:var(--e2)"></span>color 2</span>
+      <span id="hover" style="font-family:var(--mono);color:var(--ink-3)"></span>
+    </div>
+    <div class="nav">
+      <span style="color:var(--ink-3);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase">View</span>
+      <button id="tHi">Highlight</button><button id="tAl">Align to block</button>
+      <span id="ordnote" style="color:var(--ink-3);font-size:12.5px"></span>
+    </div>
+    <div class="nav" id="nav" hidden>
+      <button id="prev">&larr;</button><span class="mono" id="exlabel"></span><button id="next">&rarr;</button>
+      <span id="exnote" style="color:var(--ink-2)"></span>
+    </div>
+    <div class="panel" style="margin-top:18px"><h2>Per color</h2>
+      <table><thead><tr><th>Color</th><th>Avoids</th><th style="text-align:right">Edges</th>
+      <th style="text-align:right">Max common nbrs</th><th style="text-align:right">Limit</th></tr></thead>
+      <tbody id="stats"><tr><td colspan="5" style="color:var(--ink-3)">&mdash;</td></tr></tbody></table>
+    </div>
+  </div>
+</div>
+<div class="note">
+<strong>What is being checked.</strong> A monochromatic K<sub>s,t</sub> in color <em>c</em> is
+<em>s</em> vertices against <em>t</em> other vertices with every one of the <em>s&middot;t</em> edges
+between them in color <em>c</em>. Nothing is required of the edges inside either set. A clique
+K<sub>k</sub> is <em>k</em> vertices with all internal edges one color.
+<p><strong>The two view toggles.</strong> On the grid a clique is a square straddling the
+diagonal, because the same vertices index rows and columns. A complete bipartite subgraph is an
+off-diagonal rectangle instead &mdash; but only when its rows and columns happen to be adjacent, and
+the tightest sets usually carry scattered labels. <em>Align to block</em> permutes the axes to gather
+them, so the rectangle becomes contiguous and gets outlined; relabeling vertices never changes an
+edge's color, so it is the same object seen from a better angle. Keep the original order to read
+global structure instead &mdash; a circulant's diagonal banding exists only in that numbering and
+disappears under any reordering. <em>Highlight</em> is independent of both: turn it off to see the
+raw coloring at full contrast.
+<p>Bipartite cases are decided by counting common neighborhoods, which is equivalent to enumerating
+placements and far cheaper; cliques are enumerated directly. Stepping through the highlights walks the
+tightest configurations &mdash; the sets that come closest to forcing the forbidden graph without
+doing so.
+</div>
+</div>
+<script>
+const EXAMPLES={"B(5)/B(9) on K28": {"name": "B(5)/B(9) on K28", "spec": "B5,B9", "data": "1 2 2\n1 3 1\n1 4 1\n1 5 1\n1 6 2\n1 7 2\n1 8 1\n1 9 2\n1 10 2\n1 11 1\n1 12 1\n1 13 1\n1 14 2\n1 15 2\n1 16 2\n1 17 2\n1 18 1\n1 19 2\n1 20 2\n1 21 2\n1 22 2\n1 23 1\n1 24 1\n1 25 2\n1 26 1\n1 27 1\n1 28 2\n2 3 2\n2 4 1\n2 5 1\n2 6 1\n2 7 2\n2 8 2\n2 9 1\n2 10 2\n2 11 2\n2 12 1\n2 13 1\n2 14 1\n2 15 2\n2 16 2\n2 17 2\n2 18 2\n2 19 1\n2 20 2\n2 21 2\n2 22 2\n2 23 2\n2 24 1\n2 25 1\n2 26 2\n2 27 1\n2 28 1\n3 4 2\n3 5 1\n3 6 1\n3 7 1\n3 8 2\n3 9 2\n3 10 1\n3 11 2\n3 12 2\n3 13 1\n3 14 1\n3 15 1\n3 16 2\n3 17 2\n3 18 2\n3 19 2\n3 20 1\n3 21 2\n3 22 2\n3 23 2\n3 24 2\n3 25 1\n3 26 1\n3 27 2\n3 28 1\n4 5 2\n4 6 1\n4 7 1\n4 8 1\n4 9 2\n4 10 2\n4 11 1\n4 12 2\n4 13 2\n4 14 1\n4 15 1\n4 16 1\n4 17 2\n4 18 2\n4 19 2\n4 20 2\n4 21 1\n4 22 2\n4 23 2\n4 24 2\n4 25 2\n4 26 1\n4 27 1\n4 28 2\n5 6 2\n5 7 1\n5 8 1\n5 9 1\n5 10 2\n5 11 2\n5 12 1\n5 13 2\n5 14 2\n5 15 2\n5 16 1\n5 17 1\n5 18 2\n5 19 2\n5 20 2\n5 21 2\n5 22 1\n5 23 2\n5 24 2\n5 25 2\n5 26 2\n5 27 1\n5 28 1\n6 7 2\n6 8 1\n6 9 1\n6 10 1\n6 11 2\n6 12 2\n6 13 1\n6 14 2\n6 15 1\n6 16 2\n6 17 1\n6 18 1\n6 19 2\n6 20 2\n6 21 2\n6 22 2\n6 23 1\n6 24 2\n6 25 2\n6 26 2\n6 27 2\n6 28 1\n7 8 2\n7 9 1\n7 10 1\n7 11 1\n7 12 2\n7 13 2\n7 14 1\n7 15 1\n7 16 1\n7 17 2\n7 18 1\n7 19 1\n7 20 2\n7 21 2\n7 22 2\n7 23 2\n7 24 1\n7 25 2\n7 26 2\n7 27 2\n7 28 2\n8 9 2\n8 10 1\n8 11 1\n8 12 1\n8 13 2\n8 14 2\n8 15 2\n8 16 1\n8 17 1\n8 18 2\n8 19 1\n8 20 1\n8 21 2\n8 22 2\n8 23 2\n8 24 2\n8 25 1\n8 26 2\n8 27 2\n8 28 2\n9 10 2\n9 11 1\n9 12 1\n9 13 1\n9 14 2\n9 15 2\n9 16 2\n9 17 1\n9 18 1\n9 19 2\n9 20 1\n9 21 1\n9 22 2\n9 23 2\n9 24 2\n9 25 2\n9 26 1\n9 27 2\n9 28 2\n10 11 2\n10 12 1\n10 13 1\n10 14 1\n10 15 2\n10 16 2\n10 17 2\n10 18 1\n10 19 1\n10 20 2\n10 21 1\n10 22 1\n10 23 2\n10 24 2\n10 25 2\n10 26 2\n10 27 1\n10 28 2\n11 12 2\n11 13 1\n11 14 1\n11 15 2\n11 16 2\n11 17 2\n11 18 2\n11 19 1\n11 20 1\n11 21 2\n11 22 1\n11 23 1\n11 24 2\n11 25 2\n11 26 2\n11 27 2\n11 28 1\n12 13 2\n12 14 1\n12 15 1\n12 16 2\n12 17 2\n12 18 2\n12 19 2\n12 20 1\n12 21 1\n12 22 2\n12 23 1\n12 24 1\n12 25 2\n12 26 2\n12 27 2\n12 28 2\n13 14 2\n13 15 2\n13 16 1\n13 17 2\n13 18 2\n13 19 2\n13 20 2\n13 21 1\n13 22 1\n13 23 2\n13 24 1\n13 25 1\n13 26 2\n13 27 2\n13 28 2\n14 15 2\n14 16 2\n14 17 1\n14 18 2\n14 19 2\n14 20 2\n14 21 2\n14 22 1\n14 23 1\n14 24 2\n14 25 1\n14 26 1\n14 27 2\n14 28 2\n15 16 1\n15 17 2\n15 18 2\n15 19 2\n15 20 1\n15 21 1\n15 22 2\n15 23 1\n15 24 1\n15 25 2\n15 26 2\n15 27 2\n15 28 1\n16 17 1\n16 18 2\n16 19 2\n16 20 2\n16 21 1\n16 22 1\n16 23 2\n16 24 1\n16 25 1\n16 26 2\n16 27 2\n16 28 2\n17 18 1\n17 19 2\n17 20 2\n17 21 2\n17 22 1\n17 23 1\n17 24 2\n17 25 1\n17 26 1\n17 27 2\n17 28 2\n18 19 1\n18 20 2\n18 21 2\n18 22 2\n18 23 1\n18 24 1\n18 25 2\n18 26 1\n18 27 1\n18 28 2\n19 20 1\n19 21 2\n19 22 2\n19 23 2\n19 24 1\n19 25 1\n19 26 2\n19 27 1\n19 28 1\n20 21 1\n20 22 2\n20 23 2\n20 24 2\n20 25 1\n20 26 1\n20 27 2\n20 28 1\n21 22 1\n21 23 2\n21 24 2\n21 25 2\n21 26 1\n21 27 1\n21 28 2\n22 23 1\n22 24 2\n22 25 2\n22 26 2\n22 27 1\n22 28 1\n23 24 1\n23 25 2\n23 26 2\n23 27 2\n23 28 1\n24 25 1\n24 26 2\n24 27 2\n24 28 2\n25 26 1\n25 27 2\n25 28 2\n26 27 1\n26 28 2\n27 28 1"}, "K(2,10)/K(2,6) on K28": {"name": "K(2,10)/K(2,6) on K28", "spec": "K2x10,K2x6", "data": "1 2 1\n1 3 1\n1 4 1\n1 5 1\n1 6 1\n1 7 1\n1 8 2\n1 9 2\n1 10 2\n1 11 1\n1 12 1\n1 13 2\n1 14 2\n1 15 1\n1 16 1\n1 17 2\n1 18 1\n1 19 1\n1 20 2\n1 21 2\n1 22 1\n1 23 1\n1 24 2\n1 25 1\n1 26 2\n1 27 1\n1 28 2\n2 3 1\n2 4 1\n2 5 1\n2 6 1\n2 7 1\n2 8 1\n2 9 2\n2 10 2\n2 11 2\n2 12 1\n2 13 1\n2 14 2\n2 15 2\n2 16 1\n2 17 1\n2 18 2\n2 19 2\n2 20 1\n2 21 2\n2 22 2\n2 23 1\n2 24 1\n2 25 2\n2 26 1\n2 27 2\n2 28 1\n3 4 1\n3 5 1\n3 6 1\n3 7 1\n3 8 1\n3 9 1\n3 10 2\n3 11 2\n3 12 2\n3 13 2\n3 14 1\n3 15 2\n3 16 2\n3 17 1\n3 18 1\n3 19 1\n3 20 2\n3 21 1\n3 22 2\n3 23 2\n3 24 1\n3 25 1\n3 26 2\n3 27 1\n3 28 2\n4 5 1\n4 6 1\n4 7 2\n4 8 1\n4 9 1\n4 10 1\n4 11 2\n4 12 2\n4 13 1\n4 14 2\n4 15 1\n4 16 2\n4 17 2\n4 18 1\n4 19 1\n4 20 1\n4 21 2\n4 22 1\n4 23 2\n4 24 2\n4 25 2\n4 26 1\n4 27 2\n4 28 1\n5 6 1\n5 7 2\n5 8 2\n5 9 1\n5 10 1\n5 11 1\n5 12 2\n5 13 1\n5 14 1\n5 15 2\n5 16 1\n5 17 2\n5 18 2\n5 19 2\n5 20 1\n5 21 1\n5 22 2\n5 23 1\n5 24 2\n5 25 1\n5 26 2\n5 27 1\n5 28 2\n6 7 2\n6 8 2\n6 9 2\n6 10 1\n6 11 1\n6 12 1\n6 13 2\n6 14 1\n6 15 1\n6 16 2\n6 17 1\n6 18 2\n6 19 2\n6 20 2\n6 21 1\n6 22 1\n6 23 2\n6 24 1\n6 25 2\n6 26 1\n6 27 2\n6 28 1\n7 8 1\n7 9 1\n7 10 2\n7 11 1\n7 12 1\n7 13 1\n7 14 2\n7 15 2\n7 16 1\n7 17 2\n7 18 1\n7 19 2\n7 20 2\n7 21 1\n7 22 1\n7 23 2\n7 24 1\n7 25 2\n7 26 1\n7 27 1\n7 28 2\n8 9 1\n8 10 1\n8 11 2\n8 12 1\n8 13 1\n8 14 1\n8 15 2\n8 16 2\n8 17 1\n8 18 2\n8 19 1\n8 20 2\n8 21 2\n8 22 1\n8 23 1\n8 24 2\n8 25 1\n8 26 2\n8 27 2\n8 28 1\n9 10 1\n9 11 1\n9 12 2\n9 13 2\n9 14 1\n9 15 1\n9 16 2\n9 17 2\n9 18 1\n9 19 2\n9 20 1\n9 21 2\n9 22 2\n9 23 1\n9 24 1\n9 25 2\n9 26 1\n9 27 1\n9 28 2\n10 11 1\n10 12 1\n10 13 1\n10 14 2\n10 15 1\n10 16 1\n10 17 2\n10 18 2\n10 19 1\n10 20 2\n10 21 1\n10 22 2\n10 23 2\n10 24 1\n10 25 1\n10 26 2\n10 27 2\n10 28 1\n11 12 1\n11 13 2\n11 14 1\n11 15 2\n11 16 1\n11 17 1\n11 18 2\n11 19 1\n11 20 1\n11 21 2\n11 22 1\n11 23 2\n11 24 2\n11 25 2\n11 26 1\n11 27 1\n11 28 2\n12 13 2\n12 14 2\n12 15 1\n12 16 2\n12 17 1\n12 18 1\n12 19 2\n12 20 1\n12 21 1\n12 22 2\n12 23 1\n12 24 2\n12 25 1\n12 26 2\n12 27 2\n12 28 1\n13 14 2\n13 15 1\n13 16 1\n13 17 1\n13 18 2\n13 19 2\n13 20 1\n13 21 1\n13 22 1\n13 23 2\n13 24 2\n13 25 1\n13 26 1\n13 27 1\n13 28 2\n14 15 2\n14 16 1\n14 17 1\n14 18 1\n14 19 2\n14 20 2\n14 21 1\n14 22 1\n14 23 1\n14 24 2\n14 25 1\n14 26 1\n14 27 2\n14 28 1\n15 16 2\n15 17 1\n15 18 1\n15 19 2\n15 20 2\n15 21 2\n15 22 1\n15 23 1\n15 24 1\n15 25 1\n15 26 1\n15 27 1\n15 28 2\n16 17 2\n16 18 1\n16 19 1\n16 20 2\n16 21 2\n16 22 2\n16 23 1\n16 24 1\n16 25 1\n16 26 1\n16 27 2\n16 28 1\n17 18 2\n17 19 1\n17 20 1\n17 21 2\n17 22 2\n17 23 2\n17 24 1\n17 25 1\n17 26 1\n17 27 1\n17 28 2\n18 19 1\n18 20 1\n18 21 1\n18 22 2\n18 23 2\n18 24 2\n18 25 1\n18 26 1\n18 27 2\n18 28 1\n19 20 1\n19 21 2\n19 22 1\n19 23 2\n19 24 1\n19 25 1\n19 26 2\n19 27 1\n19 28 1\n20 21 1\n20 22 2\n20 23 1\n20 24 2\n20 25 2\n20 26 1\n20 27 1\n20 28 1\n21 22 1\n21 23 2\n21 24 1\n21 25 1\n21 26 2\n21 27 1\n21 28 1\n22 23 1\n22 24 2\n22 25 2\n22 26 1\n22 27 1\n22 28 1\n23 24 1\n23 25 1\n23 26 2\n23 27 1\n23 28 1\n24 25 2\n24 26 1\n24 27 1\n24 28 1\n25 26 2\n25 27 1\n25 28 2\n26 27 2\n26 28 1\n27 28 2"}, "K(2,10)/K(2,7) on K30": {"name": "K(2,10)/K(2,7) on K30", "spec": "K2x10,K2x7", "data": "1 2 1\n1 3 2\n1 4 1\n1 5 1\n1 6 2\n1 7 1\n1 8 2\n1 9 1\n1 10 2\n1 11 1\n1 12 1\n1 13 1\n1 14 1\n1 15 2\n1 16 2\n1 17 2\n1 18 2\n1 19 1\n1 20 1\n1 21 2\n1 22 1\n1 23 1\n1 24 2\n1 25 2\n1 26 1\n1 27 1\n1 28 2\n1 29 1\n1 30 2\n2 3 1\n2 4 2\n2 5 2\n2 6 1\n2 7 2\n2 8 1\n2 9 1\n2 10 1\n2 11 2\n2 12 1\n2 13 2\n2 14 1\n2 15 1\n2 16 2\n2 17 1\n2 18 2\n2 19 2\n2 20 1\n2 21 2\n2 22 2\n2 23 1\n2 24 1\n2 25 2\n2 26 1\n2 27 1\n2 28 2\n2 29 1\n2 30 2\n3 4 1\n3 5 1\n3 6 2\n3 7 1\n3 8 2\n3 9 1\n3 10 1\n3 11 1\n3 12 2\n3 13 2\n3 14 2\n3 15 1\n3 16 1\n3 17 1\n3 18 1\n3 19 2\n3 20 2\n3 21 1\n3 22 2\n3 23 2\n3 24 1\n3 25 2\n3 26 1\n3 27 1\n3 28 2\n3 29 1\n3 30 2\n4 5 2\n4 6 1\n4 7 2\n4 8 1\n4 9 2\n4 10 1\n4 11 1\n4 12 1\n4 13 1\n4 14 2\n4 15 2\n4 16 1\n4 17 2\n4 18 1\n4 19 1\n4 20 2\n4 21 1\n4 22 1\n4 23 2\n4 24 2\n4 25 2\n4 26 1\n4 27 1\n4 28 2\n4 29 1\n4 30 2\n5 6 2\n5 7 1\n5 8 2\n5 9 2\n5 10 2\n5 11 1\n5 12 1\n5 13 2\n5 14 1\n5 15 1\n5 16 1\n5 17 2\n5 18 1\n5 19 1\n5 20 2\n5 21 2\n5 22 2\n5 23 1\n5 24 1\n5 25 2\n5 26 1\n5 27 1\n5 28 1\n5 29 2\n5 30 1\n6 7 2\n6 8 1\n6 9 1\n6 10 2\n6 11 2\n6 12 1\n6 13 1\n6 14 2\n6 15 1\n6 16 1\n6 17 2\n6 18 2\n6 19 1\n6 20 1\n6 21 1\n6 22 2\n6 23 2\n6 24 1\n6 25 2\n6 26 1\n6 27 1\n6 28 1\n6 29 2\n6 30 1\n7 8 2\n7 9 1\n7 10 1\n7 11 2\n7 12 2\n7 13 1\n7 14 1\n7 15 2\n7 16 1\n7 17 1\n7 18 2\n7 19 2\n7 20 1\n7 21 1\n7 22 1\n7 23 2\n7 24 2\n7 25 2\n7 26 1\n7 27 1\n7 28 1\n7 29 2\n7 30 1\n8 9 2\n8 10 1\n8 11 1\n8 12 2\n8 13 1\n8 14 1\n8 15 1\n8 16 2\n8 17 1\n8 18 1\n8 19 2\n8 20 2\n8 21 2\n8 22 1\n8 23 1\n8 24 2\n8 25 2\n8 26 1\n8 27 1\n8 28 1\n8 29 2\n8 30 1\n9 10 2\n9 11 1\n9 12 2\n9 13 1\n9 14 1\n9 15 2\n9 16 2\n9 17 1\n9 18 2\n9 19 1\n9 20 2\n9 21 1\n9 22 2\n9 23 2\n9 24 1\n9 25 1\n9 26 1\n9 27 2\n9 28 1\n9 29 1\n9 30 2\n10 11 2\n10 12 1\n10 13 2\n10 14 1\n10 15 1\n10 16 2\n10 17 2\n10 18 1\n10 19 2\n10 20 1\n10 21 1\n10 22 1\n10 23 2\n10 24 2\n10 25 1\n10 26 1\n10 27 2\n10 28 1\n10 29 1\n10 30 2\n11 12 2\n11 13 2\n11 14 2\n11 15 1\n11 16 1\n11 17 1\n11 18 2\n11 19 1\n11 20 2\n11 21 2\n11 22 1\n11 23 1\n11 24 2\n11 25 1\n11 26 1\n11 27 2\n11 28 1\n11 29 1\n11 30 2\n12 13 1\n12 14 2\n12 15 2\n12 16 1\n12 17 2\n12 18 1\n12 19 2\n12 20 1\n12 21 2\n12 22 2\n12 23 1\n12 24 1\n12 25 1\n12 26 1\n12 27 2\n12 28 1\n12 29 1\n12 30 2\n13 14 1\n13 15 2\n13 16 1\n13 17 1\n13 18 1\n13 19 2\n13 20 2\n13 21 2\n13 22 1\n13 23 2\n13 24 1\n13 25 1\n13 26 1\n13 27 2\n13 28 2\n13 29 2\n13 30 1\n14 15 1\n14 16 2\n14 17 2\n14 18 1\n14 19 1\n14 20 2\n14 21 1\n14 22 2\n14 23 1\n14 24 2\n14 25 1\n14 26 1\n14 27 2\n14 28 2\n14 29 2\n14 30 1\n15 16 1\n15 17 2\n15 18 2\n15 19 1\n15 20 1\n15 21 2\n15 22 1\n15 23 2\n15 24 1\n15 25 1\n15 26 1\n15 27 2\n15 28 2\n15 29 2\n15 30 1\n16 17 1\n16 18 2\n16 19 2\n16 20 1\n16 21 1\n16 22 2\n16 23 1\n16 24 2\n16 25 1\n16 26 1\n16 27 2\n16 28 2\n16 29 2\n16 30 1\n17 18 1\n17 19 2\n17 20 1\n17 21 2\n17 22 1\n17 23 1\n17 24 1\n17 25 2\n17 26 2\n17 27 2\n17 28 1\n17 29 1\n17 30 1\n18 19 1\n18 20 2\n18 21 1\n18 22 2\n18 23 1\n18 24 1\n18 25 2\n18 26 2\n18 27 2\n18 28 1\n18 29 1\n18 30 1\n19 20 1\n19 21 1\n19 22 1\n19 23 2\n19 24 1\n19 25 2\n19 26 2\n19 27 2\n19 28 1\n19 29 1\n19 30 1\n20 21 1\n20 22 1\n20 23 1\n20 24 2\n20 25 2\n20 26 2\n20 27 2\n20 28 1\n20 29 1\n20 30 1\n21 22 2\n21 23 1\n21 24 2\n21 25 1\n21 26 2\n21 27 1\n21 28 2\n21 29 1\n21 30 1\n22 23 2\n22 24 1\n22 25 1\n22 26 2\n22 27 1\n22 28 2\n22 29 1\n22 30 1\n23 24 2\n23 25 1\n23 26 2\n23 27 1\n23 28 2\n23 29 1\n23 30 1\n24 25 1\n24 26 2\n24 27 1\n24 28 2\n24 29 1\n24 30 1\n25 26 2\n25 27 1\n25 28 1\n25 29 1\n25 30 2\n26 27 2\n26 28 1\n26 29 2\n26 30 2\n27 28 1\n27 29 2\n27 30 1\n28 29 2\n28 30 2\n29 30 2"}, "K(2,11)/K(2,4) on K25": {"name": "K(2,11)/K(2,4) on K25", "spec": "K2x11,K2x4", "data": "1 2 1\n1 3 1\n1 4 2\n1 5 1\n1 6 1\n1 7 2\n1 8 2\n1 9 1\n1 10 1\n1 11 1\n1 12 1\n1 13 1\n1 14 2\n1 15 2\n1 16 1\n1 17 2\n1 18 1\n1 19 1\n1 20 2\n1 21 1\n1 22 1\n1 23 2\n1 24 2\n1 25 1\n2 3 1\n2 4 1\n2 5 2\n2 6 1\n2 7 1\n2 8 2\n2 9 2\n2 10 1\n2 11 1\n2 12 1\n2 13 2\n2 14 1\n2 15 2\n2 16 1\n2 17 1\n2 18 2\n2 19 1\n2 20 1\n2 21 2\n2 22 2\n2 23 1\n2 24 2\n2 25 1\n3 4 1\n3 5 1\n3 6 2\n3 7 2\n3 8 1\n3 9 2\n3 10 1\n3 11 1\n3 12 1\n3 13 2\n3 14 2\n3 15 1\n3 16 2\n3 17 1\n3 18 1\n3 19 2\n3 20 1\n3 21 1\n3 22 2\n3 23 2\n3 24 1\n3 25 1\n4 5 2\n4 6 2\n4 7 2\n4 8 2\n4 9 1\n4 10 2\n4 11 1\n4 12 1\n4 13 1\n4 14 1\n4 15 1\n4 16 1\n4 17 1\n4 18 2\n4 19 2\n4 20 2\n4 21 1\n4 22 1\n4 23 1\n4 24 1\n4 25 1\n5 6 2\n5 7 1\n5 8 2\n5 9 2\n5 10 1\n5 11 2\n5 12 1\n5 13 1\n5 14 1\n5 15 1\n5 16 2\n5 17 1\n5 18 1\n5 19 1\n5 20 2\n5 21 2\n5 22 1\n5 23 1\n5 24 1\n5 25 1\n6 7 2\n6 8 1\n6 9 2\n6 10 1\n6 11 1\n6 12 2\n6 13 1\n6 14 1\n6 15 1\n6 16 1\n6 17 2\n6 18 1\n6 19 2\n6 20 1\n6 21 2\n6 22 1\n6 23 1\n6 24 1\n6 25 1\n7 8 1\n7 9 1\n7 10 1\n7 11 1\n7 12 2\n7 13 2\n7 14 1\n7 15 1\n7 16 1\n7 17 1\n7 18 1\n7 19 1\n7 20 2\n7 21 1\n7 22 2\n7 23 1\n7 24 2\n7 25 1\n8 9 1\n8 10 2\n8 11 1\n8 12 1\n8 13 1\n8 14 2\n8 15 1\n8 16 1\n8 17 1\n8 18 1\n8 19 1\n8 20 1\n8 21 2\n8 22 2\n8 23 2\n8 24 1\n8 25 1\n9 10 1\n9 11 2\n9 12 1\n9 13 1\n9 14 1\n9 15 2\n9 16 1\n9 17 1\n9 18 1\n9 19 2\n9 20 1\n9 21 1\n9 22 1\n9 23 2\n9 24 2\n9 25 1\n10 11 2\n10 12 2\n10 13 1\n10 14 1\n10 15 1\n10 16 1\n10 17 1\n10 18 2\n10 19 2\n10 20 1\n10 21 1\n10 22 2\n10 23 2\n10 24 1\n10 25 2\n11 12 2\n11 13 1\n11 14 1\n11 15 1\n11 16 2\n11 17 1\n11 18 1\n11 19 1\n11 20 2\n11 21 1\n11 22 1\n11 23 2\n11 24 2\n11 25 2\n12 13 1\n12 14 1\n12 15 1\n12 16 1\n12 17 2\n12 18 1\n12 19 1\n12 20 1\n12 21 2\n12 22 2\n12 23 1\n12 24 2\n12 25 2\n13 14 1\n13 15 1\n13 16 1\n13 17 1\n13 18 2\n13 19 1\n13 20 2\n13 21 2\n13 22 1\n13 23 2\n13 24 1\n13 25 2\n14 15 1\n14 16 2\n14 17 1\n14 18 1\n14 19 2\n14 20 1\n14 21 2\n14 22 1\n14 23 1\n14 24 2\n14 25 2\n15 16 1\n15 17 2\n15 18 1\n15 19 2\n15 20 2\n15 21 1\n15 22 2\n15 23 1\n15 24 1\n15 25 2\n16 17 2\n16 18 2\n16 19 1\n16 20 2\n16 21 1\n16 22 2\n16 23 1\n16 24 1\n16 25 1\n17 18 2\n17 19 1\n17 20 1\n17 21 2\n17 22 1\n17 23 2\n17 24 1\n17 25 1\n18 19 2\n18 20 1\n18 21 1\n18 22 1\n18 23 1\n18 24 2\n18 25 1\n19 20 1\n19 21 1\n19 22 1\n19 23 1\n19 24 1\n19 25 2\n20 21 1\n20 22 1\n20 23 1\n20 24 1\n20 25 2\n21 22 1\n21 23 1\n21 24 1\n21 25 2\n22 23 1\n22 24 1\n22 25 1\n23 24 1\n23 25 1\n24 25 1"}, "K(2,11)/K(2,6) on K29": {"name": "K(2,11)/K(2,6) on K29", "spec": "K2x11,K2x6", "data": "1 2 2\n1 3 1\n1 4 1\n1 5 1\n1 6 1\n1 7 2\n1 8 1\n1 9 1\n1 10 2\n1 11 1\n1 12 1\n1 13 2\n1 14 2\n1 15 1\n1 16 2\n1 17 2\n1 18 1\n1 19 2\n1 20 1\n1 21 2\n1 22 1\n1 23 2\n1 24 1\n1 25 1\n1 26 1\n1 27 1\n1 28 1\n1 29 2\n2 3 2\n2 4 1\n2 5 1\n2 6 1\n2 7 1\n2 8 2\n2 9 1\n2 10 1\n2 11 2\n2 12 1\n2 13 1\n2 14 2\n2 15 2\n2 16 1\n2 17 2\n2 18 2\n2 19 1\n2 20 2\n2 21 1\n2 22 1\n2 23 1\n2 24 2\n2 25 1\n2 26 1\n2 27 1\n2 28 1\n2 29 2\n3 4 2\n3 5 1\n3 6 1\n3 7 1\n3 8 2\n3 9 2\n3 10 1\n3 11 1\n3 12 2\n3 13 1\n3 14 1\n3 15 1\n3 16 2\n3 17 1\n3 18 2\n3 19 2\n3 20 1\n3 21 2\n3 22 1\n3 23 1\n3 24 1\n3 25 2\n3 26 1\n3 27 1\n3 28 1\n3 29 2\n4 5 2\n4 6 1\n4 7 1\n4 8 1\n4 9 2\n4 10 2\n4 11 1\n4 12 1\n4 13 2\n4 14 1\n4 15 2\n4 16 1\n4 17 2\n4 18 1\n4 19 2\n4 20 2\n4 21 1\n4 22 1\n4 23 1\n4 24 1\n4 25 1\n4 26 2\n4 27 1\n4 28 1\n4 29 2\n5 6 2\n5 7 1\n5 8 1\n5 9 1\n5 10 2\n5 11 2\n5 12 1\n5 13 1\n5 14 2\n5 15 1\n5 16 2\n5 17 1\n5 18 2\n5 19 1\n5 20 2\n5 21 2\n5 22 1\n5 23 1\n5 24 1\n5 25 1\n5 26 1\n5 27 2\n5 28 1\n5 29 2\n6 7 2\n6 8 2\n6 9 1\n6 10 1\n6 11 2\n6 12 2\n6 13 1\n6 14 1\n6 15 2\n6 16 1\n6 17 2\n6 18 1\n6 19 2\n6 20 1\n6 21 2\n6 22 1\n6 23 1\n6 24 1\n6 25 1\n6 26 1\n6 27 1\n6 28 2\n6 29 2\n7 8 1\n7 9 2\n7 10 1\n7 11 1\n7 12 2\n7 13 2\n7 14 1\n7 15 2\n7 16 2\n7 17 1\n7 18 2\n7 19 1\n7 20 2\n7 21 1\n7 22 2\n7 23 1\n7 24 1\n7 25 1\n7 26 1\n7 27 1\n7 28 1\n7 29 2\n8 9 1\n8 10 2\n8 11 1\n8 12 1\n8 13 2\n8 14 1\n8 15 1\n8 16 1\n8 17 1\n8 18 1\n8 19 1\n8 20 1\n8 21 2\n8 22 2\n8 23 1\n8 24 1\n8 25 1\n8 26 2\n8 27 2\n8 28 2\n8 29 2\n9 10 1\n9 11 2\n9 12 1\n9 13 1\n9 14 2\n9 15 2\n9 16 1\n9 17 1\n9 18 1\n9 19 1\n9 20 1\n9 21 1\n9 22 2\n9 23 2\n9 24 1\n9 25 1\n9 26 1\n9 27 2\n9 28 2\n9 29 2\n10 11 1\n10 12 2\n10 13 1\n10 14 1\n10 15 1\n10 16 2\n10 17 1\n10 18 1\n10 19 1\n10 20 1\n10 21 1\n10 22 2\n10 23 2\n10 24 2\n10 25 1\n10 26 1\n10 27 1\n10 28 2\n10 29 2\n11 12 1\n11 13 2\n11 14 1\n11 15 1\n11 16 1\n11 17 2\n11 18 1\n11 19 1\n11 20 1\n11 21 1\n11 22 2\n11 23 2\n11 24 2\n11 25 2\n11 26 1\n11 27 1\n11 28 1\n11 29 2\n12 13 1\n12 14 2\n12 15 1\n12 16 1\n12 17 1\n12 18 2\n12 19 1\n12 20 1\n12 21 1\n12 22 1\n12 23 2\n12 24 2\n12 25 2\n12 26 2\n12 27 1\n12 28 1\n12 29 2\n13 14 1\n13 15 1\n13 16 1\n13 17 1\n13 18 1\n13 19 2\n13 20 1\n13 21 1\n13 22 1\n13 23 1\n13 24 2\n13 25 2\n13 26 2\n13 27 2\n13 28 1\n13 29 2\n14 15 1\n14 16 1\n14 17 1\n14 18 1\n14 19 1\n14 20 2\n14 21 1\n14 22 1\n14 23 1\n14 24 1\n14 25 2\n14 26 2\n14 27 2\n14 28 2\n14 29 2\n15 16 1\n15 17 2\n15 18 2\n15 19 2\n15 20 2\n15 21 1\n15 22 1\n15 23 1\n15 24 2\n15 25 1\n15 26 1\n15 27 2\n15 28 2\n15 29 1\n16 17 1\n16 18 2\n16 19 2\n16 20 2\n16 21 2\n16 22 2\n16 23 1\n16 24 1\n16 25 2\n16 26 1\n16 27 1\n16 28 2\n16 29 1\n17 18 1\n17 19 2\n17 20 2\n17 21 2\n17 22 2\n17 23 2\n17 24 1\n17 25 1\n17 26 2\n17 27 1\n17 28 1\n17 29 1\n18 19 1\n18 20 2\n18 21 2\n18 22 1\n18 23 2\n18 24 2\n18 25 1\n18 26 1\n18 27 2\n18 28 1\n18 29 1\n19 20 1\n19 21 2\n19 22 1\n19 23 1\n19 24 2\n19 25 2\n19 26 1\n19 27 1\n19 28 2\n19 29 1\n20 21 1\n20 22 2\n20 23 1\n20 24 1\n20 25 2\n20 26 2\n20 27 1\n20 28 1\n20 29 1\n21 22 1\n21 23 2\n21 24 1\n21 25 1\n21 26 2\n21 27 2\n21 28 1\n21 29 1\n22 23 2\n22 24 1\n22 25 2\n22 26 2\n22 27 1\n22 28 2\n22 29 1\n23 24 2\n23 25 1\n23 26 2\n23 27 2\n23 28 1\n23 29 1\n24 25 2\n24 26 1\n24 27 2\n24 28 2\n24 29 1\n25 26 2\n25 27 1\n25 28 2\n25 29 1\n26 27 2\n26 28 1\n26 29 1\n27 28 2\n27 29 1\n28 29 1"}, "K(2,2)/K(2,19) on K28": {"name": "K(2,2)/K(2,19) on K28", "spec": "K2x2,K2x19", "data": "1 2 2\n1 3 2\n1 4 2\n1 5 1\n1 6 2\n1 7 2\n1 8 2\n1 9 1\n1 10 2\n1 11 2\n1 12 2\n1 13 2\n1 14 1\n1 15 2\n1 16 2\n1 17 1\n1 18 2\n1 19 2\n1 20 2\n1 21 1\n1 22 2\n1 23 2\n1 24 2\n1 25 2\n1 26 2\n1 27 1\n1 28 2\n2 3 2\n2 4 2\n2 5 2\n2 6 1\n2 7 2\n2 8 2\n2 9 2\n2 10 1\n2 11 2\n2 12 2\n2 13 2\n2 14 2\n2 15 1\n2 16 2\n2 17 2\n2 18 1\n2 19 2\n2 20 2\n2 21 2\n2 22 1\n2 23 2\n2 24 2\n2 25 2\n2 26 2\n2 27 1\n2 28 2\n3 4 2\n3 5 2\n3 6 2\n3 7 1\n3 8 2\n3 9 2\n3 10 2\n3 11 1\n3 12 2\n3 13 2\n3 14 2\n3 15 2\n3 16 1\n3 17 2\n3 18 2\n3 19 1\n3 20 2\n3 21 2\n3 22 2\n3 23 1\n3 24 2\n3 25 2\n3 26 2\n3 27 1\n3 28 2\n4 5 2\n4 6 2\n4 7 2\n4 8 1\n4 9 2\n4 10 2\n4 11 2\n4 12 1\n4 13 1\n4 14 2\n4 15 2\n4 16 2\n4 17 2\n4 18 2\n4 19 2\n4 20 1\n4 21 2\n4 22 2\n4 23 2\n4 24 1\n4 25 2\n4 26 2\n4 27 1\n4 28 2\n5 6 2\n5 7 2\n5 8 2\n5 9 1\n5 10 1\n5 11 2\n5 12 2\n5 13 2\n5 14 2\n5 15 2\n5 16 1\n5 17 2\n5 18 2\n5 19 2\n5 20 1\n5 21 2\n5 22 2\n5 23 2\n5 24 2\n5 25 2\n5 26 2\n5 27 2\n5 28 2\n6 7 2\n6 8 2\n6 9 2\n6 10 1\n6 11 1\n6 12 2\n6 13 1\n6 14 2\n6 15 2\n6 16 2\n6 17 1\n6 18 2\n6 19 2\n6 20 2\n6 21 2\n6 22 2\n6 23 2\n6 24 2\n6 25 2\n6 26 2\n6 27 2\n6 28 2\n7 8 2\n7 9 2\n7 10 2\n7 11 1\n7 12 1\n7 13 2\n7 14 1\n7 15 2\n7 16 2\n7 17 2\n7 18 1\n7 19 2\n7 20 2\n7 21 2\n7 22 2\n7 23 2\n7 24 2\n7 25 2\n7 26 2\n7 27 2\n7 28 2\n8 9 1\n8 10 2\n8 11 2\n8 12 1\n8 13 2\n8 14 2\n8 15 1\n8 16 2\n8 17 2\n8 18 2\n8 19 1\n8 20 2\n8 21 2\n8 22 2\n8 23 2\n8 24 2\n8 25 2\n8 26 2\n8 27 2\n8 28 2\n9 10 2\n9 11 1\n9 12 2\n9 13 2\n9 14 2\n9 15 1\n9 16 2\n9 17 2\n9 18 2\n9 19 2\n9 20 2\n9 21 2\n9 22 2\n9 23 2\n9 24 2\n9 25 1\n9 26 2\n9 27 2\n9 28 2\n10 11 2\n10 12 1\n10 13 2\n10 14 2\n10 15 2\n10 16 1\n10 17 2\n10 18 2\n10 19 2\n10 20 2\n10 21 2\n10 22 2\n10 23 2\n10 24 2\n10 25 2\n10 26 1\n10 27 2\n10 28 2\n11 12 2\n11 13 1\n11 14 2\n11 15 2\n11 16 2\n11 17 2\n11 18 2\n11 19 2\n11 20 2\n11 21 2\n11 22 2\n11 23 2\n11 24 2\n11 25 1\n11 26 2\n11 27 2\n11 28 2\n12 13 2\n12 14 1\n12 15 2\n12 16 2\n12 17 2\n12 18 2\n12 19 2\n12 20 2\n12 21 2\n12 22 2\n12 23 2\n12 24 2\n12 25 2\n12 26 1\n12 27 2\n12 28 2\n13 14 2\n13 15 2\n13 16 2\n13 17 2\n13 18 2\n13 19 2\n13 20 1\n13 21 1\n13 22 2\n13 23 2\n13 24 2\n13 25 2\n13 26 2\n13 27 2\n13 28 1\n14 15 2\n14 16 2\n14 17 1\n14 18 2\n14 19 2\n14 20 2\n14 21 2\n14 22 1\n14 23 2\n14 24 2\n14 25 2\n14 26 2\n14 27 2\n14 28 1\n15 16 2\n15 17 2\n15 18 1\n15 19 2\n15 20 2\n15 21 2\n15 22 2\n15 23 1\n15 24 2\n15 25 2\n15 26 2\n15 27 2\n15 28 1\n16 17 2\n16 18 2\n16 19 1\n16 20 2\n16 21 2\n16 22 2\n16 23 2\n16 24 1\n16 25 2\n16 26 2\n16 27 2\n16 28 1\n17 18 2\n17 19 2\n17 20 2\n17 21 2\n17 22 2\n17 23 1\n17 24 1\n17 25 2\n17 26 2\n17 27 2\n17 28 2\n18 19 2\n18 20 2\n18 21 1\n18 22 2\n18 23 2\n18 24 1\n18 25 2\n18 26 2\n18 27 2\n18 28 2\n19 20 2\n19 21 1\n19 22 1\n19 23 2\n19 24 2\n19 25 2\n19 26 2\n19 27 2\n19 28 2\n20 21 2\n20 22 1\n20 23 1\n20 24 2\n20 25 2\n20 26 2\n20 27 2\n20 28 2\n21 22 2\n21 23 2\n21 24 2\n21 25 2\n21 26 1\n21 27 2\n21 28 2\n22 23 2\n22 24 2\n22 25 1\n22 26 2\n22 27 2\n22 28 2\n23 24 2\n23 25 2\n23 26 1\n23 27 2\n23 28 2\n24 25 1\n24 26 2\n24 27 2\n24 28 2\n25 26 1\n25 27 2\n25 28 2\n26 27 2\n26 28 2\n27 28 2"}, "K(3,4)/K(3,3) on K18": {"name": "K(3,4)/K(3,3) on K18", "spec": "K3x4,K3x3", "data": "1 2 1\n1 3 1\n1 4 2\n1 5 2\n1 6 2\n1 7 2\n1 8 1\n1 9 1\n1 10 1\n1 11 1\n1 12 2\n1 13 1\n1 14 2\n1 15 1\n1 16 1\n1 17 2\n1 18 2\n2 3 1\n2 4 1\n2 5 2\n2 6 2\n2 7 2\n2 8 2\n2 9 1\n2 10 2\n2 11 1\n2 12 1\n2 13 2\n2 14 1\n2 15 2\n2 16 1\n2 17 1\n2 18 2\n3 4 1\n3 5 1\n3 6 2\n3 7 2\n3 8 2\n3 9 2\n3 10 2\n3 11 2\n3 12 1\n3 13 1\n3 14 2\n3 15 1\n3 16 2\n3 17 1\n3 18 1\n4 5 1\n4 6 1\n4 7 2\n4 8 2\n4 9 2\n4 10 1\n4 11 2\n4 12 2\n4 13 1\n4 14 1\n4 15 2\n4 16 1\n4 17 2\n4 18 1\n5 6 1\n5 7 1\n5 8 2\n5 9 2\n5 10 1\n5 11 1\n5 12 2\n5 13 2\n5 14 1\n5 15 1\n5 16 2\n5 17 1\n5 18 2\n6 7 1\n6 8 1\n6 9 2\n6 10 2\n6 11 1\n6 12 1\n6 13 2\n6 14 2\n6 15 1\n6 16 1\n6 17 2\n6 18 1\n7 8 1\n7 9 1\n7 10 1\n7 11 2\n7 12 1\n7 13 1\n7 14 2\n7 15 2\n7 16 1\n7 17 1\n7 18 2\n8 9 1\n8 10 2\n8 11 1\n8 12 2\n8 13 1\n8 14 1\n8 15 2\n8 16 2\n8 17 1\n8 18 1\n9 10 1\n9 11 2\n9 12 1\n9 13 2\n9 14 1\n9 15 1\n9 16 2\n9 17 2\n9 18 1\n10 11 2\n10 12 2\n10 13 1\n10 14 1\n10 15 1\n10 16 1\n10 17 2\n10 18 2\n11 12 2\n11 13 2\n11 14 1\n11 15 1\n11 16 1\n11 17 1\n11 18 2\n12 13 2\n12 14 2\n12 15 1\n12 16 1\n12 17 1\n12 18 1\n13 14 2\n13 15 2\n13 16 1\n13 17 1\n13 18 1\n14 15 2\n14 16 2\n14 17 1\n14 18 1\n15 16 2\n15 17 2\n15 18 1\n16 17 2\n16 18 2\n17 18 2"}, "K(3,5)/K(2,4) on K18": {"name": "K(3,5)/K(2,4) on K18", "spec": "K3x5,K2x4", "data": "1 2 1\n1 3 1\n1 4 2\n1 5 2\n1 6 2\n1 7 2\n1 8 1\n1 9 1\n1 10 1\n1 11 1\n1 12 1\n1 13 2\n1 14 1\n1 15 1\n1 16 2\n1 17 1\n1 18 2\n2 3 1\n2 4 1\n2 5 2\n2 6 2\n2 7 2\n2 8 2\n2 9 1\n2 10 2\n2 11 1\n2 12 1\n2 13 1\n2 14 2\n2 15 1\n2 16 1\n2 17 2\n2 18 1\n3 4 1\n3 5 1\n3 6 2\n3 7 2\n3 8 2\n3 9 2\n3 10 1\n3 11 2\n3 12 1\n3 13 1\n3 14 1\n3 15 2\n3 16 1\n3 17 1\n3 18 2\n4 5 1\n4 6 1\n4 7 2\n4 8 2\n4 9 2\n4 10 2\n4 11 1\n4 12 2\n4 13 1\n4 14 1\n4 15 1\n4 16 2\n4 17 1\n4 18 1\n5 6 1\n5 7 1\n5 8 2\n5 9 2\n5 10 1\n5 11 2\n5 12 1\n5 13 2\n5 14 1\n5 15 1\n5 16 1\n5 17 2\n5 18 1\n6 7 1\n6 8 1\n6 9 2\n6 10 1\n6 11 1\n6 12 2\n6 13 1\n6 14 2\n6 15 1\n6 16 1\n6 17 1\n6 18 2\n7 8 1\n7 9 1\n7 10 2\n7 11 1\n7 12 1\n7 13 2\n7 14 1\n7 15 2\n7 16 1\n7 17 1\n7 18 1\n8 9 1\n8 10 1\n8 11 2\n8 12 1\n8 13 1\n8 14 2\n8 15 1\n8 16 2\n8 17 1\n8 18 1\n9 10 1\n9 11 1\n9 12 2\n9 13 1\n9 14 1\n9 15 2\n9 16 1\n9 17 2\n9 18 1\n10 11 2\n10 12 2\n10 13 1\n10 14 1\n10 15 1\n10 16 1\n10 17 2\n10 18 2\n11 12 2\n11 13 2\n11 14 1\n11 15 1\n11 16 1\n11 17 1\n11 18 2\n12 13 2\n12 14 2\n12 15 1\n12 16 1\n12 17 1\n12 18 1\n13 14 2\n13 15 2\n13 16 1\n13 17 1\n13 18 1\n14 15 2\n14 16 2\n14 17 1\n14 18 1\n15 16 2\n15 17 2\n15 18 1\n16 17 2\n16 18 2\n17 18 2"}, "K(3,5)/K(2,5) on K21": {"name": "K(3,5)/K(2,5) on K21", "spec": "K3x5,K2x5", "data": "1 2 1\n1 3 1\n1 4 1\n1 5 1\n1 6 1\n1 7 1\n1 8 1\n1 9 1\n1 10 1\n1 11 1\n1 12 1\n1 13 1\n1 14 2\n1 15 2\n1 16 2\n1 17 2\n1 18 2\n1 19 2\n1 20 2\n1 21 2\n2 3 1\n2 4 1\n2 5 1\n2 6 1\n2 7 1\n2 8 1\n2 9 1\n2 10 2\n2 11 2\n2 12 2\n2 13 2\n2 14 1\n2 15 1\n2 16 1\n2 17 1\n2 18 2\n2 19 2\n2 20 2\n2 21 2\n3 4 1\n3 5 1\n3 6 1\n3 7 1\n3 8 2\n3 9 2\n3 10 1\n3 11 1\n3 12 2\n3 13 2\n3 14 1\n3 15 1\n3 16 2\n3 17 2\n3 18 1\n3 19 1\n3 20 2\n3 21 2\n4 5 1\n4 6 1\n4 7 1\n4 8 2\n4 9 2\n4 10 2\n4 11 2\n4 12 1\n4 13 1\n4 14 2\n4 15 2\n4 16 1\n4 17 1\n4 18 1\n4 19 1\n4 20 2\n4 21 2\n5 6 1\n5 7 2\n5 8 1\n5 9 2\n5 10 1\n5 11 2\n5 12 1\n5 13 2\n5 14 1\n5 15 2\n5 16 1\n5 17 2\n5 18 1\n5 19 2\n5 20 1\n5 21 2\n6 7 2\n6 8 2\n6 9 1\n6 10 2\n6 11 1\n6 12 1\n6 13 2\n6 14 1\n6 15 2\n6 16 2\n6 17 1\n6 18 2\n6 19 1\n6 20 1\n6 21 2\n7 8 2\n7 9 2\n7 10 1\n7 11 1\n7 12 2\n7 13 1\n7 14 2\n7 15 1\n7 16 1\n7 17 1\n7 18 2\n7 19 2\n7 20 2\n7 21 1\n8 9 1\n8 10 1\n8 11 2\n8 12 2\n8 13 1\n8 14 2\n8 15 1\n8 16 1\n8 17 2\n8 18 2\n8 19 1\n8 20 1\n8 21 2\n9 10 2\n9 11 1\n9 12 1\n9 13 1\n9 14 1\n9 15 1\n9 16 2\n9 17 1\n9 18 2\n9 19 2\n9 20 2\n9 21 1\n10 11 1\n10 12 2\n10 13 1\n10 14 1\n10 15 2\n10 16 2\n10 17 2\n10 18 1\n10 19 2\n10 20 1\n10 21 1\n11 12 1\n11 13 2\n11 14 2\n11 15 1\n11 16 2\n11 17 2\n11 18 2\n11 19 1\n11 20 1\n11 21 1\n12 13 1\n12 14 2\n12 15 2\n12 16 1\n12 17 2\n12 18 1\n12 19 2\n12 20 1\n12 21 1\n13 14 2\n13 15 2\n13 16 2\n13 17 1\n13 18 1\n13 19 1\n13 20 2\n13 21 1\n14 15 1\n14 16 2\n14 17 1\n14 18 1\n14 19 2\n14 20 1\n14 21 1\n15 16 1\n15 17 2\n15 18 1\n15 19 1\n15 20 2\n15 21 1\n16 17 1\n16 18 1\n16 19 2\n16 20 1\n16 21 1\n17 18 2\n17 19 1\n17 20 1\n17 21 1\n18 19 1\n18 20 2\n18 21 1\n19 20 1\n19 21 2\n20 21 1"}};
+</script>
+<script>
+const $=id=>document.getElementById(id);
+let ST=null, exIdx=0, hlOn=true, alOn=false, ORD=null;
+
+function parseSpec(s){
+  return s.split(",").map(t=>t.trim()).filter(Boolean).map(t=>{
+    let m=/^K(\d+)x(\d+)$/i.exec(t); if(m) return {kind:"bip",s:+m[1],t:+m[2],label:`K_{${m[1]},${m[2]}}`};
+    m=/^B(\d+)$/i.exec(t); if(m) return {kind:"book",t:+m[1],label:`B_${m[1]}`};
+    m=/^K(\d+)$/i.exec(t); if(m) return {kind:"clique",k:+m[1],label:`K_${m[1]}`};
+    throw new Error(`don't recognise "${t}" — use K3x5, B5 or K4`);
+  });
+}
+function parseWitness(txt){
+  const col=new Map(); let n=0; const seen=new Set();
+  txt.split(/\n/).forEach((ln,idx)=>{
+    ln=ln.trim(); if(!ln||ln.startsWith("#")) return;
+    const p=ln.split(/\s+/).map(Number);
+    if(p.length!==3||p.some(isNaN)) throw new Error(`line ${idx+1}: expected "i j c"`);
+    let [i,j,c]=p; if(i===j) throw new Error(`line ${idx+1}: self loop at ${i}`);
+    if(i>j)[i,j]=[j,i];
+    const k=i*10000+j;
+    if(seen.has(k)) throw new Error(`edge ${i},${j} appears twice`);
+    seen.add(k); col.set(k,c); n=Math.max(n,j);
+  });
+  const need=n*(n-1)/2;
+  if(col.size!==need) throw new Error(`got ${col.size} edges; a complete K_${n} needs ${need}`);
+  return {n,col};
+}
+const C=(S,i,j)=>S.col.get(Math.min(i,j)*10000+Math.max(i,j));
+function common(S,A,c){const out=[];
+  for(let w=1;w<=S.n;w++){ if(A.includes(w))continue;
+    let ok=true; for(const a of A) if(C(S,a,w)!==c){ok=false;break;}
+    if(ok) out.push(w);} return out;}
+function combos(n,k,fn){const idx=[...Array(k).keys()].map(x=>x+1);
+  for(;;){ if(fn(idx.slice())) return true;
+    let p=k-1; while(p>=0&&idx[p]===n-k+p+1)p--; if(p<0)return false;
+    idx[p]++; for(let q=p+1;q<k;q++) idx[q]=idx[q-1]+1; }}
+function analyse(S,spec){
+  return spec.map((g,gi)=>{
+    const c=gi+1; let edges=0;
+    for(let i=1;i<=S.n;i++)for(let j=i+1;j<=S.n;j++) if(C(S,i,j)===c) edges++;
+    if(g.kind==="book"){
+      // B_t sits on an EDGE of colour c, unlike K_{s,t} which sits on any pair.
+      let best=-1,bestA=null,viol=null,tight=0;
+      for(let u=1;u<=S.n;u++)for(let v=u+1;v<=S.n;v++){
+        if(C(S,u,v)!==c) continue;
+        const cn=common(S,[u,v],c);
+        if(cn.length>best){best=cn.length;bestA=[u,v];}
+        if(cn.length>=g.t&&!viol) viol={A:[u,v],B:cn.slice(0,g.t)};
+      }
+      if(!viol) for(let u=1;u<=S.n;u++)for(let v=u+1;v<=S.n;v++)
+        if(C(S,u,v)===c&&common(S,[u,v],c).length===best) tight++;
+      const A=viol?viol.A:(bestA||[1,2]), B=viol?viol.B:common(S,A,c);
+      return {c,g,edges,max:viol?viol.B.length:best,limit:g.t-1,viol,
+              hi:{A,B},tight,setSize:2};
+    }
+    if(g.kind==="bip"){
+      let best=-1,bestA=null,viol=null,tight=0;
+      combos(S.n,g.s,A=>{const cn=common(S,A,c);
+        if(cn.length>best){best=cn.length;bestA=A;}
+        if(cn.length>=g.t){viol={A,B:cn.slice(0,g.t)};return true;} return false;});
+      if(!viol) combos(S.n,g.s,A=>{ if(common(S,A,c).length===best) tight++; return false;});
+      const A=viol?viol.A:bestA, B=viol?viol.B:common(S,A,c);
+      return {c,g,edges,max:viol?viol.B.length:best,limit:g.t-1,viol,
+              hi:{A,B},tight,setSize:g.s};
+    }
+    let viol=null;
+    combos(S.n,g.k,A=>{ for(let a=0;a<A.length;a++)for(let b=a+1;b<A.length;b++)
+        if(C(S,A[a],A[b])!==c) return false; viol={A,B:A}; return true;});
+    return {c,g,edges,max:null,limit:null,viol,hi:viol?{A:viol.A,B:viol.A}:null,tight:0,setSize:g.k};
+  });
+}
+function order(n,cur){
+  // Aligning permutes the axes so the s-set and its common neighborhood sit adjacent: a
+  // combinatorial rectangle is only a VISIBLE rectangle when its rows and columns happen
+  // to be contiguous, which for scattered vertex labels they are not. Relabeling never
+  // changes an edge's color, so it is the same object. The original order is the one that
+  // shows global structure - a circulant's diagonal banding exists only in that numbering.
+  if(!alOn||!cur) return [...Array(n).keys()].map(k=>k+1);
+  const A=cur.hi.A, B=cur.hi.B, used=new Set([...A,...B]);
+  return [...A,...B,...[...Array(n).keys()].map(k=>k+1).filter(v=>!used.has(v))];
+}
+function render(){
+  const cv=$("cv"),x=cv.getContext("2d");
+  const css=getComputedStyle(document.documentElement);
+  const tok=k=>css.getPropertyValue(k).trim();
+  x.clearRect(0,0,cv.width,cv.height);
+  if(!ST){x.fillStyle=tok("--ink-3");x.font="14px "+tok("--sans");
+    x.fillText("No coloring loaded.",22,34);return;}
+  const {S,res}=ST, n=S.n, pad=n>26?16:26, s=(cv.width-pad)/n;
+  const hiRes=res.filter(r=>r.hi);
+  const cur=hiRes.length?hiRes[exIdx%hiRes.length]:null;   // stepped config, independent of the toggles
+  const A=new Set(cur&&hlOn?cur.hi.A:[]), B=new Set(cur&&hlOn?cur.hi.B:[]);
+  const hot=cur&&cur.c===1?tok("--e1-hot"):tok("--e2-hot");
+  const ord=order(n,cur);
+  for(let a=0;a<n;a++)for(let b=0;b<n;b++){
+    const i=ord[a], j=ord[b]; let f;
+    if(i===j) f=tok("--rule-2");
+    else{ const v=C(S,i,j);
+      const on=hlOn&&cur&&((A.has(i)&&B.has(j))||(B.has(i)&&A.has(j)));
+      const dim=hlOn&&cur;
+      f = on ? hot : (v===1?(dim?tok("--e1-dim"):tok("--e1")):(dim?tok("--e2-dim"):tok("--e2")));}
+    x.fillStyle=f; x.fillRect(pad+b*s,pad+a*s,Math.max(1,s-0.7),Math.max(1,s-0.7));
+  }
+  if(alOn&&cur){ // outline the two blocks that make the rectangle explicit
+    const na=cur.hi.A.length, nb=cur.hi.B.length;
+    x.strokeStyle=hot; x.lineWidth=1.6;
+    x.strokeRect(pad+na*s-0.8,pad-0.8,nb*s,na*s);
+    x.strokeRect(pad-0.8,pad+na*s-0.8,na*s,nb*s);
+  }
+  if(pad>16){x.font="10px "+tok("--mono");
+    for(let k=0;k<n;k++){const lab=ord[k], on=hlOn&&(A.has(lab)||B.has(lab));
+      x.fillStyle=on?hot:tok("--ink-3");
+      x.fillText(String(lab),pad+k*s+s/2-(lab>9?6:3),15);
+      x.fillText(String(lab),1,pad+k*s+s/2+4);}}
+  ORD=ord;
+}
+function show(){
+  const {S,res}=ST;
+  const bad=res.filter(r=>r.viol);
+  const v=$("verdict"), vt=$("vtext");
+  v.className="verdict "+(bad.length?"bad":"ok");
+  vt.innerHTML = bad.length
+    ? `Contains ${bad.map(r=>`a ${r.g.label} in color ${r.c}`).join(" and ")}. Not a valid witness.`
+    : `No forbidden subgraph found on K<sub>${S.n}</sub>. If the input is right, R &gt; ${S.n}.`;
+  $("stats").innerHTML = res.map(r=>`<tr><td>${r.c}</td><td>${r.g.label}</td>
+    <td class="num">${r.edges}</td>
+    <td class="num">${r.max===null?"&mdash;":r.max}</td>
+    <td class="num">${r.limit===null?"&mdash;":r.limit}</td></tr>`).join("");
+  $("tHi").className = hlOn?"primary":"";
+  $("tAl").className = alOn?"primary":"";
+  $("ordnote").textContent = alOn ? "axes reordered" : "original vertex order";
+  const hi=res.filter(r=>r.hi);
+  $("nav").hidden = !hi.length;
+  if(hi.length){
+    const cur=hi[exIdx%hi.length];
+    $("exlabel").textContent=`{${cur.hi.A.join(",")}} × {${cur.hi.B.join(",")}}`;
+    $("exnote").innerHTML = cur.viol
+      ? `all ${cur.hi.A.length*cur.hi.B.length} edges color ${cur.c} — this is a ${cur.g.label}`
+      : (cur.g.kind==="bip"
+         ? `${cur.hi.A.length}×${cur.hi.B.length} in color ${cur.c}; ${cur.g.label} needs ${cur.g.t} columns, so one short${cur.tight?` (${cur.tight} such sets tie here)`:""}`
+         : `no ${cur.g.label} in color ${cur.c}`);
+  }
+  render();
+}
+function run(){
+  $("err").textContent="";
+  try{
+    const spec=parseSpec($("spec").value);
+    const S=parseWitness($("wit").value);
+    if(spec.length<1) throw new Error("name at least one forbidden graph");
+    ST={S,res:analyse(S,spec)}; exIdx=0; show();
+  }catch(e){ $("err").textContent=e.message;
+    $("verdict").className="verdict idle"; $("vtext").textContent="Could not read that input."; }
+}
+$("run").onclick=run;
+$("clear").onclick=()=>{$("wit").value="";$("err").textContent="";ST=null;
+  $("verdict").className="verdict idle";$("vtext").textContent="Nothing checked yet.";
+  $("stats").innerHTML='<tr><td colspan="5" style="color:var(--ink-3)">&mdash;</td></tr>';
+  $("nav").hidden=true; render();};
+$("tHi").onclick=()=>{hlOn=!hlOn;show();};
+$("tAl").onclick=()=>{alOn=!alOn;show();};
+$("next").onclick=()=>{exIdx++;show();};
+$("prev").onclick=()=>{const h=ST.res.filter(r=>r.hi).length;exIdx=(exIdx+h-1)%h;show();};
+$("cv").onmousemove=e=>{ if(!ST)return;
+  const r=$("cv").getBoundingClientRect(),sc=$("cv").width/r.width;
+  const n=ST.S.n,pad=n>26?16:26,s=($("cv").width-pad)/n;
+  const b=Math.floor(((e.clientX-r.left)*sc-pad)/s), a=Math.floor(((e.clientY-r.top)*sc-pad)/s);
+  const ord=ORD||[...Array(n).keys()].map(k=>k+1);
+  if(a<0||b<0||a>=n||b>=n){$("hover").textContent="";return;}
+  const i=ord[a], j=ord[b];
+  $("hover").textContent = i!==j ? `edge ${i}–${j} is color ${C(ST.S,i,j)}` : "";};
+$("cv").onmouseleave=()=>$("hover").textContent="";
+$("chips").innerHTML=Object.entries(EXAMPLES).map(([k,v])=>
+  `<button class="chip" data-k="${k}">${v.name}</button>`).join("");
+$("chips").onclick=e=>{const k=e.target.dataset.k; if(!k)return;
+  $("spec").value=EXAMPLES[k].spec; $("wit").value=EXAMPLES[k].data; run();};
+const BOOT=Object.keys(EXAMPLES)[0];   // keys are the witness "# name:" lines, so
+$("spec").value=EXAMPLES[BOOT].spec;   // never hard-code one: adding a witness renames them
+$("wit").value=EXAMPLES[BOOT].data; run();
+matchMedia("(prefers-color-scheme:dark)").addEventListener("change",render);
+</script>
