@@ -19,6 +19,11 @@ A coloring of K_n gives R > n. Checking one needs only the definition of subgrap
 containment. The refutation needs more: a faithful encoding, sound symmetry breaking, and an
 exhaustive search. Each directory says which parts are machine-checked.
 
+[`FINDINGS.md`](FINDINGS.md) is the complete record: what is deposited, two three-colour
+cells computed to a verdict but held back because they do not meet the bar set here, cells
+screened and left open, cells ruled out by published work, searches that found nothing, and
+the defects since found in this repository's own tooling.
+
 See [`NOTICE.md`](NOTICE.md) — the K_18 coloring in `k34k33-n19/` is Van Overberghe's.
 
 ## Check
@@ -29,8 +34,13 @@ python3 tools/check_ramsey.py k2x10-k2x7-lb31/witness/witness_k2x10k2x7_n30.txt 
 
 Or open `bench.html` and paste any coloring. It shares no code with the encoder.
 
-`tools/` has three checkers, each written from the definitions: `check_ramsey.py`
-(complete bipartite and cliques), `check_book.py` (books B_t), `check_mixed.py` (both).
+`tools/` has four checkers, each written from the definitions: `check_any.py`
+(any number of colors; bipartite and books by codegree, cliques/cycles/wheels/K_4-e by
+embedding; an unrecognized token is an error, never a guess), and the three older ones it
+supersedes -- `check_ramsey.py` (complete bipartite and cliques), `check_book.py` (books
+B_t), `check_mixed.py` (both). Every coloring above verifies under `check_any.py` as well as
+under the checker it was originally accepted by. See FINDINGS.md section 6 for why
+`check_mixed.py` was superseded.
 
 Each witness declares its own parameters:
 
