@@ -26,7 +26,7 @@ visible rather than silent.
 
 | cell | DS1 | what the ledgers actually show | standing |
 |---|---|---|---|
-| R(K_3, K_4-e, K_4-e) | 21-22 | 0 witnesses over ~135,000 subcubes, but the ledgers carry **28 UNKNOWN rows** and 141 SPLIT rows; whether the splits cover every UNKNOWN is not established | refutation **unproven pending a coverage audit** |
+| R(K_3, K_4-e, K_4-e) | 21-22 | **Coverage audit run 2026-08-29: FAILED.** Against the cube files (3049 level-1 subcubes, not the ledger's own row count) the union of all seven ledgers resolves 3041. Regenerating all 169 split parents found **40 whose recorded children are a strict prefix of the true split — 2353 child cubes never solved** — plus 25 that regenerate fewer children than recorded and cannot be mapped to any reconstructible cube list. The gap was invisible because recorded child indices run contiguously 1..k in all 169 parents: a run killed partway through a child list leaves no hole. The split cubes were written to /tmp and deleted, and march_cu is not build-deterministic across builds, so this ledger cannot be completed into a proof — only re-run with the cubes retained | **not a result** — no refutation, and no witness either (0 SAT) |
 | R(C_4, C_4, K_4) | 20-21 | 554 level-1 cubes: **84 UNSAT, 470 TIMEOUT**. Of those 470, **13** were re-split (10,179 children, 279 still timing out). **457 parents were never attempted at any depth** | **not a result** — no refutation, and no witness either (0 SAT) |
 
 The error in the second row was a single word: "554 subcubes" counted the cubes the

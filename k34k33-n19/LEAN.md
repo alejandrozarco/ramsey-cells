@@ -32,8 +32,30 @@ commit `4ec2168`, CaDiCaL 3.0.1.
 
 Refuting the 571 subcubes takes about 2.4 CPU-hours. The Lean build is longer.
 
-The composing step imports one module per subcube — roughly 16 GB of `.olean` — and needs
-the memory to hold them at once. **It succeeded on 64 GB and failed on 16 GB.** Related:
+The composing step imports one module per subcube — roughly 16 GB of `.olean`.
+
+**Correction (2026-08-30): the 16 GB failure was not the composing step.** On a 16 GB machine
+the composing step (`Main`) builds in about a minute once every chunk is present; what fails is
+building the largest chunk. `Chunk533` (1587 MB of source) has a **measured peak RSS of
+20.8 GB**, so it cannot be elaborated in 16 GB, and lake will silently attempt exactly that
+whenever it judges the module stale. Two earlier "composing failures" were that rebuild
+misattributed. Chunks up to 1218 MB do build in 16 GB, though they dip the disk to ~3 GB —
+macOS grows swap on the data volume, so a memory blowup presents as a disk crisis.
+
+The practical route on a small machine: build the one oversized chunk elsewhere and transplant
+its artifacts. **Lean oleans are byte-identical across x86_64-linux and arm64-darwin** (verified
+by md5 on a shared module), so this works — but a module has artifacts in *two* trees, and
+copying only the first makes lake rebuild it:
+
+| tree | files |
+|---|---|
+| `.lake/build/lib/lean/<mod path>/` | `.olean`, `.ilean`, `.olean.hash`, `.ilean.hash`, `.trace` |
+| `.lake/build/ir/<mod path>/` | `.c`, `.c.hash`, `.setup.json` |
+
+`Chunk533.c` is 1465 bytes; omitting it triggers the full 1.5 GB rebuild. Verify a transplant
+with `lake build <module>:olean --no-build`, which reports staleness without building anything.
+
+Related:
 `chunkSize` must stay at 1. A module whose embedded certificate pushes its `.olean` past
 about 2 GB builds fine but cannot afterwards be imported.
 
