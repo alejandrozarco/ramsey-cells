@@ -19,13 +19,21 @@ separately from the encoder and from the three older checkers.
 
 ## 2. Computed, deliberately not deposited
 
-Two three-colour cells have been computed to a verdict but do not meet the bar set by
-`k34k33-n19/`, so they are recorded here rather than deposited as cells.
+Two three-colour cells were recorded here as computed to a verdict. **On 2026-08-29 an audit
+of the raw ledgers found that claim wrong for one of them and unproven for the other.** The
+corrected statement is below; the original wording is quoted in section 6 so the change is
+visible rather than silent.
 
-| cell | DS1 | computed | what is missing |
+| cell | DS1 | what the ledgers actually show | standing |
 |---|---|---|---|
-| R(K_3, K_4-e, K_4-e) | 21-22 | UNSAT at n=21, 135,262 subcubes | retained per-cube LRAT, cover certificate at every re-split level, independent reproduction |
-| R(C_4, C_4, K_4) | 20-21 | UNSAT at n=20, 554 subcubes | same |
+| R(K_3, K_4-e, K_4-e) | 21-22 | 0 witnesses over ~135,000 subcubes, but the ledgers carry **28 UNKNOWN rows** and 141 SPLIT rows; whether the splits cover every UNKNOWN is not established | refutation **unproven pending a coverage audit** |
+| R(C_4, C_4, K_4) | 20-21 | 554 level-1 cubes: **84 UNSAT, 470 TIMEOUT**. Of those 470, **13** were re-split (10,179 children, 279 still timing out). **457 parents were never attempted at any depth** | **not a result** — no refutation, and no witness either (0 SAT) |
+
+The error in the second row was a single word: "554 subcubes" counted the cubes the
+decomposition *generated*, not the cubes it *resolved*. About 15% of that search ran. A reader
+would have taken the old table to mean the cell was settled at 20 pending certification. It is
+not settled at all. **Neither cell should be cited from this repository as a determined
+value.**
 
 A reproduction attempt on 2026-08-26 makes the gap concrete rather than hypothetical. With
 colour-swap and vertex-lex symmetry breaking, `K_3,K_4-e,K_4-e` at n=21 cubes into 3,779
@@ -122,11 +130,29 @@ because these searches almost always end in refutation. Model decoding now follo
 encoder's own variable convention for any number of colours, and every witness is verified by
 an independent checker before it is written.
 
+**A search that was ~15% finished was recorded as a completed refutation.** Until 2026-08-29
+the table in section 2 read `R(C_4, C_4, K_4) | 20-21 | UNSAT at n=20, 554 subcubes`. The
+ledger behind it (`c4c4k4_sweep_ledger.BROKEN.jsonl` — and the `.BROKEN` suffix was itself a
+clue nobody followed) records 84 UNSAT and 470 TIMEOUT over those 554 cubes, with 457 of the
+timed-out parents never re-split at any depth. The summary counted generated cubes as if they
+were resolved ones. Nothing downstream depended on it — the cell was never deposited and no
+other result cites it — but it stood here as a computed verdict for three days, and it is the
+same failure this section already documents twice: work that did not finish, wearing the
+costume of work that did. The registry entry asserting `=20` now reads `NOT ESTABLISHED`.
+
 **Prescribed-automorphism sweeps are not exhaustive.** The cycle types enumerated cover
 elements whose order divides a fixed list. That misses every automorphism of prime order
 outside the list, including all involutions at n=21. A sweep that refutes every enumerated
 type therefore shows that no colouring exists *with one of those symmetries* — it is search
 evidence, and it is not a refutation. Nothing deposited here rests on such a sweep.
+
+Since 2026-08-28 the enumeration can be made complete. By Cauchy's theorem every nontrivial
+finite group contains an element of prime order, so sweeping every prime-order cycle type
+covers every colouring with any nontrivial automorphism. The complete cover is also *smaller*
+than the ad-hoc list it replaces — 26 types against 120 at n=20 — because composite orders are
+redundant once their prime divisors are swept. A sweep that resolves every prime-order type
+does license the stronger statement. Resolving them all is now the binding constraint: the
+cells tried so far still leave roughly a third of their types at the time cap.
 
 ## 7. Method
 
