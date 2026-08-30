@@ -8,6 +8,9 @@ These are the parts of the Lean development that carry meaning rather than bulk.
 | `Cover.lean` | `theorem coverThm : (negCubesCNF cubes).Unsat` — the cubes leave nothing uncovered. |
 | `Main.lean` | `theorem base_unsat : base.Unsat` — composes the 571 chunk theorems with `coverThm`, and ends with `#print axioms base_unsat`. |
 | `Chunk232.lean` | one leaf module, included so the shape is visible. It is the smallest of the 571. |
+| `Encoder.lean` | the encoding of `../tools/gen_ramsey.py` written in Lean. |
+| `EncoderBridge.lean` | `theorem encode_eq_base : Encoder.k34k33_n19 = base`, checked by evaluation. |
+| `EncodedUnsat.lean` | `theorem encoded_unsat : (Encoder.k34k33_n19).Unsat`, the two composed. |
 
 The other 570 chunk modules are not here. Each embeds its subcube's LRAT certificate as a
 string literal, and together they run to about 16 GB; the largest single one is 1.7 GB.

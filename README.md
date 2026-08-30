@@ -15,6 +15,9 @@ scripts that redo the work. Unconfirmed, not peer reviewed. Nothing here is a cl
 | R(K_{3,4}, K_{3,3}) | 19-20 | refutation at n=19 | [`k34k33-n19/`](k34k33-n19/) |
 | R(K_{3,5}, K_{2,4}) | 19-20 | K_18 + refutation at n=19 | [`k35k24-n19/`](k35k24-n19/) |
 
+Lean formalisation work around the encoder is in
+<https://github.com/alejandrozarco/sbsound>.
+
 A coloring of K_n gives R > n. Checking one needs only the definition of subgraph
 containment. The refutation needs more: a faithful encoding, sound symmetry breaking, and an
 exhaustive search. Each directory says which parts are machine-checked.

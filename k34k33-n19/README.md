@@ -8,6 +8,10 @@ unconfirmed, not peer reviewed.
 DS1 rev #18, Table IVb, row 3,4 column 3,3: `19-20`. A K_{3,4}/K_{3,3}-free coloring of
 K_18 gives R > 18; unsatisfiability at n = 19 gives R <= 19. Together, 19.
 
+`lean/Encoder.lean` writes the encoding of `tools/gen_ramsey.py` in Lean and
+`lean/EncoderBridge.lean` checks it against `instance/k34k33_n19.cnf` by evaluation.
+Soundness lemmas for the encoding are in <https://github.com/alejandrozarco/sbsound>.
+
 ## The K_18 coloring is not ours
 
 `witness/witness_k34k33_n18.txt` is Steven Van Overberghe's published construction,
