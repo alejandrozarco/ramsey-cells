@@ -10,7 +10,6 @@ K_18 gives R > 18; unsatisfiability at n = 19 gives R <= 19. Together, 19.
 
 `lean/Encoder.lean` writes the encoding of `tools/gen_ramsey.py` in Lean and
 `lean/EncoderBridge.lean` checks it against `instance/k34k33_n19.cnf` by evaluation.
-Soundness lemmas for the encoding are in <https://github.com/alejandrozarco/sbsound>.
 
 ## The K_18 coloring is not ours
 
