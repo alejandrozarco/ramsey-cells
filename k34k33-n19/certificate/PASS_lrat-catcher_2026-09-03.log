@@ -1,0 +1,28 @@
+=== build fallback solution 18:28:21 ===
+ LRATCatcher.Comparator.leaves_cakelpr]
+⚠ [10/10] Built LRATCatcher.ComparatorChallenge (2.5s)
+warning: LRATCatcher/ComparatorChallenge.lean:6:8: declaration uses `sorry`
+warning: LRATCatcher/ComparatorChallenge.lean:7:8: declaration uses `sorry`
+Build completed successfully (10 jobs).
+=== PHASE B comparator (fallback: 3 axioms + 2 named cake_lpr verdicts) 18:28:26 ===
+Building LRATCatcher.ComparatorChallenge
+⚠ [9/9] Replayed LRATCatcher.ComparatorChallenge
+warning: LRATCatcher/ComparatorChallenge.lean:6:8: declaration uses `sorry`
+warning: LRATCatcher/ComparatorChallenge.lean:7:8: declaration uses `sorry`
+Build completed successfully (9 jobs).
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, LRATCatcher.Comparator.encoded_unsat, propext, Quot.sound, Classical.choice, LRATCatcher.Comparator.leaves_cakelpr, LRATCatcher.Comparator.cover_cakelpr, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, LRATCatcher.Encoder.k34k33_n19] from LRATCatcher.ComparatorChallenge
+Building LRATCatcher.ComparatorUnsatFallback
+ℹ [9/9] Replayed LRATCatcher.ComparatorUnsatFallback
+info: LRATCatcher/ComparatorUnsatFallback.lean:8:0: 'LRATCatcher.Comparator.encoded_unsat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ LRATCatcher.Comparator.cover_cakelpr,
+ LRATCatcher.Comparator.leaves_cakelpr]
+Build completed successfully (9 jobs).
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, LRATCatcher.Comparator.encoded_unsat, propext, Quot.sound, Classical.choice, LRATCatcher.Comparator.leaves_cakelpr, LRATCatcher.Comparator.cover_cakelpr, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, LRATCatcher.Encoder.k34k33_n19] from LRATCatcher.ComparatorUnsatFallback
+Running nanoda kernel on solution
+Nanoda kernel accepts the solution
+Running Lean default kernel on solution.
+Lean default kernel accepts the solution
+Your solution is okay!
+=== PHASE B DONE 18:28:36 ===
