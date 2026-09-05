@@ -1,0 +1,20 @@
+[
+  {
+    "cell": "k34k33-n19",
+    "source": "K(3,4)K(3,3)n18.g6",
+    "same_labeled_graph": true,
+    "generated_graph6": "QzKW[NBemYKsksU]Tfek{Yrotf_",
+    "source_graph6": [
+      "QzKW[NBemYKsksU]Tfek{Yrotf_"
+    ]
+  },
+  {
+    "cell": "k35k24-n19",
+    "source": "K(3,5)K(2,4)n18.g6",
+    "same_labeled_graph": true,
+    "generated_graph6": "QzKW[NBj]l\\W\\[mmZjb\\{lrpZf_",
+    "source_graph6": [
+      "QzKW[NBj]l\\W\\[mmZjb\\{lrpZf_"
+    ]
+  }
+]

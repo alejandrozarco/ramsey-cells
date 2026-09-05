@@ -1,0 +1,18 @@
+[
+  {
+    "cell": "k35k24-n19",
+    "solver_rc": 20,
+    "solver_stdout": "s UNSATISFIABLE\n",
+    "checker_rc": 0,
+    "checker_stdout": "c parsed a formula with 86172 variables and 773 clauses\nc VERIFIED\nc allocated 1024 17605 861720\nc Added clauses = 2551.  Deleted clauses = 2232.  Max live clauses = 813\nc verification time = 0.00 secs\n",
+    "checker_stderr": ""
+  },
+  {
+    "cell": "k35k25-n22",
+    "solver_rc": 20,
+    "solver_stdout": "s UNSATISFIABLE\n",
+    "checker_rc": 0,
+    "checker_stdout": "c parsed a formula with 164397 variables and 137350 clauses\nc VERIFIED\nc allocated 1024 7040256 1643970\nc Added clauses = 512828.  Deleted clauses = 479535.  Max live clauses = 137431\nc verification time = 0.94 secs\n",
+    "checker_stderr": ""
+  }
+]

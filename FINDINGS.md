@@ -185,5 +185,16 @@ certificate, not the splitter's internal behaviour, is what makes the decomposit
   Comparator transcripts and complete cake_lpr ledgers (572/572 and 774/774 files verified).
   `k35k24-n19`'s search was re-run with per-leaf proof checking on 2026-09-04 because the cube
   files of the 2026-08-20 run had not been retained.
-* The published lower bound R(K_{2,5}, K_{3,5}) >= 20 (Ghebleh, Al-Yakoob, Kanso, Stevanović,
-  arXiv:2403.20055, 2024) is the most recent prior work found on this cell.
+* Prior work found on this cell: DS1 rev #18 lists 21–23; Ghebleh, Al-Yakoob, Kanso and Stevanović
+  (arXiv:2403.20055, 2024) give R(K_{2,5}, K_{3,5}) >= 20, which does not improve the survey's bound.
+
+* External review of commit 784339a (`review/2026-09-05/`): all nine colorings pass an independent
+  checker; three equalities follow with published upper bounds; seven witnesses improve DS1.18
+  lower bounds. Findings acted on: the K_{3,5}/K_{2,4} K_18 coloring is Van Overberghe's and was
+  unattributed (now in `NOTICE.md`); `tools/verify_close.py` accepted an incomplete cube list in a
+  negative control (now also refutes the negated leaves with a checked proof; all three deposited
+  covers re-verified); the encoder path and per-cell layouts in `REVIEWER.md`; the K_{3,5}/K_{2,4}
+  instance and tree are now deposited; the n = 22 cake_lpr pass was incomplete at commit time and
+  its failures unexplained (OOM; rerunning). The reviewer did not replay every leaf proof and
+  describes the three refutation-based equalities as supported computational results awaiting
+  complete independent replay.

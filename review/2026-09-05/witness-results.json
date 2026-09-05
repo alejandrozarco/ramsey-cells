@@ -1,0 +1,200 @@
+[
+  {
+    "path": "b5b9-lb29/witness/witness_b5b9_n28.txt",
+    "n": 28,
+    "edges": 378,
+    "valid": true,
+    "checks": [
+      {
+        "color": 1,
+        "forbidden": "B5",
+        "sets_checked": 161,
+        "maximum_common_neighbors": 4,
+        "required_for_violation": 5
+      },
+      {
+        "color": 2,
+        "forbidden": "B9",
+        "sets_checked": 217,
+        "maximum_common_neighbors": 8,
+        "required_for_violation": 9
+      }
+    ]
+  },
+  {
+    "path": "k2x10-k2x6-lb29/witness/witness_k2x10k2x6_n28.txt",
+    "n": 28,
+    "edges": 378,
+    "valid": true,
+    "checks": [
+      {
+        "color": 1,
+        "forbidden": "K2x10",
+        "sets_checked": 378,
+        "maximum_common_neighbors": 9,
+        "required_for_violation": 10
+      },
+      {
+        "color": 2,
+        "forbidden": "K2x6",
+        "sets_checked": 378,
+        "maximum_common_neighbors": 5,
+        "required_for_violation": 6
+      }
+    ]
+  },
+  {
+    "path": "k2x10-k2x7-lb31/witness/witness_k2x10k2x7_n30.txt",
+    "n": 30,
+    "edges": 435,
+    "valid": true,
+    "checks": [
+      {
+        "color": 1,
+        "forbidden": "K2x10",
+        "sets_checked": 435,
+        "maximum_common_neighbors": 9,
+        "required_for_violation": 10
+      },
+      {
+        "color": 2,
+        "forbidden": "K2x7",
+        "sets_checked": 435,
+        "maximum_common_neighbors": 6,
+        "required_for_violation": 7
+      }
+    ]
+  },
+  {
+    "path": "k2x11-k2x4-lb26/witness/witness_k2x11k2x4_n25.txt",
+    "n": 25,
+    "edges": 300,
+    "valid": true,
+    "checks": [
+      {
+        "color": 1,
+        "forbidden": "K2x11",
+        "sets_checked": 300,
+        "maximum_common_neighbors": 10,
+        "required_for_violation": 11
+      },
+      {
+        "color": 2,
+        "forbidden": "K2x4",
+        "sets_checked": 300,
+        "maximum_common_neighbors": 3,
+        "required_for_violation": 4
+      }
+    ]
+  },
+  {
+    "path": "k2x11-k2x6-lb30/witness/witness_k2x11k2x6_n29.txt",
+    "n": 29,
+    "edges": 406,
+    "valid": true,
+    "checks": [
+      {
+        "color": 1,
+        "forbidden": "K2x11",
+        "sets_checked": 406,
+        "maximum_common_neighbors": 10,
+        "required_for_violation": 11
+      },
+      {
+        "color": 2,
+        "forbidden": "K2x6",
+        "sets_checked": 406,
+        "maximum_common_neighbors": 5,
+        "required_for_violation": 6
+      }
+    ]
+  },
+  {
+    "path": "k2x2-k2x19-lb29/witness/witness_k2x2k2x19_n28.txt",
+    "n": 28,
+    "edges": 378,
+    "valid": true,
+    "checks": [
+      {
+        "color": 1,
+        "forbidden": "K2x2",
+        "sets_checked": 378,
+        "maximum_common_neighbors": 1,
+        "required_for_violation": 2
+      },
+      {
+        "color": 2,
+        "forbidden": "K2x19",
+        "sets_checked": 378,
+        "maximum_common_neighbors": 18,
+        "required_for_violation": 19
+      }
+    ]
+  },
+  {
+    "path": "k34k33-n19/witness/witness_k34k33_n18.txt",
+    "n": 18,
+    "edges": 153,
+    "valid": true,
+    "checks": [
+      {
+        "color": 1,
+        "forbidden": "K3x4",
+        "sets_checked": 816,
+        "maximum_common_neighbors": 3,
+        "required_for_violation": 4
+      },
+      {
+        "color": 2,
+        "forbidden": "K3x3",
+        "sets_checked": 816,
+        "maximum_common_neighbors": 2,
+        "required_for_violation": 3
+      }
+    ]
+  },
+  {
+    "path": "k35k24-n19/witness/witness_k35k24_n18.txt",
+    "n": 18,
+    "edges": 153,
+    "valid": true,
+    "checks": [
+      {
+        "color": 1,
+        "forbidden": "K3x5",
+        "sets_checked": 816,
+        "maximum_common_neighbors": 4,
+        "required_for_violation": 5
+      },
+      {
+        "color": 2,
+        "forbidden": "K2x4",
+        "sets_checked": 153,
+        "maximum_common_neighbors": 3,
+        "required_for_violation": 4
+      }
+    ]
+  },
+  {
+    "path": "k35k25-lb22/witness/witness_k35k25_n21.txt",
+    "n": 21,
+    "edges": 210,
+    "valid": true,
+    "checks": [
+      {
+        "color": 1,
+        "forbidden": "K3x5",
+        "sets_checked": 1330,
+        "maximum_common_neighbors": 4,
+        "required_for_violation": 5
+      },
+      {
+        "color": 2,
+        "forbidden": "K2x5",
+        "sets_checked": 210,
+        "maximum_common_neighbors": 4,
+        "required_for_violation": 5
+      }
+    ]
+  }
+]

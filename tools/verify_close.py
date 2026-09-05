@@ -52,9 +52,41 @@ for i, lits in enumerate(cubes_of(top)): walk(str(i), lits)
 print(f"COVER: {len(leaves)} UNSAT leaves with proof files + {len(checked_leaves)} already-verified leaves (proofs deleted) | {len(missing)} gaps | {len(sat)} SAT")
 for m in missing[:10]: print("   GAP", m)
 if sat: print("   SAT leaves:", sat); sys.exit(2)
-if missing and mode != '--proofs-only': print("*** COVER INCOMPLETE ***"); sys.exit(1)
+if missing and mode != '--proofs-only': print("*** TREE NOT CLOSED ***"); sys.exit(1)
 if missing: print(f"(proofs-only mode: {len(missing)} gaps ignored — run still in flight)")
-else: print("COVER COMPLETE against the cube tree on disk.")
+else: print("TREE CLOSED: every leaf of the cube tree on disk has a checked UNSAT verdict (this alone does NOT show the cubes cover the space).")
+# --- cover completeness: the conjunction of the NEGATED leaves must be unsatisfiable, with a checked proof.
+# Without this, a tree whose listed cubes are all refuted would pass even if the cubes do not cover the space
+# (an external review constructed exactly that: a satisfiable formula with an incomplete cube list).
+if os.environ.get('SKIP_COVER') != '1':
+    CAD = os.environ.get('CADICAL', os.path.expanduser('~/claude_projects/sat/cadical/build/cadical'))
+    allcubes = [lits for _, lits in leaves] + [lits for cid, lits in [] ]
+    # leaves accepted via verified rows carry no literals in `leaves`; rebuild the full leaf list from the walk
+    def all_leaf_lits():
+        out = []
+        def w(cid, lits):
+            r = led.get(cid)
+            if r and r['result'] == 'UNSAT' and (r.get('verified') or cid in vset or have_proof(cid)): out.append(lits); return
+            ic = next((f'{d}/splits/{f}' for f in os.listdir(f'{d}/splits') if f.startswith(cid + '_d') and f.endswith('.icnf')), None)
+            if ic is None: return
+            kids = cubes_of(ic)
+            if not kids: w(cid + '.solo', lits); return
+            for j, k in enumerate(kids): w(f'{cid}.{j}', lits + k)
+        for i, lits in enumerate(cubes_of(top)): w(str(i), lits)
+        return out
+    L = all_leaf_lits()
+    with tempfile.TemporaryDirectory() as t:
+        cov = f'{t}/negcubes.cnf'; prf = f'{t}/negcubes.lrat'; trm = f'{t}/negcubes.trim'
+        with open(cov, 'w') as f:
+            f.write(f"p cnf {NV} {len(L)}\n")
+            for lits in L: f.write(" ".join(str(-int(x)) for x in lits) + " 0\n")
+        r = subprocess.run([CAD, '-q', '--lrat', '--binary=false', cov, prf], capture_output=True, text=True)
+        unsat = 's UNSATISFIABLE' in r.stdout
+        r1 = subprocess.run([TRIM, cov, prf, trm, '--ascii'], capture_output=True, text=True) if unsat else None
+        r2 = subprocess.run([CHECK, cov, trm], capture_output=True, text=True) if unsat else None
+        okc = unsat and r1.returncode == 20 and r2.returncode == 0 and 'failed' not in (r2.stdout + r2.stderr).lower()
+        print(f"COVER {'VERIFIED' if okc else '*** NOT VERIFIED ***'}: negation of all {len(L)} leaves is {'UNSAT with a checked LRAT proof' if okc else ('SAT -- the cubes do NOT cover the space' if not unsat else 'UNSAT but the proof did not check')}.")
+        if not okc: sys.exit(4)
 todo = leaves if mode == '--check-all' else random.Random(1).sample(leaves, min(N, len(leaves)))  # sample also in --proofs-only
 ok = bad = 0
 DELETE = os.environ.get('DELETE_VERIFIED') == '1'

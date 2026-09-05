@@ -1,0 +1,16 @@
+[
+  {
+    "cnf": "work/audit/k34k33-n19-negcubes.cnf",
+    "proof": "work/ramsey-cells/k34k33-n19/instance/cover.lrat",
+    "returncode": 0,
+    "stdout": "c parsed a formula with 105029 variables and 571 clauses\nc VERIFIED\nc allocated 1024 8668 1050290\nc Added clauses = 1579.  Deleted clauses = 1578.  Max live clauses = 572\nc verification time = 0.01 secs\n",
+    "stderr": ""
+  },
+  {
+    "cnf": "work/audit/k34k33-n19-leaf0.cnf",
+    "proof": "work/ramsey-cells/k34k33-n19/sample/leaf1.lrat",
+    "returncode": 0,
+    "stdout": "c parsed a formula with 105213 variables and 202776 clauses\nc VERIFIED\nc allocated 1024 1368738 1052130\nc Added clauses = 203325.  Deleted clauses = 203324.  Max live clauses = 202776\nc verification time = 0.04 secs\n",
+    "stderr": ""
+  }
+]

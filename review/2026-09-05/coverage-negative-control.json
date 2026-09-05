@@ -1,0 +1,8 @@
+{
+  "base": "not x (satisfiable at x=false)",
+  "sole_cube": "x (omits x=false)",
+  "leaf": "base AND x is genuinely UNSAT",
+  "returncode": 0,
+  "stdout": "COVER: 0 UNSAT leaves with proof files + 1 already-verified leaves (proofs deleted) | 0 gaps | 0 SAT\nCOVER COMPLETE against the cube tree on disk.\n0 leaves already verified; 0 to check\nPROOFS: 0 VERIFIED, 0 FAILED (of 0 checked, mode --check-all)\n",
+  "stderr": ""
+}

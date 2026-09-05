@@ -2,8 +2,12 @@
 
 Forbidden: **K_{3,5} in color 1, K_{2,4} in color 2**. DS1 rev #18 Table IVb prints `19-20`.
 
-`witness/` holds a coloring of K_18, so R > 18. `ledger/` holds the refutation at n=19:
-389 + 1602 subcubes, every one UNSAT, so no coloring of K_19 exists and R <= 19.
+`witness/` holds a coloring of K_18, so R > 18. **That coloring is not ours**: its colour-1 graph is
+Steven Van Overberghe's `K(3,5)K(2,4)n18.g6` (<https://github.com/Steven-VO/circulant-Ramsey>,
+GPL-3.0), same vertex labels; see `../NOTICE.md`. `ledger/` holds the refutation at n=19:
+389 + 1602 subcubes, every one UNSAT (2026-08-20 run; its cube files were not retained). The search
+was re-run on 2026-09-04 with every leaf proof checked at solve time: `instance/`, `tree/` and
+`certificate/` are from that run (408 top cubes, 2 split, 773 leaves; cover verified).
 Together **R = 19**.
 
 The coloring is checkable in seconds. The refutation is not: it additionally needs the

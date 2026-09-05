@@ -1,0 +1,74 @@
+{
+  "k34k33-n19": {
+    "variables": 105213,
+    "clauses": 202770,
+    "shipped_clause_body_matches": {
+      "k34k33_n19.cnf": true
+    },
+    "cubes": 571,
+    "ledger_rows": 572,
+    "unique_leaf_ids": 572,
+    "missing_ids_count": 0,
+    "extra_ids": [],
+    "duplicate_ids": 0,
+    "solver_verdicts": {
+      "UNSAT": 572
+    },
+    "checker_verdicts": {
+      "VERIFIED": 572
+    },
+    "cover_recorded": true,
+    "hash_mismatches": [],
+    "hash_mismatch_count": 0
+  },
+  "k35k24-n19": {
+    "variables": 86289,
+    "clauses": 165834,
+    "shipped_clause_body_matches": {},
+    "cubes": 773,
+    "ledger_rows": 774,
+    "unique_leaf_ids": 774,
+    "missing_ids_count": 0,
+    "extra_ids": [],
+    "duplicate_ids": 0,
+    "solver_verdicts": {
+      "UNSAT": 774
+    },
+    "checker_verdicts": {
+      "VERIFIED": 774
+    },
+    "cover_recorded": true,
+    "hash_mismatches": [],
+    "hash_mismatch_count": 0
+  },
+  "k35k25-n22": {
+    "variables": 164416,
+    "clauses": 317478,
+    "shipped_clause_body_matches": {
+      "k35k25_n22.cnf": true
+    },
+    "cubes": 137350,
+    "ledger_rows": 933,
+    "unique_leaf_ids": 933,
+    "missing_ids_count": 136418,
+    "extra_ids": [],
+    "duplicate_ids": 0,
+    "solver_verdicts": {
+      "UNSAT": 933
+    },
+    "checker_verdicts": {
+      "VERIFIED": 924,
+      "FAIL:": 9
+    },
+    "cover_recorded": false,
+    "hash_mismatches": [],
+    "hash_mismatch_count": 0,
+    "tree_audit": {
+      "leaves": 137350,
+      "gaps": [],
+      "unverified": [],
+      "sat": [],
+      "flat_matches_tree_exactly": true
+    }
+  }
+}

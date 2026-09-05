@@ -20,7 +20,8 @@ independent checker is `bench.html` (paste the coloring). Both are in this repos
 
 A refutation directory (`k34k33-n19/`, `k35k24-n19/`, `k35k25-n22/`) holds:
 
-* `instance/*.cnf` — the CNF. It is produced by `tools/gen_ramsey.py <n> <cell> --vertex-lex`;
+* the instance CNF — produced by `tools/gen_ramsey.py <n> <cell> --vertex-lex` (the encoder is at the
+  repository root under `tools/`; the cell directories carry their own copies);
   regenerate it and `diff` (ignoring `c`/`p` lines) to confirm.
 * `instance/*_d10.icnf` — the top-level cubes (march_cu, `-d 10`), and `tree/splits/<id>_d8.icnf`
   — the sub-cubes of every cube that hit the time cap. A leaf's CNF is the instance plus one unit
@@ -29,11 +30,45 @@ A refutation directory (`k34k33-n19/`, `k35k24-n19/`, `k35k25-n22/`) holds:
   only if the LRAT proof produced by CaDiCaL was accepted by `lrat-trim` (exit 20) and then
   `lrat-check` (exit 0, no "failed") at solve time. Older rows have their verification in
   `tree/verified_leaves.jsonl`.
-* `tree/cover_audit_*.txt` — output of `tools/verify_close.py <cnf> <top icnf> <tree dir>`, which
-  walks the cube tree ON DISK (top cubes, then `splits/`), never the ledger, and reports
-  `COVER COMPLETE` only if every leaf has a checked UNSAT verdict and no leaf is SAT. Re-run it.
+* `tree/cover_audit_*.txt` — output of `tools/verify_close.py <cnf> <top icnf> <tree dir>`. It walks
+  the cube tree ON DISK (top cubes, then `splits/`), never the ledger, and reports TREE CLOSED only if
+  every leaf has a checked UNSAT verdict and none is SAT; it then writes the conjunction of the negated
+  leaves as a CNF, refutes it with CaDiCaL and checks the LRAT proof (lrat-trim, lrat-check), and
+  reports COVER VERIFIED. Both are needed: an external review (2026-09-05) showed the earlier tool,
+  which did only the first, accepted a satisfiable formula with an incomplete cube list. Re-run it;
+  it needs `cadical`, `lrat-trim` and `lrat-check` (paths via `CADICAL`, `LRAT_TRIM`, `LRAT_CHECK`).
+  `k34k33-n19/` predates this layout: its 571 cubes are all top-level and its cover proof is the
+  `cover` row of its cake_lpr ledger.
 
 Proof files are not deposited (hundreds of GB); the verdicts are re-derivable per leaf (§3).
+
+## 2a. What each refutation directory actually contains
+
+`k34k33-n19/`:
+  top level: AXIOMS.txt, LEAN.md, README.md, SHA256SUMS, reconstruct.sh
+  lean/: 9 files (e.g. Base.lean, Chunk232.lean, Cover.lean, EncodedUnsat.lean, Encoder.lean, EncoderBridge.lean, …)
+  ledger/: 1 files (e.g. k34k33_certify_ledger.jsonl)
+  witness/: 3 files (e.g. coloring.svg, matrix.txt, witness_k34k33_n18.txt)
+  tools/: 2 files (e.g. check_ramsey.py, gen_ramsey.py)
+  certificate/: 9 files (e.g. CERTIFICATE.md, ComparatorAxioms.lean, ComparatorChallenge.lean, ComparatorCubes.lean, ComparatorUnsatFallback.lean, PASS_lrat-catcher_2026-09-03.log, …)
+  instance/: 3 files (e.g. cover.lrat, k34k33_n19.cnf, k34k33_n19_d10.icnf)
+  sample/: 2 files (e.g. README.md, leaf1.lrat)
+
+`k35k24-n19/`:
+  top level: README.md
+  tree/: 3 files (e.g. cover_audit_2026-09-05.txt, k35k24_n19_flat.icnf, ledger.jsonl)
+  tree/splits/: 2 files (e.g. 251_d8.icnf, 258_d8.icnf)
+  ledger/: 2 files (e.g. LIVE_k35k24_19_ledger.jsonl, k35k24_straggler240_ledger.jsonl)
+  witness/: 3 files (e.g. coloring.svg, matrix.txt, witness_k35k24_n18.txt)
+  certificate/: 10 files (e.g. CERTIFICATE_k35k24.md, ComparatorAxiomsK35K24.lean, ComparatorChallengeK35K24.lean, ComparatorCubesK35K24.lean, ComparatorUnsatK35K24.lean, PASS_lrat-catcher-k35k24_2026-09-05.log, …)
+  instance/: 2 files (e.g. k35k24_n19.cnf, k35k24_n19_d10.icnf)
+
+`k35k25-n22/`:
+  top level: README.md
+  tree/: 5 files (e.g. close_k35k25_n22.log, cover_audit_2026-09-05.txt, k35k25_n22_flat.icnf, ledger.jsonl, verified_leaves.jsonl)
+  tree/splits/: 674 files (e.g. 182_d8.icnf, 184_d8.icnf, 185.60_d8.icnf, 185_d8.icnf, 208_d8.icnf, 225_d8.icnf, …)
+  certificate/: 19 files (e.g. ComparatorAxiomsK35K25.lean, ComparatorChallengeK35K25.lean, ComparatorCubes.lean, ComparatorCubesK35K25.lean, ComparatorUnsatK35K25.lean, Encoder.lean, …)
+  instance/: 2 files (e.g. k35k25_n22.cnf, k35k25_n22_d10.icnf)
 
 ## 3. Leaf verdicts by an independent, verified checker
 
@@ -80,6 +115,14 @@ is checked by `diff` (§2). That its unsatisfiability implies no coloring exists
 the codegree/Sinz encoding and soundness of the lex-leader symmetry breaking) is proved in a
 separate Lean development, `sbsound`, not public at the time of writing; the transcripts of its
 own Comparator check (three standard axioms only) can be provided on request.
+
+## 6. External review
+
+`review/2026-09-05/` holds an external review of commit 784339a (produced by a GPT-based reviewer
+run by the author, with its own standard-library witness checker and artifact audit). Its findings
+led to the corrections in commit history after that date: the second witness attribution in
+`NOTICE.md`, the cover-completeness check in `tools/verify_close.py`, the root `tools/gen_ramsey.py`,
+the deposited K_{3,5}/K_{2,4} instance and tree, and this section.
 
 ## Tool versions used
 

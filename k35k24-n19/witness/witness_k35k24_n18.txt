@@ -1,4 +1,5 @@
 # Coloring of K_18 for the cell R(K_{3,5}, K_{2,4}).
+# NOT OUR CONSTRUCTION: colour 1 is Steven Van Overberghe's K(3,5)K(2,4)n18.g6 (circulant-Ramsey, GPL-3.0), same labels. See NOTICE.md.
 # Color 1 must contain no K_{3,5}: no 3-set with 5 common color-1 neighbours.
 # Color 2 must contain no K_{2,4}: no 2-set with 4 common color-2 neighbours.
 # Therefore R(K_{3,5}, K_{2,4}) > 18, i.e. >= 19.

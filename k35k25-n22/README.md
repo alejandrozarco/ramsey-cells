@@ -22,8 +22,11 @@ encoding. Unconfirmed, not peer reviewed. Nothing here is a claim.
 1. Every leaf: CaDiCaL 3.0.1 produced an LRAT proof, checked at solve time by `lrat-trim` then
    `lrat-check` (`tree/ledger.jsonl`, field `verified`), or in the pre-verification pass
    (`tree/verified_leaves.jsonl`). 137,350 leaves; 0 SAT.
-2. Cover: `tools/verify_close.py` walks the cube tree on disk (top cubes + `splits/`), not the
-   ledger, and finds every leaf verified (`tree/cover_audit_2026-09-05.txt`).
+2. Tree and cover: `tools/verify_close.py` walks the cube tree on disk (top cubes + `splits/`),
+   not the ledger, finds every leaf verified (TREE CLOSED), and then refutes the conjunction of
+   the negated leaves with a checked LRAT proof (COVER VERIFIED) — `tree/cover_audit_2026-09-05.txt`.
+   An earlier version of the tool reported only the first property; an external review showed
+   it accepted an incomplete cube list. The reviewer independently proof-checked this cover.
 3. Statement, by Comparator (`certificate/PASS_lrat-catcher-k35k25_2026-09-05.log`): the theorem
    `LRATCatcher.Comparator.K35K25.encoded_unsat : LRATCatcher.Encoder.k35k25_n22.Unsat`
    is accepted by the Lean kernel and by nanoda, with axioms exactly `propext`, `Quot.sound`,
@@ -31,7 +34,10 @@ encoding. Unconfirmed, not peer reviewed. Nothing here is a claim.
 4. The two external verdicts are being re-derived by cake_lpr (a CakeML-verified LRAT checker)
    on leaf files printed from the Lean encoder term: `certificate/cake_lpr_ledger_IN_PROGRESS.jsonl`
    (per-file sha256, solver verdict, checker verdict). This pass was still running when this
-   directory was committed; the file is replaced when it completes.
+   directory was committed; the file is replaced when it completes. Its first nine `FAIL` rows
+   (283–507 MB proofs, empty checker output) were cake_lpr processes killed by the kernel's OOM
+   handler when sixteen ran concurrently on a 16 GB machine; the pass was restarted with three
+   concurrent checkers and re-does those leaves.
 
 ## What is not in this repository
 

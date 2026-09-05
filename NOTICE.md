@@ -19,3 +19,9 @@ and it will be changed the same day.
 
 Everything else in this repository is our own: the encoder, the checker, the formulas, the
 cube decompositions, the ledgers, the K_21 colouring, and the scripts.
+
+`k35k24-n19/witness/witness_k35k24_n18.txt` is **not our construction** either. Its colour-1
+graph is byte-equivalent, with the same vertex labels, to `RamseyGraphs/Bipartite/K(3,5)K(2,4)n18.g6`
+in the same repository (GPL-3.0). It is reproduced here only so the lower bound can be checked
+beside the upper-bound computation in that directory. The omission was pointed out by an
+external review on 2026-09-05 (`review/2026-09-05/`); this notice did not acknowledge it before.
