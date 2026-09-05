@@ -1,0 +1,4 @@
+COVER: 0 UNSAT leaves with proof files + 137350 already-verified leaves (proofs deleted) | 0 gaps | 0 SAT
+COVER COMPLETE against the cube tree on disk.
+4485 leaves already verified; 0 to check
+PROOFS: 0 VERIFIED, 0 FAILED (of 0 checked, mode --proofs-only)

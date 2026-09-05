@@ -173,3 +173,17 @@ also biases the search toward symmetric colourings, which is why a null sweep pr
 Refutations are cube-and-conquer: split the formula into cubes, refute each, and separately
 certify that the cubes cover everything. That last step is not optional — the coverage
 certificate, not the splitter's internal behaviour, is what makes the decomposition a proof.
+
+
+## 2026-09-05
+
+* `k35k25-n22/`: a cube-and-conquer search at n = 22 for R(K_{3,5}, K_{2,5}) finished with every
+  leaf UNSAT and every proof checked (137,350 leaves; cover audited against the cube files;
+  0 SAT). With the K_21 coloring in `k35k25-lb22/`, the value would be 22. The re-derivation of
+  the leaf verdicts by cake_lpr was in progress at commit time (`certificate/cake_lpr_ledger_IN_PROGRESS.jsonl`).
+* `k34k33-n19/certificate/`, `k35k24-n19/certificate/`: the two n = 19 refutations now carry
+  Comparator transcripts and complete cake_lpr ledgers (572/572 and 774/774 files verified).
+  `k35k24-n19`'s search was re-run with per-leaf proof checking on 2026-09-04 because the cube
+  files of the 2026-08-20 run had not been retained.
+* The published lower bound R(K_{2,5}, K_{3,5}) >= 20 (Ghebleh, Al-Yakoob, Kanso, Stevanović,
+  arXiv:2403.20055, 2024) is the most recent prior work found on this cell.

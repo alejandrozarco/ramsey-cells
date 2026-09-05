@@ -1,0 +1,41 @@
+✔ [5/12] Built LRATCatcher.K35K25FlatIcnf1 (2.8s)
+✔ [6/12] Built LRATCatcher.K35K25FlatIcnf0 (2.9s)
+✔ [7/12] Built LRATCatcher.K35K25FlatIcnf3 (2.7s)
+✔ [9/18] Built LRATCatcher.K35K25FlatIcnf2 (3.0s)
+✔ [10/18] Built LRATCatcher.Encoder (3.5s)
+✔ [11/18] Built LRATCatcher.K35K25FlatIcnf4 (3.1s)
+✔ [12/18] Built LRATCatcher.K35K25FlatIcnf5 (1.4s)
+✔ [13/18] Built LRATCatcher.K35K25FlatIcnf7 (1.2s)
+✔ [14/18] Built LRATCatcher.K35K25FlatIcnf6 (1.5s)
+✔ [15/18] Built LRATCatcher.ComparatorCubesK35K25 (4.3s)
+✔ [16/18] Built LRATCatcher.ComparatorAxiomsK35K25 (1.7s)
+ℹ [17/18] Built LRATCatcher.ComparatorUnsatK35K25 (1.7s)
+info: LRATCatcher/ComparatorUnsatK35K25.lean:5:0: 'LRATCatcher.Comparator.K35K25.encoded_unsat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ LRATCatcher.Comparator.K35K25.cover_cakelpr,
+ LRATCatcher.Comparator.K35K25.leaves_cakelpr]
+⚠ [18/18] Built LRATCatcher.ComparatorChallengeK35K25 (2.1s)
+warning: LRATCatcher/ComparatorChallengeK35K25.lean:3:8: declaration uses `sorry`
+warning: LRATCatcher/ComparatorChallengeK35K25.lean:4:8: declaration uses `sorry`
+Build completed successfully (18 jobs).
+Building LRATCatcher.ComparatorChallengeK35K25
+⚠ [17/17] Replayed LRATCatcher.ComparatorChallengeK35K25
+warning: LRATCatcher/ComparatorChallengeK35K25.lean:3:8: declaration uses `sorry`
+warning: LRATCatcher/ComparatorChallengeK35K25.lean:4:8: declaration uses `sorry`
+Build completed successfully (17 jobs).
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, LRATCatcher.Comparator.K35K25.encoded_unsat, propext, Quot.sound, Classical.choice, LRATCatcher.Comparator.K35K25.leaves_cakelpr, LRATCatcher.Comparator.K35K25.cover_cakelpr, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, LRATCatcher.Encoder.k35k25_n22] from LRATCatcher.ComparatorChallengeK35K25
+Building LRATCatcher.ComparatorUnsatK35K25
+ℹ [17/17] Replayed LRATCatcher.ComparatorUnsatK35K25
+info: LRATCatcher/ComparatorUnsatK35K25.lean:5:0: 'LRATCatcher.Comparator.K35K25.encoded_unsat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ LRATCatcher.Comparator.K35K25.cover_cakelpr,
+ LRATCatcher.Comparator.K35K25.leaves_cakelpr]
+Build completed successfully (17 jobs).
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, LRATCatcher.Comparator.K35K25.encoded_unsat, propext, Quot.sound, Classical.choice, LRATCatcher.Comparator.K35K25.leaves_cakelpr, LRATCatcher.Comparator.K35K25.cover_cakelpr, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, LRATCatcher.Encoder.k35k25_n22] from LRATCatcher.ComparatorUnsatK35K25
+Running nanoda kernel on solution
+Nanoda kernel accepts the solution
+Running Lean default kernel on solution.
+Lean default kernel accepts the solution
+Your solution is okay!

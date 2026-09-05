@@ -10,7 +10,7 @@ scripts that redo the work. Unconfirmed, not peer reviewed. Nothing here is a cl
 | R(K_{2,2}, K_{2,19}) | 28/29 | K_28 | [`k2x2-k2x19-lb29/`](k2x2-k2x19-lb29/) |
 | R(K_{2,11}, K_{2,4}) | >= 25 | K_25 | [`k2x11-k2x4-lb26/`](k2x11-k2x4-lb26/) |
 | R(K_{2,11}, K_{2,6}) | >= 29 | K_29 | [`k2x11-k2x6-lb30/`](k2x11-k2x6-lb30/) |
-| R(K_{3,5}, K_{2,5}) | 21-23 | K_21 | [`k35k25-lb22/`](k35k25-lb22/) |
+| R(K_{3,5}, K_{2,5}) | 21-23 | K_21 + refutation at n=22 | [`k35k25-lb22/`](k35k25-lb22/), [`k35k25-n22/`](k35k25-n22/) |
 | R(B_5, B_9) | >= 28 | K_28 | [`b5b9-lb29/`](b5b9-lb29/) |
 | R(K_{3,4}, K_{3,3}) | 19-20 | refutation at n=19 | [`k34k33-n19/`](k34k33-n19/) |
 | R(K_{3,5}, K_{2,4}) | 19-20 | K_18 + refutation at n=19 | [`k35k24-n19/`](k35k24-n19/) |
@@ -18,6 +18,8 @@ scripts that redo the work. Unconfirmed, not peer reviewed. Nothing here is a cl
 A coloring of K_n gives R > n. Checking one needs only the definition of subgraph
 containment. The refutation needs more: a faithful encoding, sound symmetry breaking, and an
 exhaustive search. Each directory says which parts are machine-checked.
+
+[`REVIEWER.md`](REVIEWER.md) says how to check each kind of entry, with the tool versions used.
 
 [`FINDINGS.md`](FINDINGS.md) is the complete record: what is deposited, two three-colour
 cells computed to a verdict but held back because they do not meet the bar set here, cells
