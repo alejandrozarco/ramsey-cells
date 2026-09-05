@@ -1,0 +1,18 @@
+{
+  "challenge_module": "LRATCatcher.ComparatorChallengeK35K24",
+  "solution_module": "LRATCatcher.ComparatorUnsatK35K24",
+  "theorem_names": [
+    "LRATCatcher.Comparator.K35K24.encoded_unsat"
+  ],
+  "definition_names": [
+    "LRATCatcher.Encoder.k35k24_n19"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice",
+    "LRATCatcher.Comparator.K35K24.leaves_cakelpr",
+    "LRATCatcher.Comparator.K35K24.cover_cakelpr"
+  ],
+  "enable_nanoda": true
+}
