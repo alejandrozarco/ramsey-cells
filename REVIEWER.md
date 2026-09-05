@@ -124,6 +124,16 @@ led to the corrections in commit history after that date: the second witness att
 `NOTICE.md`, the cover-completeness check in `tools/verify_close.py`, the root `tools/gen_ramsey.py`,
 the deposited K_{3,5}/K_{2,4} instance and tree, and this section.
 
+`review/2026-09-05/review_followup.md` is the reviewer's second message. It states the two levels at
+which the review verified things. The three cells closed by a deposited colouring plus a published upper
+bound were fully checked: the reviewer's own standard-library checker on the colourings, and the survey
+(DS1.18, Table IVc and Section 3.3.1(f)) for the upper bounds, which the reviewer relied on and did not
+reprove. For the three cells closed by refutation, the reviewer checked the colourings, the reconstructed
+formulas against the certificate-ledger hashes, the cover certificates of all three cube trees, and one
+sample leaf proof, and did not replay every leaf proof. A leaf-by-leaf replay by a third party is what
+remains for those three; `tools/cert_pass.py` reconstructs, solves and checks every leaf from the
+deposited prefixes and base body.
+
 ## Tool versions used
 
 CaDiCaL 3.0.1 · march_cu (github.com/marijnheule/CnC @ 705b60c) · lrat-trim 0.2.0 (@ b30f400) ·
