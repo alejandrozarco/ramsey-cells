@@ -1,0 +1,6 @@
+{"cube": 0, "result": "UNSAT", "secs": 0.0, "nlits": 1}
+{"cube": 1, "result": "UNSAT", "secs": 0.0, "nlits": 4}
+{"cube": 2, "result": "UNSAT", "secs": 0.0, "nlits": 4}
+{"cube": 3, "result": "UNSAT", "secs": 0.0, "nlits": 3}
+{"cube": 4, "result": "UNSAT", "secs": 0.0, "nlits": 3}
+{"cube": 5, "result": "UNSAT", "secs": 0.0, "nlits": 3}

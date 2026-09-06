@@ -33,11 +33,19 @@ in `../FINDINGS.md` (2026-09-06): sixty sampled cubes solved 60/60 under it (mea
 core-seconds projected) against about 27,700 core-seconds projected under the degree-ordering
 formula; the closed tree cost 48,416 core-seconds, the projection having missed the capped cubes.
 
-## Check
+## Check: cover and tree structure (leaf verdicts read from the ledger)
 
 ```
 python3 ../tools/verify_close.py instance/k211k24_n26.cnf instance/k211k24_n26_d10.icnf tree --check-all
 ```
-(`tree/` carries the ledger with verified verdicts; proofs were deleted after checking, so a third
-party re-solves each leaf: `../tools/cert_pass.py` does that from the Lean-printed prefixes and checks
-every proof with cake_lpr.)
+This re-proves and checks the cover (negation of all leaves) and walks the tree for gaps; the leaf
+verdicts themselves are read from the ledger because the solve-time proof files were deleted, and
+the tool now says so in its SCOPE line. It is not a complete independent replay.
+
+## Full replay: re-solve every leaf
+
+`../tools/cert_pass.py` rebuilds every leaf from the Lean-printed base and prefixes in `certificate/`
+and checks each fresh proof with cake_lpr (that is how the deposited ledger was made);
+`../tools/proof_archive.py` does the same and keeps every trimmed proof (lrat-trim, checked again with
+lrat-check and cake_lpr, xz-compressed) with a manifest of hashes. The archived proofs for this cell
+are attached to a release of this repository (see `certificate/` once the archive is published).

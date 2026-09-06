@@ -205,10 +205,10 @@ def svg(n, col, spec, sigma):
         acc += len(cyc)
         bounds.append(acc)
 
-    CELL, GAP, PAD, TOP = 9, 26, 8, 20
+    CELL, GAP, PAD, TOP, LBL = 9, 30, 18, 30, 5
     grid = n * CELL
     W = PAD + grid + GAP + grid + PAD
-    H = TOP + grid + PAD
+    H = TOP + grid + PAD + 16   # room for the legend
 
     def panel(x0, ordering, label):
         out = [f'<text x="{x0}" y="13" font-family="ui-monospace,monospace" '
@@ -219,6 +219,13 @@ def svg(n, col, spec, sigma):
                 f = DIAGC if i == j else (E1 if c(i, j) == 1 else E2)
                 out.append(f'<rect x="{x0 + b * CELL}" y="{TOP + a * CELL}" '
                            f'width="{CELL}" height="{CELL}" fill="{f}"/>')
+        # per-vertex labels: the original vertex number of every row and column, so an edge in
+        # the picture can be traced back to the witness file even after reordering.
+        for k, v in enumerate(ordering):
+            out.append(f'<text x="{x0 + k * CELL + CELL / 2:.1f}" y="{TOP - 2}" font-family="ui-monospace,monospace" '
+                       f'font-size="{LBL}" fill="#8A90A0" text-anchor="middle">{v}</text>')
+            out.append(f'<text x="{x0 - 2}" y="{TOP + k * CELL + CELL / 2 + LBL / 2.6:.1f}" font-family="ui-monospace,monospace" '
+                       f'font-size="{LBL}" fill="#8A90A0" text-anchor="end">{v}</text>')
         return out
 
     body = panel(PAD, list(range(1, n + 1)), f"vertices 1..{n}")
@@ -232,6 +239,18 @@ def svg(n, col, spec, sigma):
                         f'stroke="#FFFFFF" stroke-width="1.4" stroke-opacity=".85"/>')
             body.append(f'<line x1="{x0 + o}" y1="{TOP}" x2="{x0 + o}" y2="{TOP + grid}" '
                         f'stroke="#FFFFFF" stroke-width="1.4" stroke-opacity=".85"/>')
+    ly = TOP + grid + 12   # standalone legend, so the figure is self-contained when printed
+    labels = [lab for (_, _, _, lab) in parse(spec)]
+    l1 = labels[0] if labels else "colour 1"; l2 = labels[1] if len(labels) > 1 else "colour 2"
+    body.append(f'<rect x="{PAD}" y="{ly - 7}" width="8" height="8" fill="{E1}"/>'
+                f'<text x="{PAD + 12}" y="{ly}" font-family="ui-monospace,monospace" font-size="9" fill="#8A90A0">'
+                f'color 1 (avoids {l1})</text>')
+    body.append(f'<rect x="{PAD + 150}" y="{ly - 7}" width="8" height="8" fill="{E2}"/>'
+                f'<text x="{PAD + 162}" y="{ly}" font-family="ui-monospace,monospace" font-size="9" fill="#8A90A0">'
+                f'color 2 (avoids {l2})</text>')
+    body.append(f'<rect x="{PAD + 300}" y="{ly - 7}" width="8" height="8" fill="{DIAGC}"/>'
+                f'<text x="{PAD + 312}" y="{ly}" font-family="ui-monospace,monospace" font-size="9" fill="#8A90A0">'
+                f'diagonal (no loops); labels are original vertex numbers</text>')
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" '
             f'viewBox="0 0 {W} {H}" role="img">' + "".join(body) + "</svg>\n")
 
@@ -438,13 +457,15 @@ function parseSpec(s){
     throw new Error(`don't recognise "${t}" — use K3x5, B5 or K4`);
   });
 }
-function parseWitness(txt){
+function parseWitness(txt,ncol){
   const col=new Map(); let n=0; const seen=new Set();
   txt.split(/\n/).forEach((ln,idx)=>{
     ln=ln.trim(); if(!ln||ln.startsWith("#")) return;
     const p=ln.split(/\s+/).map(Number);
-    if(p.length!==3||p.some(isNaN)) throw new Error(`line ${idx+1}: expected "i j c"`);
+    if(p.length!==3||p.some(x=>!Number.isInteger(x))) throw new Error(`line ${idx+1}: expected three integers "i j c"`);
     let [i,j,c]=p; if(i===j) throw new Error(`line ${idx+1}: self loop at ${i}`);
+    if(i<1||j<1) throw new Error(`line ${idx+1}: vertices are numbered from 1`);
+    if(c<1||c>ncol) throw new Error(`line ${idx+1}: color ${c} is not one of 1..${ncol} (one color per forbidden graph in the specification)`);
     if(i>j)[i,j]=[j,i];
     const k=i*10000+j;
     if(seen.has(k)) throw new Error(`edge ${i},${j} appears twice`);
@@ -505,7 +526,7 @@ function order(n,cur){
   // changes an edge's color, so it is the same object. The original order is the one that
   // shows global structure - a circulant's diagonal banding exists only in that numbering.
   if(!alOn||!cur) return [...Array(n).keys()].map(k=>k+1);
-  const A=cur.hi.A, B=cur.hi.B, used=new Set([...A,...B]);
+  const A=cur.hi.A, B=cur.hi.B.filter(v=>!A.includes(v)), used=new Set([...A,...B]);
   return [...A,...B,...[...Array(n).keys()].map(k=>k+1).filter(v=>!used.has(v))];
 }
 function render(){
@@ -525,16 +546,20 @@ function render(){
     const i=ord[a], j=ord[b]; let f;
     if(i===j) f=tok("--rule-2");
     else{ const v=C(S,i,j);
-      const on=hlOn&&cur&&((A.has(i)&&B.has(j))||(B.has(i)&&A.has(j)));
+      const on=hlOn&&cur&&((A.has(i)&&B.has(j))||(B.has(i)&&A.has(j))||(cur.g.kind==="book"&&A.has(i)&&A.has(j)));
       const dim=hlOn&&cur;
       f = on ? hot : (v===1?(dim?tok("--e1-dim"):tok("--e1")):(dim?tok("--e2-dim"):tok("--e2")));}
     x.fillStyle=f; x.fillRect(pad+b*s,pad+a*s,Math.max(1,s-0.7),Math.max(1,s-0.7));
   }
-  if(alOn&&cur){ // outline the two blocks that make the rectangle explicit
-    const na=cur.hi.A.length, nb=cur.hi.B.length;
+  if(alOn&&cur){ // outline the blocks that make the configuration explicit
+    const na=cur.hi.A.length, nb=cur.hi.B.filter(v=>!cur.hi.A.includes(v)).length;
     x.strokeStyle=hot; x.lineWidth=1.6;
-    x.strokeRect(pad+na*s-0.8,pad-0.8,nb*s,na*s);
-    x.strokeRect(pad-0.8,pad+na*s-0.8,na*s,nb*s);
+    if(cur.g.kind==="clique"){ x.strokeRect(pad-0.8,pad-0.8,na*s,na*s); }
+    else{
+      x.strokeRect(pad+na*s-0.8,pad-0.8,nb*s,na*s);
+      x.strokeRect(pad-0.8,pad+na*s-0.8,na*s,nb*s);
+      if(cur.g.kind==="book"){ x.strokeRect(pad-0.8,pad-0.8,na*s,na*s); } // the spine edge
+    }
   }
   if(pad>16){x.font="10px "+tok("--mono");
     for(let k=0;k<n;k++){const lab=ord[k], on=hlOn&&(A.has(lab)||B.has(lab));
@@ -562,12 +587,20 @@ function show(){
   $("nav").hidden = !hi.length;
   if(hi.length){
     const cur=hi[exIdx%hi.length];
-    $("exlabel").textContent=`{${cur.hi.A.join(",")}} × {${cur.hi.B.join(",")}}`;
+    const Bx=cur.hi.B.filter(v=>!cur.hi.A.includes(v)), na=cur.hi.A.length, nb=Bx.length;
+    $("exlabel").textContent = cur.g.kind==="clique" ? `{${cur.hi.A.join(",")}}` : `{${cur.hi.A.join(",")}} × {${Bx.join(",")}}`;
+    const short = cur.g.kind==="clique" ? 0 : cur.g.t-nb;
     $("exnote").innerHTML = cur.viol
-      ? `all ${cur.hi.A.length*cur.hi.B.length} edges color ${cur.c} — this is a ${cur.g.label}`
+      ? (cur.g.kind==="clique"
+         ? `all ${na*(na-1)/2} edges among these ${na} vertices are color ${cur.c} — this is a ${cur.g.label}`
+         : cur.g.kind==="book"
+           ? `spine ${cur.hi.A.join("–")} plus ${nb} pages, all ${1+2*nb} edges color ${cur.c} — this is a ${cur.g.label} (${nb} triangles on one edge)`
+           : `all ${na*nb} edges color ${cur.c} — this is a ${cur.g.label}`)
       : (cur.g.kind==="bip"
-         ? `${cur.hi.A.length}×${cur.hi.B.length} in color ${cur.c}; ${cur.g.label} needs ${cur.g.t} columns, so one short${cur.tight?` (${cur.tight} such sets tie here)`:""}`
-         : `no ${cur.g.label} in color ${cur.c}`);
+         ? `${na}×${nb} in color ${cur.c}; ${cur.g.label} needs ${cur.g.t} columns, so ${short} short${cur.tight?` (${cur.tight} such ${na}-sets tie at ${nb})`:""}`
+         : cur.g.kind==="book"
+           ? `spine ${cur.hi.A.join("–")} (color ${cur.c}) has ${nb} pages in color ${cur.c}; ${cur.g.label} needs ${cur.g.t}, so ${short} short${cur.tight?` (${cur.tight} such edges tie at ${nb})`:""}`
+           : `no ${cur.g.label} in color ${cur.c}`);
   }
   render();
 }
@@ -575,8 +608,8 @@ function run(){
   $("err").textContent="";
   try{
     const spec=parseSpec($("spec").value);
-    const S=parseWitness($("wit").value);
     if(spec.length<1) throw new Error("name at least one forbidden graph");
+    const S=parseWitness($("wit").value,spec.length);
     ST={S,res:analyse(S,spec)}; exIdx=0; show();
   }catch(e){ $("err").textContent=e.message;
     $("verdict").className="verdict idle"; $("vtext").textContent="Could not read that input."; }

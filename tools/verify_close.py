@@ -121,4 +121,6 @@ def _check(item):
 with ThreadPoolExecutor(max_workers=int(os.environ.get('VPAR', '4'))) as ex:
     for good in ex.map(_check, todo): ok += good; bad += (not good)
 print(f"PROOFS: {ok} VERIFIED, {bad} FAILED (of {len(todo)} checked, mode {mode})")
+if checked_leaves and not leaves:
+    print(f"SCOPE: this run re-checked the COVER only; the {len(checked_leaves)} leaf verdicts above were read from the ledger (their proof files are not present). For a complete independent replay re-solve every leaf: tools/cert_pass.py (verdicts via cake_lpr) or tools/proof_archive.py (also keeps the trimmed proofs).")
 sys.exit(0 if bad == 0 else 3)

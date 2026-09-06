@@ -1,0 +1,19 @@
+{
+  "challenge_module": "LRATCatcher.ComparatorChallengeK28K25Mixed",
+  "solution_module": "LRATCatcher.ComparatorUnsatK28K25Mixed",
+  "theorem_names": [
+    "LRATCatcher.Comparator.K28K25Mixed.encoded_unsat"
+  ],
+  "definition_names": [
+    "LRATCatcher.Encoder.k28k25_n22_DOL"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice",
+    "LRATCatcher.Comparator.K28K25Mixed.leavesDO_cakelpr",
+    "LRATCatcher.Comparator.K28K25Mixed.leavesDOL_cakelpr",
+    "LRATCatcher.Comparator.K28K25Mixed.cover_cakelpr"
+  ],
+  "enable_nanoda": true
+}

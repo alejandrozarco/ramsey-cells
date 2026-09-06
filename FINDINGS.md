@@ -9,10 +9,12 @@ so absence from the prose means nothing.
 
 ## 1. Deposited
 
-The nine cells in the [README](README.md) table. Seven are colourings, which need only the
-definition of subgraph containment to check. Two pair a colouring with a refutation at the
-next order, and those two say in their own directories exactly which parts are machine-
-checked and which are argued informally.
+The ten cells in the [README](README.md) table (eleven directories with a coloring or a
+refutation; 2026-09-06). Nine directories hold colorings, which need only the definition of
+subgraph containment to check. Five hold refutations (K_{3,4}/K_{3,3} at 19, K_{3,5}/K_{2,4} at 19,
+K_{3,5}/K_{2,5} at 22, K_{2,11}/K_{2,3} at 22, K_{2,11}/K_{2,4} at 26); each says in its own
+directory exactly which parts are machine-checked, which are certified by an independent
+verified checker, and which are argued informally.
 
 Every deposited colouring re-verifies under `tools/check_any.py`, which was written
 separately from the encoder and from the three older checkers.

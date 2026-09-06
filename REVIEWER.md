@@ -153,3 +153,40 @@ deposited prefixes and base body.
 CaDiCaL 3.0.1 · march_cu (github.com/marijnheule/CnC @ 705b60c) · lrat-trim 0.2.0 (@ b30f400) ·
 drat-trim/lrat-check @ 2e3b2dc · cake_lpr @ a36874a (binary sha256 prefix 1822ca1e5d0f925e) ·
 Lean 4.30.0 · comparator @ 71b52ec · lean4export @ v4.30.0 · nanoda_lib @ 68d5ca9 · landrun @ 5ed4a3d.
+
+## 7. Response to the update review of 2026-09-06
+
+The reviewer's update review (on commit e430bd7) is answered by the following changes, all in this
+repository:
+
+* **Encoder definitions and build dependencies (P1).** `lean/lrat-catcher/` is a buildable snapshot
+  of the Lean package behind every `certificate/` directory: the fork of Szeider's lrat-catcher (MIT)
+  with our `Encoder.lean` (all cells, including `k211k23_n22` and `k211k24_n26`), `Cover.lean`,
+  `MixedCover.lean`, the exporter, the Comparator modules of every cell, the pinned toolchain and
+  the exact invocations (`lean/lrat-catcher/README_RAMSEY_CELLS.md`). The encoding-soundness
+  development (`sbsound`) stays private for now; the public chain still ends at "this CNF is
+  unsatisfiable".
+* **Scope of the documented check command (P2).** `tools/verify_close.py` now prints a SCOPE line
+  whenever it takes leaf verdicts from the ledger instead of checking proof files, and the
+  `## Check` sections of `k211k23-n22/` and `k211k24-n26/` are split into "cover and tree structure"
+  and "full replay".
+* **Leaf proofs.** From now on the proofs are kept: `tools/proof_archive.py` re-solves every leaf,
+  trims the proof (lrat-trim), checks it again with lrat-check and cake_lpr, and stores it
+  xz-compressed with a manifest of hashes; `tools/release_proofs.sh` attaches the archives to a
+  GitHub release of this repository (2 GB per asset). The K_{2,11}/K_{2,3} archive is being built;
+  K_{2,11}/K_{2,4} follows its cake_lpr pass. The K_{3,5}/K_{2,5} tree (137,350 leaves, about 3 TB
+  of raw proofs) stays re-solve-on-demand.
+* **Certification status separate from the claim.** `k211k24-n26/README.md` and `FINDINGS.md` say
+  which chain is complete for each cell; the K_{2,11}/K_{2,4} certificate directory is marked
+  pending until its ledger and PASS transcript exist.
+* **Method claims.** `benchmarks/2026-09-05_symmetry_breaking/` deposits the generator of the
+  degree-ordering variants (`gen_variant.py`, its tests, the informal soundness notes), the sampling
+  protocol (`bench.py`, `make_bench.py`, `bench_report.py`) and the raw sampled-cube ledgers and
+  summaries of both benchmark runs, so the quantitative comparisons in FINDINGS can be recomputed.
+* **Visualizations.** `tools/gen_views.py` (and the regenerated `bench.html`): the viewer rejects
+  colors outside the specification and non-integer or zero vertex ids; clique alignment lists each
+  vertex once and outlines the clique as one block; the explanatory text computes the actual deficit
+  (for example "6 short" for all-red K_6 against K_{2,10}); book highlights include the spine edge and
+  say so. The static SVGs carry per-vertex labels and a standalone legend.
+* **Stale counts** in the opening of `FINDINGS.md` corrected (ten cells, nine colorings, five
+  refutations).
