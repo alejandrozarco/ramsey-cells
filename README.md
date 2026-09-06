@@ -8,7 +8,7 @@ scripts that redo the work. Unconfirmed, not peer reviewed. Nothing here is a cl
 | R(K_{2,10}, K_{2,7}) | 29-31 | K_30 | [`k2x10-k2x7-lb31/`](k2x10-k2x7-lb31/) |
 | R(K_{2,10}, K_{2,6}) | 27-29 | K_28 | [`k2x10-k2x6-lb29/`](k2x10-k2x6-lb29/) |
 | R(K_{2,2}, K_{2,19}) | 28/29 | K_28 | [`k2x2-k2x19-lb29/`](k2x2-k2x19-lb29/) |
-| R(K_{2,11}, K_{2,4}) | >= 25 | K_25 | [`k2x11-k2x4-lb26/`](k2x11-k2x4-lb26/) |
+| R(K_{2,11}, K_{2,4}) | >= 25 | K_25 + refutation at n=26 | [`k2x11-k2x4-lb26/`](k2x11-k2x4-lb26/), [`k211k24-n26/`](k211k24-n26/) |
 | R(K_{2,11}, K_{2,6}) | >= 29 | K_29 | [`k2x11-k2x6-lb30/`](k2x11-k2x6-lb30/) |
 | R(K_{3,5}, K_{2,5}) | 21-23 | K_21 + refutation at n=22 | [`k35k25-lb22/`](k35k25-lb22/), [`k35k25-n22/`](k35k25-n22/) |
 | R(B_5, B_9) | >= 28 | K_28 | [`b5b9-lb29/`](b5b9-lb29/) |

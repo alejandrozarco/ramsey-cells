@@ -70,6 +70,13 @@ Proof files are not deposited (hundreds of GB); the verdicts are re-derivable pe
   certificate/: 19 files (e.g. ComparatorAxiomsK35K25.lean, ComparatorChallengeK35K25.lean, ComparatorCubes.lean, ComparatorCubesK35K25.lean, ComparatorUnsatK35K25.lean, Encoder.lean, …)
   instance/: 2 files (e.g. k35k25_n22.cnf, k35k25_n22_d10.icnf)
 
+`k211k24-n26/`:
+  top level: README.md
+  tree/: 4 files (close_k211k24_n26.log, cover_audit_2026-09-06.txt, k211k24_n26_flat.icnf, ledger.jsonl)
+  tree/splits/: 59 files (the depth-8 resplits of the 49 capped cubes over three levels)
+  certificate/: Comparator modules (ComparatorAxiomsK211K24.lean, ComparatorChallengeK211K24.lean, ComparatorCubesK211K24.lean, ComparatorUnsatK211K24.lean, K211K24FlatIcnf0.lean), lrat-catcher-k211k24.json; cake_lpr ledger and PASS transcript pending (pass running 2026-09-06)
+  instance/: 2 files (k211k24_n26.cnf, k211k24_n26_d10.icnf)
+
 `k211k23-n22/`:
   top level: README.md
   tree/: 4 files (close_k211k23_n22.log, cover_audit_2026-09-06.txt, k211k23_n22_flat.icnf, ledger.jsonl)

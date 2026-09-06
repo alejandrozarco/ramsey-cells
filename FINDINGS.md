@@ -218,5 +218,11 @@ certificate, not the splitter's internal behaviour, is what makes the decomposit
   The choice is therefore made per cell from a sampled cube protocol (march_cu at depth 10, sixty
   cubes, 120-300 s cap), not by default. Soundness of DOL is a Lean theorem in the private development
   (`SB.dol_encode_sound`); the deposited encoding's soundness was already there.
-* Three more K_{2,11} cells are being run the same way at their current lower bounds (n = 26, 28, 30),
+* `k211k24-n26/`: R(K_{2,11}, K_{2,4}) = 26. DS1 rev #18 prints `>= 25` (Table IVc, row 11, column 4);
+  3.3.2(j) gives `<= 27`; our K_25 coloring (`k2x11-k2x4-lb26/`) had made it 26-27. A cube-and-conquer
+  refutation at n = 26 in the deposited encoding (402 top cubes, 49 resplit over three levels, 10,017
+  leaves, every leaf UNSAT with a checked LRAT proof, cover refuted with a checked proof, 48,416
+  core-seconds) closes it at 26. Both bounds are ours. Comparator statement in `certificate/`; the
+  cake_lpr pass over the Lean-printed leaves is running and its ledger and PASS transcript follow.
+* Two more K_{2,11} cells are being run the same way at their current lower bounds (n = 28, 30),
   where a refutation and a coloring are both results because the survey windows are one wide.
