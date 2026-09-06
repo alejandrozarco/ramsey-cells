@@ -16,6 +16,8 @@ scripts that redo the work. Unconfirmed, not peer reviewed. Nothing here is a cl
 | R(K_{3,5}, K_{2,4}) | 19-20 | K_18 + refutation at n=19 | [`k35k24-n19/`](k35k24-n19/) |
 | R(K_{2,11}, K_{2,3}) | >= 22 | refutation at n=22 | [`k211k23-n22/`](k211k23-n22/) |
 
+Start with [VERIFY.md](VERIFY.md) for the shortest path to checking the two strongest results.
+
 A coloring of K_n gives R > n. Checking one needs only the definition of subgraph
 containment. The refutation needs more: a faithful encoding, sound symmetry breaking, and an
 exhaustive search. Each directory says which parts are machine-checked.
