@@ -17,11 +17,11 @@ cubes cover every assignment. Together **R(K_{2,11}, K_{2,4}) = 26**.
 
 `certificate/` holds the Comparator statement for this formula (`Encoder.k211k24_n26`, the Lean encoder
 whose printed CNF, sha256 72b4e9cc..., equals `instance/k211k24_n26.cnf` clause for clause and in order;
-the deposited file only adds six comment lines), its two external verdict axioms (leaves and cover) and
-the Comparator configuration. The cake_lpr pass over the 10,017 Lean-printed leaves and the negated
-cover is running (2026-09-06); its ledger, the leaf hashes recomputed on a second machine and the
-Comparator PASS transcript are added when it finishes. Until then the public chain for this cell
-ends at the solve-time checked proofs and the checked cover above.
+the deposited file only adds six comment lines), its two external verdict axioms discharged by cake_lpr
+(leaves and cover), the cake_lpr ledger (`k211k24_cakelpr_encoder_ledger.jsonl`, 10,017 leaves + cover,
+all VERIFIED), the leaf hashes recomputed on a second machine (`k211k24_encoder_leaf_sha256.txt`,
+10,017/10,017 match), and the PASS transcript (`PASS_lrat-catcher-k211k24_2026-09-06.log`, Lean kernel
+and nanoda both accept; see `certificate/CERTIFICATE_k211k24.md`).
 
 The refutation needs the encoding to be faithful, the symmetry breaking to be sound, and the cube cover
 to be exhaustive. The cover is machine-checked (above). The encoding and the vertex-lex symmetry
@@ -48,4 +48,5 @@ the tool now says so in its SCOPE line. It is not a complete independent replay.
 and checks each fresh proof with cake_lpr (that is how the deposited ledger was made);
 `../tools/proof_archive.py` does the same and keeps every trimmed proof (lrat-trim, checked again with
 lrat-check and cake_lpr, xz-compressed) with a manifest of hashes. The archived proofs for this cell
-are attached to a release of this repository (see `certificate/` once the archive is published).
+(about 30 GB compressed) are being built and will be attached to a release of this repository in 2 GB
+parts; `certificate/CERTIFICATE_k211k24.md` names the release once it exists.

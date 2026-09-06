@@ -74,7 +74,7 @@ Proof files are not deposited (hundreds of GB); the verdicts are re-derivable pe
   top level: README.md
   tree/: 4 files (close_k211k24_n26.log, cover_audit_2026-09-06.txt, k211k24_n26_flat.icnf, ledger.jsonl)
   tree/splits/: 59 files (the depth-8 resplits of the 49 capped cubes over three levels)
-  certificate/: Comparator modules (ComparatorAxiomsK211K24.lean, ComparatorChallengeK211K24.lean, ComparatorCubesK211K24.lean, ComparatorUnsatK211K24.lean, K211K24FlatIcnf0.lean), lrat-catcher-k211k24.json; cake_lpr ledger and PASS transcript pending (pass running 2026-09-06)
+  certificate/: Comparator modules (ComparatorAxiomsK211K24.lean, ComparatorChallengeK211K24.lean, ComparatorCubesK211K24.lean, ComparatorUnsatK211K24.lean, K211K24FlatIcnf0.lean), lrat-catcher-k211k24.json, CERTIFICATE_k211k24.md, k211k24_cakelpr_encoder_ledger.jsonl (10,017 leaves + cover, all VERIFIED), k211k24_encoder_leaf_sha256.txt, cert_pass_summary.txt, PASS_lrat-catcher-k211k24_2026-09-06.log
   instance/: 2 files (k211k24_n26.cnf, k211k24_n26_d10.icnf)
 
 `k211k23-n22/`:
@@ -177,8 +177,8 @@ repository:
   (release `proofs-k211k23-n22-2026-09-06`, 1,313/1,313 proofs re-checked); K_{2,11}/K_{2,4} follows its cake_lpr pass. The K_{3,5}/K_{2,5} tree (137,350 leaves, about 3 TB
   of raw proofs) stays re-solve-on-demand.
 * **Certification status separate from the claim.** `k211k24-n26/README.md` and `FINDINGS.md` say
-  which chain is complete for each cell; the K_{2,11}/K_{2,4} certificate directory is marked
-  pending until its ledger and PASS transcript exist.
+  which chain is complete for each cell; the K_{2,11}/K_{2,4} certificate is complete as of
+  2026-09-06 evening (ledger, second-machine hashes, PASS transcript).
 * **Method claims.** `benchmarks/2026-09-05_symmetry_breaking/` deposits the generator of the
   degree-ordering variants (`gen_variant.py`, its tests, the informal soundness notes), the sampling
   protocol (`bench.py`, `make_bench.py`, `bench_report.py`) and the raw sampled-cube ledgers and

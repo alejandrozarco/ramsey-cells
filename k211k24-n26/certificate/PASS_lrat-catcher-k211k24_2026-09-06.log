@@ -1,0 +1,20 @@
+Building LRATCatcher.ComparatorChallengeK211K24
+⚠ [10/10] Replayed LRATCatcher.ComparatorChallengeK211K24
+warning: LRATCatcher/ComparatorChallengeK211K24.lean:3:8: declaration uses `sorry`
+warning: LRATCatcher/ComparatorChallengeK211K24.lean:4:8: declaration uses `sorry`
+Build completed successfully (10 jobs).
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, LRATCatcher.Comparator.K211K24.encoded_unsat, propext, Quot.sound, Classical.choice, LRATCatcher.Comparator.K211K24.leaves_cakelpr, LRATCatcher.Comparator.K211K24.cover_cakelpr, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, LRATCatcher.Encoder.k211k24_n26] from LRATCatcher.ComparatorChallengeK211K24
+Building LRATCatcher.ComparatorUnsatK211K24
+ℹ [10/10] Replayed LRATCatcher.ComparatorUnsatK211K24
+info: LRATCatcher/ComparatorUnsatK211K24.lean:5:0: 'LRATCatcher.Comparator.K211K24.encoded_unsat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ LRATCatcher.Comparator.K211K24.cover_cakelpr,
+ LRATCatcher.Comparator.K211K24.leaves_cakelpr]
+Build completed successfully (10 jobs).
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, LRATCatcher.Comparator.K211K24.encoded_unsat, propext, Quot.sound, Classical.choice, LRATCatcher.Comparator.K211K24.leaves_cakelpr, LRATCatcher.Comparator.K211K24.cover_cakelpr, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, LRATCatcher.Encoder.k211k24_n26] from LRATCatcher.ComparatorUnsatK211K24
+Running nanoda kernel on solution
+Nanoda kernel accepts the solution
+Running Lean default kernel on solution.
+Lean default kernel accepts the solution
+Your solution is okay!
