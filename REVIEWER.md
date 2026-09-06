@@ -70,6 +70,13 @@ Proof files are not deposited (hundreds of GB); the verdicts are re-derivable pe
   certificate/: 19 files (e.g. ComparatorAxiomsK35K25.lean, ComparatorChallengeK35K25.lean, ComparatorCubes.lean, ComparatorCubesK35K25.lean, ComparatorUnsatK35K25.lean, Encoder.lean, …)
   instance/: 2 files (e.g. k35k25_n22.cnf, k35k25_n22_d10.icnf)
 
+`k211k23-n22/`:
+  top level: README.md
+  tree/: 4 files (close_k211k23_n22.log, cover_audit_2026-09-06.txt, k211k23_n22_flat.icnf, ledger.jsonl)
+  tree/splits/: 4 files (134.119_d8.icnf, 134.243_d8.icnf, 134_d8.icnf, 243_d8.icnf)
+  certificate/: Comparator modules (ComparatorAxiomsK211K23.lean, ComparatorChallengeK211K23.lean, ComparatorCubesK211K23.lean, ComparatorUnsatK211K23.lean, K211K23FlatIcnf0.lean), lrat-catcher-k211k23.json, cake_lpr ledger, PASS transcript
+  instance/: 2 files (k211k23_n22.cnf, k211k23_n22_d10.icnf)
+
 ## 3. Leaf verdicts by an independent, verified checker
 
 `certificate/cake_lpr_ledger*.jsonl` records, per leaf: the sha256 of the leaf DIMACS that was

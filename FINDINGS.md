@@ -198,3 +198,22 @@ certificate, not the splitter's internal behaviour, is what makes the decomposit
   its failures unexplained (OOM; rerunning). The reviewer did not replay every leaf proof and
   describes the three refutation-based equalities as supported computational results awaiting
   complete independent replay.
+
+## 2026-09-06
+
+* `k211k23-n22/`: R(K_{2,11}, K_{2,3}) = 22. DS1 rev #18 prints `>= 22` [VO] (Table IVc, row 11, column 3);
+  the survey's general bound 3.3.2(j) gives `<= 25`. A cube-and-conquer refutation at n = 22 in the
+  deposited encoding (374 top cubes, 1,313 leaves, every leaf UNSAT with a checked LRAT proof, cover
+  refuted with a checked proof, 5,628 core-seconds) closes it at 22. The lower bound is Van
+  Overberghe's; no coloring is deposited. Comparator statement and cake_lpr ledger in `certificate/`.
+* Method (measured, 2026-09-05/06): symmetry breaking by sorting vertices by colour-1 degree, with
+  lex-leader constraints only between adjacent equal-degree vertices ("DOL"), against the deposited
+  vertex-lex breaking. On the K_{2,8}/K_{2,5} instance at n = 22 the deposited breaking priced its tree at
+  thousands of core-hours (15% of top cubes capped) while DOL closed the same cell in tens of
+  core-hours; on every small and mid-size two-colour cell measured (n <= 20) the deposited breaking is
+  faster by two to three orders of magnitude, and DOL alone without any lex constraint is disastrous.
+  The choice is therefore made per cell from a sampled cube protocol (march_cu at depth 10, sixty
+  cubes, 120-300 s cap), not by default. Soundness of DOL is a Lean theorem in the private development
+  (`SB.dol_encode_sound`); the deposited encoding's soundness was already there.
+* Three more K_{2,11} cells are being run the same way at their current lower bounds (n = 26, 28, 30),
+  where a refutation and a coloring are both results because the survey windows are one wide.

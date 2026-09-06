@@ -14,6 +14,7 @@ scripts that redo the work. Unconfirmed, not peer reviewed. Nothing here is a cl
 | R(B_5, B_9) | >= 28 | K_28 | [`b5b9-lb29/`](b5b9-lb29/) |
 | R(K_{3,4}, K_{3,3}) | 19-20 | refutation at n=19 | [`k34k33-n19/`](k34k33-n19/) |
 | R(K_{3,5}, K_{2,4}) | 19-20 | K_18 + refutation at n=19 | [`k35k24-n19/`](k35k24-n19/) |
+| R(K_{2,11}, K_{2,3}) | >= 22 | refutation at n=22 | [`k211k23-n22/`](k211k23-n22/) |
 
 A coloring of K_n gives R > n. Checking one needs only the definition of subgraph
 containment. The refutation needs more: a faithful encoding, sound symmetry breaking, and an
