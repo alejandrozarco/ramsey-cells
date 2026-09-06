@@ -208,9 +208,12 @@ certificate, not the splitter's internal behaviour, is what makes the decomposit
   Overberghe's; no coloring is deposited. Comparator statement and cake_lpr ledger in `certificate/`.
 * Method (measured, 2026-09-05/06): symmetry breaking by sorting vertices by colour-1 degree, with
   lex-leader constraints only between adjacent equal-degree vertices ("DOL"), against the deposited
-  vertex-lex breaking. On the K_{2,8}/K_{2,5} instance at n = 22 the deposited breaking priced its tree at
-  thousands of core-hours (15% of top cubes capped) while DOL closed the same cell in tens of
-  core-hours; on every small and mid-size two-colour cell measured (n <= 20) the deposited breaking is
+  vertex-lex breaking. On the K_{2,8}/K_{2,5} instance at n = 22 the deposited breaking left about
+  142,000 level-2 cubes open after 50,000 solved rows, the degree-ordered formula solves the top level
+  about fifty times faster, and DOL refutes in seconds the cube the degree-ordered formula could not
+  finish in 900 s; the closure of that cell (degree-ordered leaves plus DOL for the rest) is still
+  running and nothing from it is deposited here yet. On every small and mid-size two-colour cell
+  measured (n <= 20) the deposited breaking is
   faster by two to three orders of magnitude, and DOL alone without any lex constraint is disastrous.
   The choice is therefore made per cell from a sampled cube protocol (march_cu at depth 10, sixty
   cubes, 120-300 s cap), not by default. Soundness of DOL is a Lean theorem in the private development

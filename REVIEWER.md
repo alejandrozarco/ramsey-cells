@@ -74,7 +74,7 @@ Proof files are not deposited (hundreds of GB); the verdicts are re-derivable pe
   top level: README.md
   tree/: 4 files (close_k211k23_n22.log, cover_audit_2026-09-06.txt, k211k23_n22_flat.icnf, ledger.jsonl)
   tree/splits/: 4 files (134.119_d8.icnf, 134.243_d8.icnf, 134_d8.icnf, 243_d8.icnf)
-  certificate/: Comparator modules (ComparatorAxiomsK211K23.lean, ComparatorChallengeK211K23.lean, ComparatorCubesK211K23.lean, ComparatorUnsatK211K23.lean, K211K23FlatIcnf0.lean), lrat-catcher-k211k23.json, cake_lpr ledger, PASS transcript
+  certificate/: Comparator modules (ComparatorAxiomsK211K23.lean, ComparatorChallengeK211K23.lean, ComparatorCubesK211K23.lean, ComparatorUnsatK211K23.lean, K211K23FlatIcnf0.lean), lrat-catcher-k211k23.json, CERTIFICATE_k211k23.md, k211k23_cakelpr_encoder_ledger.jsonl (1,313 leaves + cover, all VERIFIED), k211k23_encoder_leaf_sha256.txt, cert_pass_summary.txt, PASS_lrat-catcher-k211k23_2026-09-06.log
   instance/: 2 files (k211k23_n22.cnf, k211k23_n22_d10.icnf)
 
 ## 3. Leaf verdicts by an independent, verified checker

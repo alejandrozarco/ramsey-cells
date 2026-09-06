@@ -14,8 +14,12 @@ checked verdict and the negation of all 1,313 leaves is refuted with a checked L
 cover every assignment. Together **R(K_{2,11}, K_{2,3}) = 22**.
 
 `certificate/` holds the Comparator statement for this formula (`Encoder.k211k23_n22`, the Lean encoder
-whose printed CNF is byte-identical to `instance/k211k23_n22.cnf`, sha256 57518b8c...), its two external
-verdict axioms discharged by cake_lpr (leaves and cover), the cake_lpr ledger and the PASS transcript.
+whose printed CNF, sha256 57518b8c..., equals `instance/k211k23_n22.cnf` clause for clause and in order;
+the deposited file only adds six comment lines), its two external verdict axioms discharged by cake_lpr
+(leaves and cover), the cake_lpr ledger (`k211k23_cakelpr_encoder_ledger.jsonl`, 1,313 leaves + cover,
+all VERIFIED), the leaf hashes recomputed on a second machine (`k211k23_encoder_leaf_sha256.txt`,
+1,313/1,313 match), and the PASS transcript (`PASS_lrat-catcher-k211k23_2026-09-06.log`, Lean kernel
+and nanoda both accept; see `certificate/CERTIFICATE_k211k23.md`).
 
 The refutation needs the encoding to be faithful, the symmetry breaking to be sound, and the cube cover
 to be exhaustive. The cover is machine-checked (above). The encoding and the vertex-lex symmetry
