@@ -24,6 +24,13 @@ Not included: the `Generated/` directory of earlier per-chunk reflection modules
 by the Comparator route), upstream tests and showcases, and the private `sbsound` development that
 proves the encoders faithful and the symmetry breaking sound (see `../../REVIEWER.md` section 5).
 
+Note on K_{3,4}/K_{3,3}: its certified solution module is `ComparatorUnsatFallback.lean` with the
+configuration `Comparator/lrat-catcher-fallback.json` (two external verdict axioms, like every later
+cell; PASS transcript in `../../k34k33-n19/certificate/`). `ComparatorUnsat.lean` is an experimental
+variant that checks the cover certificate inside the Lean kernel (`lrat_reflect_cnf +kernel`,
+reading `../runs/k34k33_export/cover.lrat`); it takes well over an hour of kernel reduction and is
+not part of any deposited certificate. Build named targets rather than the whole library.
+
 ## Build and replay a certificate
 
 Toolchain: Lean `v4.30.0` (pinned in `lean-toolchain`; `elan` fetches it), no Mathlib.
