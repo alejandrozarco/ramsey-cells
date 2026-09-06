@@ -37,3 +37,8 @@ kernel, nanoda, the three standard axioms, cake_lpr, `Std.Sat.CNF.dimacs`, and t
 **Discharge (2026-09-06):** cake_lpr `s VERIFIED UNSAT` on **1,314/1,314** files (1,313 leaves +
 the negated cover), 0 failures; largest proof 419 MB, 15.5 GB of proofs in total, 1.92 CPU-h solving and
 0.98 CPU-h checking (6-core host); summary in `cert_pass_summary.txt`.
+
+**Archived proofs (2026-09-06):** every leaf re-solved a second time, trimmed, re-checked with lrat-check
+and cake_lpr (1,313/1,313) and kept: release `proofs-k211k23-n22-2026-09-06` (`proofs_part00.tar`, 1.40 GB,
+sha256 81b8aa04c5d3a84b6613e8f6d3f4722bbf7736d705da6471e2aae589543464ac; manifest copy
+`proof_archive_manifest.jsonl`). The cover proof is re-derived by `verify_close.py --check-all` in seconds.

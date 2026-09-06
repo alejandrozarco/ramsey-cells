@@ -86,6 +86,38 @@ def build(n, colors, swap_break=None, cube=None, vertex_lex=False):
             cls.append([-var(e, c1), -var(e, c2)])
 
     for c, g in enumerate(colors, start=1):
+        if g.startswith("B") and g[1:].isdigit():
+            # book B_t = K_2 + t*K_1 (t triangles on one spine edge) via CONDITIONAL codegree:
+            # color c is B_t-free  <=>  every c-EDGE uv has <= t-1 common c-neighbors.
+            # Same upper indicators and one-directional Sinz counter as K_{2,t} below, but the
+            # overflow clauses carry the spine literal -x(uv,c): when uv is not a c-edge the count is
+            # unconstrained. Sound both ways: a B_t-free coloring satisfies it with y = exact AND and
+            # minimal registers; conversely true y's over-count the common neighbors, so the bound on
+            # them bounds the real count whenever the spine is a c-edge.
+            t = int(g[1:]); k = t - 1; npairs = 0
+            for u, v in itertools.combinations(range(1, n + 1), 2):
+                npairs += 1; spine = var((u, v), c); ys = []
+                for w in range(1, n + 1):
+                    if w == u or w == v:
+                        continue
+                    nvars += 1; y = nvars
+                    cls.append([-var(tuple(sorted((u, w))), c), -var(tuple(sorted((v, w))), c), y]); ys.append(y)
+                m = len(ys); assert m > k, "n too small for the bound to bind"
+                R = {}
+                for i in range(1, m):
+                    for j in range(1, k + 1):
+                        nvars += 1; R[(i, j)] = nvars
+                cls.append([-ys[0], R[(1, 1)]])
+                for i in range(2, m):
+                    cls.append([-ys[i - 1], R[(i, 1)]])
+                    for j in range(1, k + 1):
+                        cls.append([-R[(i - 1, j)], R[(i, j)]])
+                    for j in range(2, k + 1):
+                        cls.append([-ys[i - 1], -R[(i - 1, j - 1)], R[(i, j)]])
+                for i in range(2, m + 1):
+                    cls.append([-spine, -ys[i - 1], -R[(i - 1, k)]])
+            comments.append(f"c color {c} forbids {g} (book, conditional codegree): {npairs} spine pairs, <= {k} common nbrs when the pair is a color-{c} edge")
+            continue
         if "x" in g and g.startswith("K"):
             # complete bipartite K_{s,t} via CODEGREE encoding (never enumerate copies):
             # color c is K_{s,t}-free  <=>  every s-set has <= t-1 common c-neighbors.

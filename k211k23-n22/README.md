@@ -44,5 +44,11 @@ the tool now says so in its SCOPE line. It is not a complete independent replay.
 `../tools/cert_pass.py` rebuilds every leaf from the Lean-printed base and prefixes in `certificate/`
 and checks each fresh proof with cake_lpr (that is how the deposited ledger was made);
 `../tools/proof_archive.py` does the same and keeps every trimmed proof (lrat-trim, checked again with
-lrat-check and cake_lpr, xz-compressed) with a manifest of hashes. The archived proofs for this cell
-are attached to a release of this repository (see `certificate/` once the archive is published).
+lrat-check and cake_lpr, xz-compressed) with a manifest of hashes. The archived proofs of this cell are
+attached to the release `proofs-k211k23-n22-2026-09-06` of this repository: `proofs_part00.tar`
+(1,313 files `leaf_<i>.lrat.xz`, 1.40 GB, sha256 81b8aa04...), `manifest.jsonl` (per leaf: leaf-CNF
+sha256, trimmed-proof sha256, .xz sha256, verdicts; a copy is `certificate/proof_archive_manifest.jsonl`),
+the printed inputs `base_encoder.cnf.xz`, `prefixes.tsv.xz`, `negcubes.cnf.xz`, and `SHA256SUMS.txt`.
+Every archived proof was accepted by lrat-check and by cake_lpr on the second solve (1,313/1,313).
+To check leaf i: rebuild `leaf_i.cnf` from prefixes line i and the base body, `xz -d leaf_i.lrat.xz`,
+then `cake_lpr leaf_i.cnf leaf_i.lrat`.

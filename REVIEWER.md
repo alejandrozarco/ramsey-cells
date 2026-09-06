@@ -173,8 +173,8 @@ repository:
 * **Leaf proofs.** From now on the proofs are kept: `tools/proof_archive.py` re-solves every leaf,
   trims the proof (lrat-trim), checks it again with lrat-check and cake_lpr, and stores it
   xz-compressed with a manifest of hashes; `tools/release_proofs.sh` attaches the archives to a
-  GitHub release of this repository (2 GB per asset). The K_{2,11}/K_{2,3} archive is being built;
-  K_{2,11}/K_{2,4} follows its cake_lpr pass. The K_{3,5}/K_{2,5} tree (137,350 leaves, about 3 TB
+  GitHub release of this repository (2 GB per asset). The K_{2,11}/K_{2,3} archive is published
+  (release `proofs-k211k23-n22-2026-09-06`, 1,313/1,313 proofs re-checked); K_{2,11}/K_{2,4} follows its cake_lpr pass. The K_{3,5}/K_{2,5} tree (137,350 leaves, about 3 TB
   of raw proofs) stays re-solve-on-demand.
 * **Certification status separate from the claim.** `k211k24-n26/README.md` and `FINDINGS.md` say
   which chain is complete for each cell; the K_{2,11}/K_{2,4} certificate directory is marked
