@@ -43,9 +43,10 @@ def one(item):
             c = subprocess.run([CHECK, cnf, trim], capture_output=True, text=True); row['lrat_check_rc'] = c.returncode
             k = subprocess.run([CAKE, cnf, trim], capture_output=True, text=True); row['cake'] = 'VERIFIED' if 's VERIFIED UNSAT' in k.stdout else 'FAIL'
             row['trim_bytes'] = os.path.getsize(trim); row['trim_sha256'] = sha(trim)
-            xz = f'{A}/leaf_{i}.lrat.xz'
-            subprocess.run(['xz','-T2','-4','-f','-c',trim], stdout=open(xz,'wb'), check=True)  # -4: ~3x faster than -6, ~5% larger
-            row['xz_bytes'] = os.path.getsize(xz); row['xz_sha256'] = sha(xz)
+            xz = f'{A}/leaf_{i}.lrat.xz'; tmp = xz + '.tmp'   # written under a temp name so a concurrent
+            subprocess.run(['xz','-T2','-4','-f','-c',trim], stdout=open(tmp,'wb'), check=True)  # sync loop moving *.xz away
+            row['xz_bytes'] = os.path.getsize(tmp); row['xz_sha256'] = sha(tmp)                    # cannot race the hashing
+            os.replace(tmp, xz)
     for f in (cnf, lrat, trim):
         if os.path.exists(f): os.remove(f)
     out.write(json.dumps(row)+'\n'); out.flush(); return row
