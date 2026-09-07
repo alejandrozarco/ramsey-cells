@@ -207,17 +207,24 @@ def build(n, colors, swap_break=None, cube=None, vertex_lex=False):
         # and cube constraints are preserved by the blocks.  NOTE: the color swap is a
         # symmetry only when the forbidden graphs are identical; it is broken separately
         # by --swap-break, which asserts that, and it is NOT part of the group here.
-        if cube is None:
-            transpositions = list(range(1, n))
+        if vertex_lex == 'allpairs':
+            # Codish et al. (2019) style: one lex constraint per TRANSPOSITION (i,j) for every
+            # i<j, not only the n-1 adjacent ones. Sound by the same argument as below and for
+            # the same reason: both sets generate S_n, and the lex-min of the orbit satisfies
+            # every single-generator constraint simultaneously. Strictly more constraints, so
+            # strictly stronger breaking; the cost is O(n^3) auxiliaries, hence measure.
+            transpositions = [(i, j) for i in range(1, n) for j in range(i + 1, n + 1)]
+        elif cube is None:
+            transpositions = [(v, v + 1) for v in range(1, n)]
         elif cube == "10plus":
-            transpositions = list(range(2, 10)) + list(range(12, n))
+            transpositions = [(v, v + 1) for v in list(range(2, 10)) + list(range(12, n))]
         else:
             d = int(cube)
-            transpositions = list(range(2, d + 1)) + list(range(d + 2, n))
+            transpositions = [(v, v + 1) for v in list(range(2, d + 1)) + list(range(d + 2, n))]
         edges_in_order = sorted(eidx, key=lambda e: eidx[e])
         n_lex_aux = 0
-        for v in transpositions:
-            sig = lambda x: v + 1 if x == v else (v if x == v + 1 else x)
+        for (va, vb) in transpositions:
+            sig = lambda x, va=va, vb=vb: vb if x == va else (va if x == vb else x)
             moved = []
             for e in edges_in_order:
                 f = tuple(sorted((sig(e[0]), sig(e[1]))))
@@ -247,7 +254,7 @@ def build(n, colors, swap_break=None, cube=None, vertex_lex=False):
                 else:
                     cls += [[-newch, eqch], [-newch, q], [newch, -eqch, -q]]
                 eqch = newch
-        comments.append(f"c vertex-lex: {len(transpositions)} adjacent transpositions, "
+        comments.append(f"c vertex-lex: {len(transpositions)} " + ("all-pairs" if vertex_lex == "allpairs" else "adjacent") + " transpositions, "
                         f"{n_lex_aux} aux vars")
 
     if cube is not None:
