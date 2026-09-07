@@ -35,7 +35,10 @@ for k in $(seq 0 $((N-1))); do
   kk=$(printf %02d $k); PART="proofs_part$kk.tar"
   if echo "$HAVE" | grep -qx "$PART"; then echo "part $kk already attached; skipping"; continue; fi
   D="$W/batch$kk"; rm -rf "$D"; mkdir -p "$D"
-  sed "s#^#$BKT/#" "$W/chunk$kk.txt" | xargs -n 200 sh -c 'gsutil -q -m cp "$@" "'"$D"'/"' _
+  # -o GSUtil:parallel_process_count=1 : gsutil's multiprocessing hangs on macOS
+  # (bugs.python.org/issue33725); a 1,630-file batch stalled at 400 for an hour without it.
+  # Threads still give parallelism. Batches of 100 keep the argv short and let a stall be seen.
+  sed "s#^#$BKT/#" "$W/chunk$kk.txt" | xargs -n 100 sh -c 'gsutil -q -o "GSUtil:parallel_process_count=1" -m cp "$@" "'"$D"'/"' _
   got=$(ls "$D" | wc -l | tr -d ' '); want=$(wc -l < "$W/chunk$kk.txt" | tr -d ' '); [ "$got" = "$want" ] || { echo "batch $kk: got $got of $want"; exit 1; }
   tar -cf "$W/$PART" -C "$D" $(cat "$W/chunk$kk.txt"); rm -rf "$D"
   (cd "$W" && sha256sum "$PART" >> SHA256SUMS.txt)
