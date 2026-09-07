@@ -31,13 +31,19 @@ encoding. Unconfirmed, not peer reviewed. Nothing here is a claim.
    `LRATCatcher.Comparator.K35K25.encoded_unsat : LRATCatcher.Encoder.k35k25_n22.Unsat`
    is accepted by the Lean kernel and by nanoda, with axioms exactly `propext`, `Quot.sound`,
    `Classical.choice` and the two named external verdicts in `certificate/ComparatorAxiomsK35K25.lean`.
-4. The two external verdicts are being re-derived by cake_lpr (a CakeML-verified LRAT checker)
-   on leaf files printed from the Lean encoder term: `certificate/cake_lpr_ledger_IN_PROGRESS.jsonl`
-   (per-file sha256, solver verdict, checker verdict). This pass was still running when this
-   directory was committed; the file is replaced when it completes. Its first nine `FAIL` rows
-   (283–507 MB proofs, empty checker output) were cake_lpr processes killed by the kernel's OOM
-   handler when sixteen ran concurrently on a 16 GB machine; the pass was restarted with three
-   concurrent checkers and re-does those leaves.
+4. The two external verdicts were re-derived by cake_lpr (a CakeML-verified LRAT checker) on leaf
+   files printed from the Lean encoder term. **Complete as of 2026-09-07**:
+   `certificate/k35k25_cakelpr_encoder_ledger.jsonl` has 137,350 leaf rows plus the cover row, all
+   `VERIFIED`, no failures (per-file sha256, solver verdict, checker verdict, proof size). The pass
+   took 489 CPU-h of solving and 261 CPU-h of checking over 3.1 TB of LRAT proofs, largest single
+   proof 1.85 GB. `certificate/k35k25_encoder_leaf_sha256.txt` lists the same leaf hashes recomputed
+   independently on a second machine; they match the ledger 137,350/137,350.
+   Twenty-six leaves initially reported `FAIL` with empty checker output: those were cake_lpr
+   processes killed by the kernel's OOM handler when too many ran concurrently on a 16 GB machine
+   over GB-sized proofs. Those rows were removed and the leaves re-checked with fewer concurrent
+   checkers; none failed on the re-check. See `certificate/CERTIFICATE_k35k25.md`.
+   The proofs themselves are not archived (3.1 TB); a third party re-solves each leaf with
+   `../tools/cert_pass.py`, or `../tools/proof_archive.py` to keep the proofs.
 
 ## What is not in this repository
 

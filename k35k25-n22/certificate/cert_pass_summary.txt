@@ -1,0 +1,3 @@
+SUMMARY leaves this run: {'UNSAT': 56837} | cake_lpr: {'VERIFIED': 56837}
+SUMMARY cover: VERIFIED
+=== CERT PASS DONE ===

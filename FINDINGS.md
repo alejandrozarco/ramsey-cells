@@ -201,6 +201,15 @@ certificate, not the splitter's internal behaviour, is what makes the decomposit
   describes the three refutation-based equalities as supported computational results awaiting
   complete independent replay.
 
+## 2026-09-07
+
+* `k35k25-n22/`: the cake_lpr pass for R(K_{3,5}, K_{2,5}) = 22 is complete — 137,350 leaves and the
+  cover, all VERIFIED, no failures, 3.1 TB of LRAT proofs checked (489 CPU-h solving, 261 checking).
+  With the Comparator transcript of 2026-09-05 this cell now carries the same chain as the other
+  certified refutations. The leaf hashes were recomputed on a second machine and match 137,350/137,350.
+* Archived leaf proofs of `k211k24-n26/` (10,017 proofs, 9.0 GB compressed) published as a release,
+  as for `k211k23-n22/` (1,313 proofs, 1.4 GB).
+
 ## 2026-09-06
 
 * `k211k23-n22/`: R(K_{2,11}, K_{2,3}) = 22. DS1 rev #18 prints `>= 22` [VO] (Table IVc, row 11, column 3);
