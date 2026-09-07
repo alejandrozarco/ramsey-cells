@@ -25,8 +25,8 @@ cd k211k24-n26 && python3 ../tools/verify_close.py instance/k211k24_n26.cnf inst
    base and prefixes, solve, check with cake_lpr — `tools/cert_pass.py` (usage in its header); the
    ledger we obtained is `k211k24-n26/certificate/k211k24_cakelpr_encoder_ledger.jsonl`, the hashes
    recomputed on a second machine `k211k24_encoder_leaf_sha256.txt`. A release with every trimmed
-   proof kept (`tools/proof_archive.py`) is being attached to this repository; until then leaves are
-   re-solved rather than replayed.
+   proof kept (`tools/proof_archive.py`) is the release `proofs-k211k24-n26-2026-09-07` (five tar parts,
+   9.07 GB), so a leaf can be replayed instead of re-solved.
 4. The composed statement, replayed by the Lean kernel and by nanoda (minutes after the Lean build):
 ```
 cd lean/lrat-catcher && lake build LRATCatcher.ComparatorUnsatK211K24 LRATCatcher.ComparatorChallengeK211K24

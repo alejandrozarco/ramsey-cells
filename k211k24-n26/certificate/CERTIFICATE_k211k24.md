@@ -38,6 +38,7 @@ kernel, nanoda, the three standard axioms, cake_lpr, `Std.Sat.CNF.dimacs`, and t
 the negated cover), 0 failures; largest proof 419 MB, 144 GB of proofs in total, 18.6 CPU-h solving
 and 11.7 CPU-h checking on a 6-core host shared with other work; summary in `cert_pass_summary.txt`.
 
-**Archived proofs:** a second solve of every leaf with the trimmed proofs kept (lrat-trim, re-checked
-with lrat-check and cake_lpr) is being staged for a release of this repository (about 30 GB of
-compressed proofs in 2 GB parts); the README of the cell names the release once it exists.
+**Archived proofs (2026-09-07):** every leaf re-solved a second time, trimmed, re-checked with
+lrat-check and cake_lpr (10,017/10,017) and kept: release `proofs-k211k24-n26-2026-09-07`,
+`proofs_part00.tar` .. `proofs_part04.tar` (9.07 GB of xz proofs), with `manifest.jsonl`, the printed
+inputs and `SHA256SUMS.txt`. The cover proof is re-derived by `verify_close.py --check-all` in minutes.
