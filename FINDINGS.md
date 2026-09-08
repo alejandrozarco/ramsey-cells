@@ -9,12 +9,18 @@ so absence from the prose means nothing.
 
 ## 1. Deposited
 
-The ten cells in the [README](README.md) table (eleven directories with a coloring or a
-refutation; 2026-09-06). Nine directories hold colorings, which need only the definition of
-subgraph containment to check. Five hold refutations (K_{3,4}/K_{3,3} at 19, K_{3,5}/K_{2,4} at 19,
-K_{3,5}/K_{2,5} at 22, K_{2,11}/K_{2,3} at 22, K_{2,11}/K_{2,4} at 26); each says in its own
-directory exactly which parts are machine-checked, which are certified by an independent
-verified checker, and which are argued informally.
+The eleven cells in the [README](README.md) table (twelve directories with a colouring or a
+refutation; 2026-09-08). Nine directories hold colourings, which need only the definition of
+subgraph containment to check. Six hold refutations (K_{3,4}/K_{3,3} at 19, K_{3,5}/K_{2,4} at 19,
+K_{3,5}/K_{2,5} at 22, K_{2,11}/K_{2,3} at 22, K_{2,11}/K_{2,4} at 26, and, added 2026-09-08,
+K_{3,5}/K_{3,3} at 21); each says in its own directory exactly which parts are machine-checked, which
+are certified by an independent verified checker, and which are argued informally.
+
+The K_{3,5}/K_{3,3} refutation differs from the other five: its formula carries 39,369 symmetry-breaking
+clauses extracted once by smsg (SAT Modulo Symmetries) instead of the static lex-leader clauses, each
+clause's non-canonicity certificate is cake_lpr-checked individually, and their composition is argued
+in writing. It has no Comparator transcript. Its second-machine leaf pass is in progress. Read
+`k35k33-n21/certificate/CERTIFICATE_k35k33.md` before citing it.
 
 Every deposited colouring re-verifies under `tools/check_any.py`, which was written
 separately from the encoder and from the three older checkers.

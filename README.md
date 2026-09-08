@@ -15,6 +15,7 @@ scripts that redo the work. Unconfirmed, not peer reviewed. Nothing here is a cl
 | R(K_{3,4}, K_{3,3}) | 19-20 | refutation at n=19 | [`k34k33-n19/`](k34k33-n19/) |
 | R(K_{3,5}, K_{2,4}) | 19-20 | K_18 + refutation at n=19 | [`k35k24-n19/`](k35k24-n19/) |
 | R(K_{2,11}, K_{2,3}) | >= 22 | refutation at n=22 | [`k211k23-n22/`](k211k23-n22/) |
+| R(K_{3,5}, K_{3,3}) | 21-24 | refutation at n=21 (SMS-clause formula; one grade below the other refutations, see its README) | [`k35k33-n21/`](k35k33-n21/) |
 
 Start with [VERIFY.md](VERIFY.md) for the shortest path to checking the two strongest results.
 

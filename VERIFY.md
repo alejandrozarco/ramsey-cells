@@ -61,3 +61,34 @@ is about 40 CPU-hours with `tools/cert_pass.py`; proofs for this cell are not ar
 Two external audits (`review/2026-09-05/`, and the update review answered in `REVIEWER.md` section 7)
 regenerated the formulas, traversed the trees, re-proved both covers, matched all certificate hashes
 and re-checked every deposited witness with a checker written from the definition.
+
+## 3. R(K_{3,5}, K_{3,3}) = 21 — refutation ours, lower bound Van Overberghe's (added 2026-09-08)
+
+Different trust base from sections 1 and 2; see `k35k33-n21/certificate/CERTIFICATE_k35k33.md`.
+The formula is the lex-free base in one-variable-per-edge layout plus 39,369 smsg symmetry clauses.
+
+**Formula** (seconds): rebuild the base and Sigma and compare clause bodies with the deposit.
+```
+python3 tools/gen_ramsey.py 21 K3x5,K3x3 -o base.cnf
+python3 tools/sms/tosms.py base.cnf base_sms.cnf 210
+gunzip -k k35k33-n21/instance/sb21_nolex_salvaged.json.gz
+python3 tools/sms/sigma2dimacs.py k35k33-n21/instance/sb21_nolex_salvaged.json 21 sigma.cnf
+```
+**Symmetry clauses** (~20 min, one core; cadical + lrat-trim + cake_lpr): every certificate individually.
+```
+CADICAL=... LRAT_TRIM=... CAKE_LPR=... python3 tools/sms/nc_cake_check.py k35k33-n21/instance/sb21_nolex_salvaged.json 21 nc.jsonl
+```
+Expect `NC-CAKE SUMMARY clauses=39369 UNSAT=39369 cake_VERIFIED=39369 bad=0`. What this does NOT
+check: that appending all of Sigma preserves satisfiability (argued in `tools/sms/README.md`).
+
+**Tree and cover** (minutes): every leaf of the cube tree on disk has a verified UNSAT row, and the
+negated leaves are jointly unsatisfiable with a checked LRAT proof.
+```
+CADICAL=... LRAT_TRIM=... LRAT_CHECK=... python3 tools/verify_close.py k35k33-n21/instance/k35k33_n21_sms.cnf k35k33-n21/instance/k35k33_n21_sms_d10.icnf k35k33-n21/tree --check-sample 0
+```
+**Leaves** (~110 CPU-h): re-solve every leaf and check with cake_lpr, as in section 1.
+```
+python3 tools/export_prefixes.py k35k33-n21/instance/k35k33_n21_sms.cnf k35k33-n21/instance/k35k33_n21_sms_d10.icnf k35k33-n21/tree prefixes.tsv negcubes.cnf
+cp k35k33-n21/instance/k35k33_n21_sms.cnf base_encoder.cnf
+CADICAL=... CAKE_LPR=... WORKERS=16 CHECKERS=3 python3 tools/cert_pass.py
+```
