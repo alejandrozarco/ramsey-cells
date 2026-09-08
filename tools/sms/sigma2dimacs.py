@@ -17,5 +17,5 @@ for clause, perm in d:
 with open(sys.argv[3], "w") as f:
     for c in out:
         f.write(" ".join(map(str, c)) + " 0\n")
-print(f"{len(out)} sigma clauses -> {sys.argv[3]}; max var {max(abs(l) for c in out for l in c)}, "
+print(f"{len(out)} sigma clauses -> {sys.argv[3]}; max var {max((abs(l) for c in out for l in c), default=0)}, "
       f"edge vars for n={n} are 1..{n*(n-1)//2}")
