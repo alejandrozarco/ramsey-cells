@@ -13,7 +13,10 @@ CaDiCaL model of the plain two-colour formula with a prescribed fixed-point-free
 order 9 (three orbits of nine vertices; `ramsey/scripts/lemma/semireg_witness.py 27 K2x11,K2x5 --m 9`,
 23 s). Checked by `tools/check_any.py witness/witness_k211k25_n27.txt K2x11,K2x5` -> VALID (the
 arbiter shares no code with the encoder). Circulant colourings of K_27 do not exist for this cell
-(the same search with a 27-cycle is UNSAT in 3 s). So R >= 28 independently of [VO].
+(the same search with a 27-cycle is UNSAT in 3 s). Its full colour-preserving automorphism group has order 36,
+isomorphic to Z_2 x D_9: the 9-fold rotation, nine reflections, and an involution swapping the first and third
+orbits; the vertex orbits are {1..9, 19..27} and {10..18}, so the colouring is not vertex-transitive and not a
+Cayley colouring. So R >= 28 independently of [VO].
 
 **Upper bound, by counting, not machine-checked.** `counting/PROOF_NOTE.md` argues R <= 28: at n = 28
 the three pair-counting identities plus the per-vertex deficit budget force every colour-2 degree
