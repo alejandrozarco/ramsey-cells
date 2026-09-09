@@ -16,7 +16,10 @@ arbiter shares no code with the encoder). Circulant colourings of K_27 do not ex
 (the same search with a 27-cycle is UNSAT in 3 s). Its full colour-preserving automorphism group has order 36,
 isomorphic to Z_2 x D_9: the 9-fold rotation, nine reflections, and an involution swapping the first and third
 orbits; the vertex orbits are {1..9, 19..27} and {10..18}, so the colouring is not vertex-transitive and not a
-Cayley colouring. So R >= 28 independently of [VO].
+Cayley colouring. No vertex-transitive witness exists at all: an exhaustive SAT search over Cayley
+colourings of every group of order 27 (`ramsey/scripts/lemma/cayley_sat.py`, all five groups UNSAT within
+seconds) combined with the theorem that vertex-transitive graphs of order p^3 are Cayley graphs (Marusic)
+shows every good colouring of K_27 for this cell has at least two vertex orbits. So R >= 28 independently of [VO].
 
 **Upper bound, by counting, not machine-checked.** `counting/PROOF_NOTE.md` argues R <= 28: at n = 28
 the three pair-counting identities plus the per-vertex deficit budget force every colour-2 degree
