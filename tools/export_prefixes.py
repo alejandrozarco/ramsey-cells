@@ -20,7 +20,7 @@ def walk(cid, lits):
         leaves.append((cid, lits))
 for i, c in enumerate(cubes_of(top)): walk(str(i), c)
 with open(out, 'w') as f:
-    for cid, lits in leaves: f.write(f'{cid}\tp cnf {nv} {nc + len(lits)}|' + '|'.join(f'{x} 0' for x in lits) + '\n')
+    for cid, lits in leaves: f.write(f'{cid}\tp cnf {nv} {nc + len(lits)}|' + '|'.join(f'{x} 0' for x in lits) + '|\n')   # trailing '|': cert_pass joins prefix and body with no separator of its own
 if neg:   # cover formula: every leaf cube negated; UNSAT <=> the leaves cover the whole space
     with open(neg, 'w') as f:
         f.write(f'p cnf {nv} {len(leaves)}\n')
