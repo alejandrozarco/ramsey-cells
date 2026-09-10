@@ -9,8 +9,13 @@ so absence from the prose means nothing.
 
 ## 1. Deposited
 
-The eleven cells in the [README](README.md) table (twelve directories with a colouring or a
-refutation; 2026-09-08). Nine directories hold colourings, which need only the definition of
+The cells in the [README](README.md) table. Eleven of them were deposited by 2026-09-08 in twelve
+directories with a colouring or a refutation; two entries were added on 2026-09-10, the K_{2,11}/K_{2,5}
+colouring on 27 vertices with a counting note, and one directory holding twenty cells of rows 12 to 15
+that the survey does not tabulate (21 colourings, four of which meet the published Lortz-Mengersen upper
+bound and so give exact values, the other sixteen leaving windows of width one to three whose upper bound
+is our own counting lemma; priority for the counting bounds is unsettled while the Lortz-Mengersen papers
+are unread). Nine directories hold colourings, which need only the definition of
 subgraph containment to check. Six hold refutations (K_{3,4}/K_{3,3} at 19, K_{3,5}/K_{2,4} at 19,
 K_{3,5}/K_{2,5} at 22, K_{2,11}/K_{2,3} at 22, K_{2,11}/K_{2,4} at 26, and, added 2026-09-08,
 K_{3,5}/K_{3,3} at 21); each says in its own directory exactly which parts are machine-checked, which

@@ -16,6 +16,8 @@ scripts that redo the work. Unconfirmed, not peer reviewed. Nothing here is a cl
 | R(K_{3,5}, K_{2,4}) | 19-20 | K_18 + refutation at n=19 | [`k35k24-n19/`](k35k24-n19/) |
 | R(K_{2,11}, K_{2,3}) | >= 22 | refutation at n=22 | [`k211k23-n22/`](k211k23-n22/) |
 | R(K_{3,5}, K_{3,3}) | 21-24 | refutation at n=21 (SMS-clause formula; one grade below the other refutations, see its README) | [`k35k33-n21/`](k35k33-n21/) |
+| R(K_{2,11}, K_{2,5}) | >= 28 | K_27 + a counting note for the upper bound | [`k211k25-n28/`](k211k25-n28/) |
+| R(K_{2,n}, K_{2,m}), n = 12..15 | not tabulated | 21 colourings over 20 cells; four of them meet the published upper bound | [`k2-rows-12-15/`](k2-rows-12-15/) |
 
 Start with [VERIFY.md](VERIFY.md) for the shortest path to checking the two strongest results.
 
