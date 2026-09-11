@@ -1,4 +1,11 @@
+# Coloring of K_27 for the cell R(K_{2,11}, K_{2,5}).
+# Color 1 must contain no K_{2,11}: no 2-set with 11 common color-1 neighbors.
+# Color 2 must contain no K_{2,5}: no 2-set with 5 common color-2 neighbors.
+# Format: "i j c", one per line, vertices 1..27, color c in {1,2}, 351 edges.
+# Unconfirmed, not peer reviewed. Nothing here is a claim.
 # SAT witness for R(K2x11,K2x5) > 27: CaDiCaL model of the base formula with a prescribed semiregular automorphism of order 9 (3 orbits), 2026-09-09
+# spec: K2x11,K2x5
+# name: K(2,11)/K(2,5) on K27
 1 2 2
 1 3 1
 1 4 2

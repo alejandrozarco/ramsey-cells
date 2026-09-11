@@ -14,8 +14,9 @@ directories with a colouring or a refutation; two entries were added on 2026-09-
 colouring on 27 vertices with a counting note, and one directory holding twenty cells of rows 12 to 15
 that the survey does not tabulate (21 colourings, four of which meet the published Lortz-Mengersen upper
 bound and so give exact values, the other sixteen leaving windows of width one to three whose upper bound
-is our own counting lemma; priority for the counting bounds is unsettled while the Lortz-Mengersen papers
-are unread). Nine directories hold colourings, which need only the definition of
+is Lortz and Mengersen's own Lemmas 2.2 and 2.3 evaluated at these parameters -- their lemmas, not ours;
+what was missing from the record is only their numerical consequence at n = 12..15, because their Table I
+stops at 10). Nine directories hold colourings, which need only the definition of
 subgraph containment to check. Six hold refutations (K_{3,4}/K_{3,3} at 19, K_{3,5}/K_{2,4} at 19,
 K_{3,5}/K_{2,5} at 22, K_{2,11}/K_{2,3} at 22, K_{2,11}/K_{2,4} at 26, and, added 2026-09-08,
 K_{3,5}/K_{3,3} at 21); each says in its own directory exactly which parts are machine-checked, which

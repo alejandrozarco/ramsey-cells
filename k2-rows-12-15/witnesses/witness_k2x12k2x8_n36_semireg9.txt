@@ -1,4 +1,11 @@
+# Coloring of K_36 for the cell R(K_{2,12}, K_{2,8}).
+# Color 1 must contain no K_{2,12}: no 2-set with 12 common color-1 neighbors.
+# Color 2 must contain no K_{2,8}: no 2-set with 8 common color-2 neighbors.
+# Format: "i j c", one per line, vertices 1..36, color c in {1,2}, 630 edges.
+# Unconfirmed, not peer reviewed. Nothing here is a claim.
 # SAT witness for R(K2x12,K2x8) > 36: CaDiCaL model of the base formula with a prescribed automorphism of order 9 (4 cycles of length 9, 0 fixed points), 2026-09-10
+# spec: K2x12,K2x8
+# name: K(2,12)/K(2,8) on K36
 1 2 1
 1 3 2
 1 4 1

@@ -1,4 +1,11 @@
+# Coloring of K_29 for the cell R(K_{2,15}, K_{2,4}).
+# Color 1 must contain no K_{2,15}: no 2-set with 15 common color-1 neighbors.
+# Color 2 must contain no K_{2,4}: no 2-set with 4 common color-2 neighbors.
+# Format: "i j c", one per line, vertices 1..29, color c in {1,2}, 406 edges.
+# Unconfirmed, not peer reviewed. Nothing here is a claim.
 # SAT witness for R(K2x15,K2x4) > 29: CaDiCaL model of the base formula with a prescribed automorphism of order 7 (4 cycles of length 7, 1 fixed points), 2026-09-10
+# spec: K2x15,K2x4
+# name: K(2,15)/K(2,4) on K29
 1 2 2
 1 3 1
 1 4 1
