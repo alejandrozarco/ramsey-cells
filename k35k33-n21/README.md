@@ -1,9 +1,15 @@
 # R(K_{3,5}, K_{3,3}) — refutation at n = 21
 
 This directory records a search that found no 2-colouring of K_21 with no K_{3,5} in colour 1 and
-no K_{3,3} in colour 2. Together with Steven Van Overberghe's circulant colouring of K_20 for this
-cell (in his circulant-Ramsey repository, github.com/Steven-VO/circulant-Ramsey; not deposited here, see `../NOTICE.md`), that would give
-R(K_{3,5}, K_{3,3}) = 21. The survey window (DS1 rev. #18, table IVb) is 21–24, with no published
+no K_{3,3} in colour 2. Together with a colouring of K_20 for this cell, that would give
+R(K_{3,5}, K_{3,3}) = 21.
+
+**The K_20 in `witness/` is not a new object.** It was found here by a Cayley search on Z_20
+(connection set 2,3,4,5,7,10,13,15,16,17,18) and is **isomorphic, after relabelling, to Steven Van
+Overberghe's archived `K(3,5)K(3,3)n20.g6`** in github.com/Steven-VO/circulant-Ramsey. The lower
+bound R >= 21 is his and is cited [VO] in DS1; an external review pointed the coincidence out on
+2026-09-11 and it is confirmed here by an explicit isomorphism. It is kept in this directory only so
+the lower bound can be checked beside the refutation, which is the part done here. See `../NOTICE.md`. The survey window (DS1 rev. #18, table IVb) is 21–24, with no published
 value. Unconfirmed, not peer reviewed. Nothing here is a claim.
 
 **This refutation is one grade below the other deposited refutations, and differently shaped.**

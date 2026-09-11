@@ -25,3 +25,19 @@ graph is byte-equivalent, with the same vertex labels, to `RamseyGraphs/Bipartit
 in the same repository (GPL-3.0). It is reproduced here only so the lower bound can be checked
 beside the upper-bound computation in that directory. The omission was pointed out by an
 external review on 2026-09-05 (`review/2026-09-05/`); this notice did not acknowledge it before.
+
+`k35k33-n21/witness/witness_k35k33_n20.txt` is a **third case, and a different one**. It is not a
+copy of anything: it was found here by a Cayley search on Z_20 (connection set
+2,3,4,5,7,10,13,15,16,17,18) and the file is our own output. But its colour-1 graph is
+**isomorphic, after relabelling, to `RamseyGraphs/Bipartite/K(3,5)K(3,3)n20.g6`** in the same
+repository -- an independent rediscovery of Van Overberghe's graph, not a new object. The lower
+bound R(K_{3,5}, K_{3,3}) >= 21 is his and is cited [VO] in DS1; the part done here is the
+refutation at n = 21. An external review raised it on 2026-09-11 and the isomorphism is confirmed
+here by an explicit relabelling. Nothing in this repository claimed the colouring as new, but the
+directory README said his colouring was "not deposited here" while a colouring of K_20 sat in
+`witness/`, which invited exactly that reading. Corrected.
+
+All 33 deposited witnesses were checked against every graph in his Bipartite directory on
+2026-09-11. Three coincide -- the two above that are byte-identical copies, and this one, which is
+isomorphic with different labels. The other thirty match nothing in his archive.
+

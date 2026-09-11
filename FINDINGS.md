@@ -228,7 +228,9 @@ certificate, not the splitter's internal behaviour, is what makes the decomposit
   the survey's general bound 3.3.2(j) gives `<= 25`. A cube-and-conquer refutation at n = 22 in the
   deposited encoding (374 top cubes, 1,313 leaves, every leaf UNSAT with a checked LRAT proof, cover
   refuted with a checked proof, 5,628 core-seconds) closes it at 22. The lower bound is Van
-  Overberghe's; no coloring is deposited. Comparator statement and cake_lpr ledger in `certificate/`.
+  Overberghe's, cited [VO] in DS1. A colouring of K_21 IS deposited in `witness/`: it was found
+  here and matches no graph in his archive (checked 2026-09-11 against all 18 graphs in his
+  Bipartite directory), which holds nothing for this cell. Comparator statement and cake_lpr ledger in `certificate/`.
 * Method (measured, 2026-09-05/06): symmetry breaking by sorting vertices by colour-1 degree, with
   lex-leader constraints only between adjacent equal-degree vertices ("DOL"), against the deposited
   vertex-lex breaking. On the K_{2,8}/K_{2,5} instance at n = 22 the deposited breaking left about

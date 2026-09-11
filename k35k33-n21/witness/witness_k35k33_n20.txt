@@ -6,6 +6,7 @@
 # Cayley witness for R(K3x5, K3x3) > 20: group Z20, red connection set [2, 3, 4, 5, 7, 10, 13, 15, 16, 17, 18]
 # spec: K3x5,K3x3
 # name: K(3,5)/K(3,3) on K20
+# NOT A NEW OBJECT: isomorphic after relabelling to Van Overberghe's K(3,5)K(3,3)n20.g6 (circulant-Ramsey); the bound R >= 21 is his, cited [VO] in DS1. See ../../NOTICE.md.
 1 2 2
 1 3 1
 1 4 1
