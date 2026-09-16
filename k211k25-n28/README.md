@@ -21,12 +21,18 @@ colourings of every group of order 27 (`ramsey/scripts/lemma/cayley_sat.py`, all
 seconds) combined with the theorem that vertex-transitive graphs of order p^3 are Cayley graphs (Marusic)
 shows every good colouring of K_27 for this cell has at least two vertex orbits. So R >= 28 independently of [VO].
 
-**Upper bound, by counting, not machine-checked.** `counting/PROOF_NOTE.md` argues R <= 28: at n = 28
-the three pair-counting identities plus the per-vertex deficit budget force every colour-2 degree
-into {10, 11}, and the budget is negative there, so no good colouring of K_28 exists.
-`counting/counting_bound.py 28 4 10` reproduces the arithmetic; the same script reproduces the known
-values 29, 31, 33 of the neighbouring cells and our SAT-based R(K_{2,11}, K_{2,4}) = 26. The argument
-was corroborated blind by a second reader (GPT-6, 2026-09-09) and has NOT been checked by a human
-referee.
+**Upper bound, from Lortz and Mengersen (2003).** Their Lemma 2.3 and Lemma 2.2(1),(2), evaluated at
+n = 28, b = 4, r = 10, exclude every colour-2 degree: the pair-counting identities confine it to
+{10, 11}, where the per-vertex deficit budget is negative, so no good colouring of K_28 exists.
+`counting/PROOF_NOTE.md` works the arithmetic and `counting/counting_bound.py 28 4 10` reproduces it;
+the same script reproduces the known values 29, 31, 33 of the neighbouring cells. This is an
+evaluation of their published lemmas at a parameter their Table I does not reach, **not a new
+argument**. An earlier version of this page presented it as ours; on 2026-09-10 an implementation
+written from their printed paper reproduced every one of this repository's finite counting bounds,
+and the attribution is corrected here (2026-09-16).
 
-Together, if the counting note holds, **R(K_{2,11}, K_{2,5}) = 28**.
+**Standing.** Both bounds follow from published work: the lower bound 28 is printed in DS1 [VO], and
+the upper bound is Lortz and Mengersen's lemmas evaluated. R(K_{2,11}, K_{2,5}) = 28 is therefore a
+consequence of the literature that is not printed anywhere, **not a new determination**. What this
+directory adds is the K_27 colouring above, which reproduces the published lower bound
+independently of [VO], and the observation that no vertex-transitive colouring achieves it.

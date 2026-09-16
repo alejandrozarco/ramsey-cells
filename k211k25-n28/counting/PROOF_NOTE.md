@@ -1,5 +1,11 @@
 # R(K_{2,11}, K_{2,5}) <= 28 by counting (2026-09-09; UNCONFIRMED, not peer reviewed; nothing here is a claim)
 
+> **Attribution (corrected 2026-09-16).** The argument below is Lortz and Mengersen's (2003) Lemma 2.3
+> and Lemma 2.2(1),(2), written in this repository's notation and evaluated at N = 28, b = 4, r = 10.
+> "Lemma 1.1 (general)" below is their result, not a new one; it was first written here without that
+> credit. An implementation written from their printed paper (2026-09-10) reproduces every finite
+> bound this note derives.
+
 Source: Astra (GPT-6 via codex exec) round 8, runs/astra_round8_2026-09-09.md, section A; re-derived by hand and by
 scripts/lemma/counting_bound.py (which also reproduces the known upper bounds 29 for K2x10,K2x6, 31 for K2x10,K2x7,
 26 for K2x11,K2x4 (our SAT result of 2026-09-06) and 33 for K2x11,K2x7 (DS1 3.3.2(j))).

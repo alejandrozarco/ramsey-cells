@@ -11,7 +11,9 @@ so absence from the prose means nothing.
 
 The cells in the [README](README.md) table. Eleven of them were deposited by 2026-09-08 in twelve
 directories with a colouring or a refutation; two entries were added on 2026-09-10, the K_{2,11}/K_{2,5}
-colouring on 27 vertices with a counting note, and one directory holding twenty cells of rows 12 to 15
+colouring on 27 vertices with a counting note (corrected 2026-09-16: that note is Lortz and
+Mengersen's Lemmas 2.2 and 2.3 evaluated, so both bounds of that cell come from published work and its value
+28 is not a new determination), and one directory holding twenty cells of rows 12 to 15
 that the survey does not tabulate (21 colourings, four of which meet the published Lortz-Mengersen upper
 bound and so give exact values, the other sixteen leaving windows of width one to three whose upper bound
 is Lortz and Mengersen's own Lemmas 2.2 and 2.3 evaluated at these parameters -- their lemmas, not ours;
