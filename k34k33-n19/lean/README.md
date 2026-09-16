@@ -11,6 +11,7 @@ These are the parts of the Lean development that carry meaning rather than bulk.
 | `Encoder.lean` | the encoding of `../tools/gen_ramsey.py` written in Lean. |
 | `EncoderBridge.lean` | `theorem encode_eq_base : Encoder.k34k33_n19 = base`, checked by evaluation. |
 | `EncodedUnsat.lean` | `theorem encoded_unsat : (Encoder.k34k33_n19).Unsat`, the two composed. |
+| `FaithfulK34K33.lean` | `theorem k34k33_eq_19`: no good coloring of K_19 and one of K_18, from `encoded_unsat`, the `sbsound` bridge and the K_18 witness (added 2026-09-16; needs `sbsound`, which is not public, to rebuild). |
 
 The other 570 chunk modules are not here. Each embeds its subcube's LRAT certificate as a
 string literal, and together they run to about 16 GB; the largest single one is 1.7 GB.

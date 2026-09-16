@@ -10,6 +10,8 @@ K_18 gives R > 18; unsatisfiability at n = 19 gives R <= 19. Together, 19.
 
 `lean/Encoder.lean` writes the encoding of `tools/gen_ramsey.py` in Lean and
 `lean/EncoderBridge.lean` checks it against `instance/k34k33_n19.cnf` by evaluation.
+`lean/FaithfulK34K33.lean` (added 2026-09-16) states the value itself as one Lean theorem
+about colorings; see [Scope](#scope) for what that covers and what it still leaves out.
 
 ## The K_18 coloring is not ours
 
@@ -83,14 +85,53 @@ which regenerates and re-checks every certificate in roughly 2.4 CPU-hours, and
 Machine-checked: each of the 571 cubes is unsatisfiable; the decomposition is exhaustive;
 `base_unsat` holds in Lean.
 
-Not machine-checked, and argued informally: that the formula is satisfiable exactly when a
-K_{3,4}/K_{3,3}-free coloring of K_19 exists — the codegree encoding puts 105,213 variables
-in play of which only 342 are edge variables, so faithfulness is a statement about the Sinz
-counter layer; and that the symmetry-breaking clauses empty no orbit. The lower bound is
-checked by a Python script rather than in Lean.
+**Update 2026-09-16: the encoding step is machine-checked as well.** Until then this section
+said that the link from the formula to colorings was argued informally. One Lean theorem,
+`LRATCatcher.Faithful.k34k33_eq_19` in `lean/FaithfulK34K33.lean`, now states the result
+about colorings instead of about a formula:
+
+```
+(¬ ∃ a : EColouring 19 2, NoKst a 0 3 4 ∧ NoKst a 1 3 3) ∧
+(∃ a : EColouring 18 2, NoKst a 0 3 4 ∧ NoKst a 1 3 3)
+```
+
+`NoKst a c s t` says that color `c` contains no K_{s,t}: there are no disjoint vertex sets S
+and T with |S| = s, |T| = t and every edge between them colored `c`. Lean's colors 0 and 1
+are colors 1 and 2 on this page. The proof puts together three pieces:
+
+* `encoded_unsat` (`lean/EncodedUnsat.lean`): the formula built by the Lean encoder is
+  unsatisfiable, by `encode_eq_base` and `base_unsat` above.
+* A bridge theorem: for all n, s0, t0, s1, t1 with s + 2 <= n and t >= 2, if the encoder's
+  formula is unsatisfiable then no coloring of K_n avoids K_{s0,t0} in color 0 and
+  K_{s1,t1} in color 1. It works by showing that any such coloring has a relabeling that
+  satisfies the formula, so it covers the Sinz counter layer (105,213 variables, of which
+  342 are edge variables) and the vertex-lex symmetry-breaking clauses. Its own axioms are
+  `propext`, `Classical.choice` and `Quot.sound` only.
+* The K_18 coloring of `witness/`, checked in Lean by evaluation. It is the same coloring
+  as the deposited file, all 153 edge colors under the same vertex labels.
+
+The `#print axioms` output is in `AXIOMS_FAITHFUL.txt`: `propext`, `Classical.choice`,
+`Quot.sound`, and 575 `native_decide` axioms (the 571 chunks, `coverThm`,
+`encode_eq_clauses`, and two for the K_18 coloring). There is no `sorryAx` and no other
+axiom. The theorem was compiled once, on 2026-09-16 (Lean 4.30.0, aarch64 Linux), against
+all 574 generated modules rebuilt from the archived sources, each hash-checked before use;
+`Base`, `Cover`, `Main` and `Chunk232` are byte-identical to the copies in `lean/`. The
+lrat-catcher `Encoder.lean` used is the snapshot in `../lean/lrat-catcher/`, which extends
+`lean/Encoder.lean` with later cells; `lean/FaithfulK34K33.lean` proves its `encodeBip` equal
+to a verbatim copy of the one in `lean/Encoder.lean`.
+
+What this still leaves outside Lean: the kernel and, through `native_decide`, the Lean
+compiler; and a reading of `NoKst` against the definition of R(K_{3,4}, K_{3,3}). Only the
+direction the upper bound needs is proved (a good coloring would satisfy the formula), not
+the converse.
+
+The bridge is part of a separate Lean development, `sbsound`, whose sources are not in this
+repository (`../REVIEWER.md`, section 5). `lean/FaithfulK34K33.lean` can be read here, but
+it cannot yet be rebuilt from this repository alone.
 
 `native_decide` puts the Lean compiler in the trusted base alongside the kernel. One
-implementation, one run, not independently re-derived.
+implementation, one run, not independently re-derived. `certificate/` holds a separate check
+of `encoded_unsat` without `native_decide` (Comparator, cake_lpr).
 
 ## Files
 
@@ -102,6 +143,8 @@ implementation, one run, not independently re-derived.
 | `sample/leaf1.lrat` | one subcube's certificate, checkable alone |
 | `ledger/` | per-cube result, certificate size, `verified` |
 | `AXIOMS.txt`, `LEAN.md` | axiom output; how to rebuild the theorem |
+| `lean/FaithfulK34K33.lean`, `AXIOMS_FAITHFUL.txt` | the value as one theorem about colorings, and its axiom output |
+| `certificate/` | a check of `encoded_unsat` by Comparator and cake_lpr, without `native_decide` |
 | `lean/rebuild.sh` | rebuilds the theorem from this repository, end to end |
 | `tools/` | encoder, and a checker sharing no code with it |
 | `reconstruct.sh`, `SHA256SUMS` | redo the computation; checksums |
