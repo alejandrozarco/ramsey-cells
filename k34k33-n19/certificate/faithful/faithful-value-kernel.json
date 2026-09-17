@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Faithful.ChallengeValueK",
+  "solution_module": "Faithful.Solution",
+  "theorem_names": [
+    "LRATCatcher.FaithfulC.k34k33_eq_19"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice",
+    "LRATCatcher.Comparator.leaves_cakelpr",
+    "LRATCatcher.Comparator.cover_cakelpr"
+  ],
+  "enable_nanoda": true
+}

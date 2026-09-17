@@ -1,0 +1,715 @@
+warning: mathlib: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/mathlib' has local changes
+warning: plausible: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/plausible' has local changes
+warning: LeanSearchClient: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/LeanSearchClient' has local changes
+warning: importGraph: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/importGraph' has local changes
+warning: proofwidgets: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/proofwidgets' has local changes
+warning: aesop: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/aesop' has local changes
+warning: Qq: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/Qq' has local changes
+warning: batteries: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/batteries' has local changes
+warning: Cli: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/Cli' has local changes
+Building Faithful.Challenge
+warning: mathlib: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/mathlib' has local changes
+warning: plausible: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/plausible' has local changes
+warning: LeanSearchClient: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/LeanSearchClient' has local changes
+warning: importGraph: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/importGraph' has local changes
+warning: proofwidgets: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/proofwidgets' has local changes
+warning: aesop: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/aesop' has local changes
+warning: Qq: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/Qq' has local changes
+warning: batteries: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/batteries' has local changes
+warning: Cli: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/Cli' has local changes
+⚠ [8482/8485] Replayed Sbsound.SBCore
+warning: Sbsound/SBCore.lean:21:0: `exists_sb_leader` does not use the following hypothesis in its type:
+  • [Fintype A] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: Sbsound/SBCore.lean:38:0: `sb_preserves_sat` does not use the following hypothesis in its type:
+  • [Fintype A] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+⚠ [8483/8485] Replayed Sbsound.SBGraph
+warning: Sbsound/SBGraph.lean:70:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/SBGraph.lean:78:2: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/SBGraph.lean:92:2: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+⚠ [8485/8485] Replayed Faithful.Challenge
+warning: Faithful/Challenge.lean:15:8: declaration uses `sorry`
+Build completed successfully (8485 jobs).
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, LRATCatcher.FaithfulC.no_good_colouring_K19, propext, Quot.sound, Classical.choice, LRATCatcher.Comparator.leaves_cakelpr, LRATCatcher.Comparator.cover_cakelpr, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList] from Faithful.Challenge
+Building Faithful.Solution
+warning: mathlib: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/mathlib' has local changes
+warning: plausible: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/plausible' has local changes
+warning: LeanSearchClient: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/LeanSearchClient' has local changes
+warning: importGraph: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/importGraph' has local changes
+warning: proofwidgets: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/proofwidgets' has local changes
+warning: aesop: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/aesop' has local changes
+warning: Qq: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/Qq' has local changes
+warning: batteries: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/batteries' has local changes
+warning: Cli: repository '/mnt/ssd/faithful_cmp/lean-sb/.lake/packages/Cli' has local changes
+ℹ [8/31] Replayed LRATCatcher.ComparatorUnsatFallback
+info: LRATCatcher/ComparatorUnsatFallback.lean:8:0: 'LRATCatcher.Comparator.encoded_unsat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ LRATCatcher.Comparator.cover_cakelpr,
+ LRATCatcher.Comparator.leaves_cakelpr]
+⚠ [8484/8502] Replayed Sbsound.SBCore
+warning: Sbsound/SBCore.lean:21:0: `exists_sb_leader` does not use the following hypothesis in its type:
+  • [Fintype A] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: Sbsound/SBCore.lean:38:0: `sb_preserves_sat` does not use the following hypothesis in its type:
+  • [Fintype A] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+⚠ [8485/8502] Replayed Sbsound.SBGraph
+warning: Sbsound/SBGraph.lean:70:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/SBGraph.lean:78:2: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/SBGraph.lean:92:2: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+ℹ [8488/8502] Replayed Sbsound.SBEncode
+info: Sbsound/SBEncode.lean:308:0: 'SB.satBase_iff_good'' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/SBEncode.lean:309:0: 'SB.good_of_good'' depends on axioms: [propext, Quot.sound]
+info: Sbsound/SBEncode.lean:310:0: 'SB.good'_closed_actV' depends on axioms: [propext, Quot.sound]
+info: Sbsound/SBEncode.lean:311:0: 'SB.good'_closed_actC' depends on axioms: [propext, Quot.sound]
+info: Sbsound/SBEncode.lean:312:0: 'SB.exists_good'_leader' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8489/8502] Replayed Sbsound.SBClauses
+info: Sbsound/SBClauses.lean:791:0: 'SB.sb_clauses_satisfiable_of_leader' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/SBClauses.lean:792:0: 'SB.sat_transposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/SBClauses.lean:793:0: 'SB.sat_chainPair' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8491/8502] Replayed Sbsound.Sinz
+warning: Sbsound/Sinz.lean:74:45: This simp argument is unused:
+  Fin.val_mk
+
+Hint: Omit it from the simp argument list.
+  simp only [̵F̵i̵n̵.̵v̵a̵l̵_̵m̵k̵]̵ ̵at hc
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: Sbsound/Sinz.lean:121:0: 'SB.Sinz.truthful_satisfies' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8493/8502] Replayed Sbsound.EncodeSound
+info: Sbsound/EncodeSound.lean:163:0: 'SB.noKst_closed_actV' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/EncodeSound.lean:164:0: 'SB.exists_noKstFam_leader' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/EncodeSound.lean:165:0: 'SB.encode_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/EncodeSound.lean:166:0: 'SB.encode_sound_k34k33' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8494/8502] Replayed Sbsound.SBDegree
+info: Sbsound/SBDegree.lean:153:0: 'SB.no_colouring_of_no_dol_leader' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/SBDegree.lean:154:0: 'SB.no_colouring_of_no_dol_leader_good' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8495/8502] Replayed Sbsound.BiCounter
+warning: Sbsound/BiCounter.lean:53:59: This simp argument is unused:
+  Fin.val_mk
+
+Hint: Omit it from the simp argument list.
+  simp only [̵F̵i̵n̵.̵v̵a̵l̵_̵m̵k̵]̵ ̵at ha ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BiCounter.lean:71:59: This simp argument is unused:
+  Fin.val_mk
+
+Hint: Omit it from the simp argument list.
+  simp only [̵F̵i̵n̵.̵v̵a̵l̵_̵m̵k̵]̵ ̵at h1 ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: Sbsound/BiCounter.lean:165:0: 'SB.BiCounter.truthful_satisfies' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/BiCounter.lean:166:0: 'SB.BiCounter.truthful_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+warning: Sbsound/BiCounter.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+ℹ [8496/8502] Replayed Sbsound.SBDegreeVars
+info: Sbsound/SBDegreeVars.lean:116:0: 'SB.card_degInputs' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/SBDegreeVars.lean:117:0: 'SB.truthful_last_eq_dout' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8497/8502] Replayed Sbsound.SBDegreeClauses
+warning: Sbsound/SBDegreeClauses.lean:47:10: unused variable `hj`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Sbsound/SBDegreeClauses.lean:65:18: unused variable `c`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Sbsound/SBDegreeClauses.lean:140:16: This simp argument is unused:
+  eqvvar
+
+Hint: Omit it from the simp argument list.
+  simp [canonD, e̵q̵v̵v̵a̵r̵,̵ ̵hv]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/SBDegreeClauses.lean:145:16: This simp argument is unused:
+  diffvar
+
+Hint: Omit it from the simp argument list.
+  simp [canonD, d̵i̵f̵f̵v̵a̵r̵,̵ ̵hv]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/SBDegreeClauses.lean:198:30: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hC
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/SBDegreeClauses.lean:190:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/SBDegreeClauses.lean:226:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/SBDegreeClauses.lean:227:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/SBDegreeClauses.lean:249:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/SBDegreeClauses.lean:250:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/SBDegreeClauses.lean:326:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/SBDegreeClauses.lean:336:19: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [eqDiffClauses, dif_pos hv1, List.mem_append, List.mem_flatMap, List.mem_range,
+      List.mem_cons, List.m̵e̵m̵_̵s̵i̵ng̵l̵e̵t̵on̵,̵ ̵L̵i̵s̵t.̵n̵o̵t̵_mem_nil, or_false] at hC
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/SBDegreeClauses.lean:340:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/SBDegreeClauses.lean:356:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/SBDegreeClauses.lean:429:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: Sbsound/SBDegreeClauses.lean:449:0: 'SB.sat_counterClauses' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/SBDegreeClauses.lean:450:0: 'SB.dol_clauses_satisfiable_of_leader' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/SBDegreeClauses.lean:451:0: 'SB.dol_encode_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+warning: Sbsound/SBDegreeClauses.lean:5:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8498/8502] Replayed Sbsound.Portfolio
+warning: Sbsound/Portfolio.lean:76:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:77:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:78:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:79:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:80:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:81:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:82:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:83:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:83:24: extra space in the source
+
+This part of the code
+  'sound_K2x8_K2x5  : EncodeSoundFor'
+should be written as
+  'sound_K2x8_K2x5 : EncodeSoundFor'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Sbsound/Portfolio.lean:84:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:84:24: extra space in the source
+
+This part of the code
+  'sound_K3x4_K3x3  : EncodeSoundFor'
+should be written as
+  'sound_K3x4_K3x3 : EncodeSoundFor'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Sbsound/Portfolio.lean:85:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:85:24: extra space in the source
+
+This part of the code
+  'sound_K3x5_K2x4  : EncodeSoundFor'
+should be written as
+  'sound_K3x5_K2x4 : EncodeSoundFor'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Sbsound/Portfolio.lean:86:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:86:24: extra space in the source
+
+This part of the code
+  'sound_K3x5_K2x5  : EncodeSoundFor'
+should be written as
+  'sound_K3x5_K2x5 : EncodeSoundFor'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Sbsound/Portfolio.lean:87:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:87:24: extra space in the source
+
+This part of the code
+  'sound_K3x5_K3x3  : EncodeSoundFor'
+should be written as
+  'sound_K3x5_K3x3 : EncodeSoundFor'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Sbsound/Portfolio.lean:88:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Portfolio.lean:88:24: extra space in the source
+
+This part of the code
+  'sound_K3x5_K3x4  : EncodeSoundFor'
+should be written as
+  'sound_K3x5_K3x4 : EncodeSoundFor'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+info: Sbsound/Portfolio.lean:232:0: 'SB.Portfolio.dol_encode_sound_bip' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/Portfolio.lean:233:0: 'SB.Portfolio.dol_sound_K2x8_K2x5' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/Portfolio.lean:234:0: 'SB.Portfolio.no_colouring_of_no_dol_leader_bip' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/Portfolio.lean:238:0: 'SB.Portfolio.encode_sound_bip' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/Portfolio.lean:239:0: 'SB.Portfolio.sound_K3x4_K3x3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/Portfolio.lean:240:0: 'SB.Portfolio.sound_K2x2_K2x19' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/Portfolio.lean:241:0: 'SB.Portfolio.sound_three_colour' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/Portfolio.lean:242:0: 'SB.Portfolio.no_colouring_of_no_leader' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/Portfolio.lean:243:0: 'SB.Portfolio.no_colouring_of_no_leader_fam' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8499/8502] Replayed Sbsound.BipBridge
+warning: Sbsound/BipBridge.lean:261:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:263:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:268:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:277:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:393:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:417:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/BipBridge.lean:493:21: This simp argument is unused:
+  Nat.add_sub_cancel_left
+
+Hint: Omit it from the simp argument list.
+  simp only [hr, List.map_cons, List.map_nil, List.flatMap_cons, List.flatMap_nil, List.append_nil,
+  ̲  ̲ ̲ ̲N̵a̵t̵.̵a̵d̵d̵_̵s̵u̵b̵_̵c̵a̵n̵c̵e̵l̵_̵l̵e̵f̵t̵,̵ ̵show (2 : ℕ) - 2 = 0 from rfl, List.range'_zero, show List.range' (1 + 1) 1 = [2] from rfl,
+  ̲  ̲ ̲ ̲listSat_cons, listSat_nil, and_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:519:21: This simp argument is unused:
+  Nat.add_sub_cancel_left
+
+Hint: Omit it from the simp argument list.
+  simp only [hr, List.map_cons, List.map_nil, List.flatMap_cons, List.flatMap_nil, List.append_nil,
+  ̲  ̲ ̲ ̲N̵a̵t̵.̵a̵d̵d̵_̵s̵u̵b̵_̵c̵a̵n̵c̵e̵l̵_̵l̵e̵f̵t̵,̵ ̵show (2 : ℕ) - 2 = 0 from rfl, List.range'_zero, show List.range' (1 + 1) 1 = [2] from rfl]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:525:28: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hc
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:526:57: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:526:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:613:6: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/BipBridge.lean:615:6: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/BipBridge.lean:763:36: This simp argument is unused:
+  List.getElem?_range'
+
+Hint: Omit it from the simp argument list.
+  simp [List.getD_eq_getElem?_getD, L̵i̵s̵t̵.̵g̵e̵t̵E̵l̵e̵m̵?̵_̵r̵a̵n̵g̵e̵'̵,̵ ̵hi]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:900:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: Sbsound/BipBridge.lean:947:35: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Sbsound/BipBridge.lean:948:27: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Sbsound/BipBridge.lean:947:35: 'first
+| omega
+| exact Fin.ext (by simp; omega)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Sbsound/BipBridge.lean:1008:12: This simp argument is unused:
+  List.filterMap_cons
+
+Hint: Omit it from the simp argument list.
+  simp [L̵i̵s̵t̵.̵f̵i̵l̵t̵e̵r̵M̵a̵p̵_̵c̵o̵n̵s̵,̵ ̵h, filterMap_ite_none p g l]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1009:12: This simp argument is unused:
+  List.filterMap_cons
+
+Hint: Omit it from the simp argument list.
+  simp [L̵i̵s̵t̵.̵f̵i̵l̵t̵e̵r̵M̵a̵p̵_̵c̵o̵n̵s̵,̵ ̵h, filterMap_ite_none p g l]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1019:64: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Sbsound/BipBridge.lean:1040:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1206:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1211:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1212:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1233:49: unused variable `hv`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Sbsound/BipBridge.lean:1307:34: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1326:32: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1353:32: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1361:32: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1396:34: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hC
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1398:34: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1300:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1374:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1376:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1378:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1380:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1335:6: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/BipBridge.lean:1406:37: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/BipBridge.lean:1407:33: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/BipBridge.lean:1408:6: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/BipBridge.lean:1411:6: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/BipBridge.lean:1464:34: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1469:34: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1474:32: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hC
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1476:34: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1515:34: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1520:34: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1525:34: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1531:32: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hC
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1533:34: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1488:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Sbsound/BipBridge.lean:1507:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1592:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1597:2: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/BipBridge.lean:1603:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/BipBridge.lean:1649:30: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1662:32: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1670:32: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1677:32: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1686:30: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons, L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵List.not_mem_nil, or_false] at hl
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Sbsound/BipBridge.lean:1730:19: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Sbsound/BipBridge.lean:1735:8: unused variable `st`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Sbsound/BipBridge.lean:1754:4: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Sbsound/BipBridge.lean:1754:4: '(
+  congr 1
+  funext acc v
+  rcases acc with ⟨cls, nv⟩ <;> (rcases hlt : lexTransposition n r v nv with ⟨c2, nv2⟩ <;> rfl))' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Sbsound/BipBridge.lean:1798:2: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+info: Sbsound/BipBridge.lean:1897:0: 'SB.BipBridge.bridgeAssign_sat' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/BipBridge.lean:1898:0: 'SB.BipBridge.bip_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/BipBridge.lean:1899:0: 'SB.BipBridge.no_colouring_of_encodeBip_unsat' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Sbsound/BipBridge.lean:1900:0: 'SB.BipBridge.no_colouring_of_toCNFV_unsat' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8500/8502] Replayed Sbsound.Witness18
+warning: Sbsound/Witness18.lean:180:32: Using `native_decide` is not allowed in mathlib: because it trusts the entire Lean compiler (not just the Lean kernel), it could quite possibly be used to prove false.
+
+Note: This linter can be disabled with `set_option linter.style.nativeDecide false`
+warning: Sbsound/Witness18.lean:181:32: Using `native_decide` is not allowed in mathlib: because it trusts the entire Lean compiler (not just the Lean kernel), it could quite possibly be used to prove false.
+
+Note: This linter can be disabled with `set_option linter.style.nativeDecide false`
+info: Sbsound/Witness18.lean:183:0: 'SB.Witness18.witness18' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ witness18._native.native_decide.ax_1_1,
+ witness18._native.native_decide.ax_1_2]
+⚠ [8501/8502] Replayed Sbsound.Witness18Kernel
+warning: Sbsound/Witness18Kernel.lean:17:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Witness18Kernel.lean:22:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Witness18Kernel.lean:23:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Witness18Kernel.lean:54:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Witness18Kernel.lean:63:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Witness18Kernel.lean:64:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Witness18Kernel.lean:65:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Witness18Kernel.lean:66:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Sbsound/Witness18Kernel.lean:67:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: Sbsound/Witness18Kernel.lean:89:0: 'SB.Witness18.witness18_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8502/8502] Replayed Faithful.Solution
+info: Faithful/Solution.lean:88:0: 'LRATCatcher.FaithfulC.no_good_colouring_K19' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ LRATCatcher.Comparator.cover_cakelpr,
+ LRATCatcher.Comparator.leaves_cakelpr]
+info: Faithful/Solution.lean:89:0: 'LRATCatcher.FaithfulC.k34k33_eq_19' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ LRATCatcher.Comparator.cover_cakelpr,
+ LRATCatcher.Comparator.leaves_cakelpr]
+warning: Faithful/Solution.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Faithful/Solution.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Faithful/Solution.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Build completed successfully (8502 jobs).
+Exporting #[Nat, String, String.mk, Char, Char.ofNat, List, Quot, Quot.mk, Quot.lift, Quot.ind, LRATCatcher.FaithfulC.no_good_colouring_K19, propext, Quot.sound, Classical.choice, LRATCatcher.Comparator.leaves_cakelpr, LRATCatcher.Comparator.cover_cakelpr, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList] from Faithful.Solution
+Running nanoda kernel on solution
+Nanoda kernel accepts the solution
+Running Lean default kernel on solution.
+Lean default kernel accepts the solution
+Your solution is okay!

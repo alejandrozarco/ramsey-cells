@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Faithful.Challenge",
+  "solution_module": "Faithful.Solution",
+  "theorem_names": [
+    "LRATCatcher.FaithfulC.no_good_colouring_K19"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice",
+    "LRATCatcher.Comparator.leaves_cakelpr",
+    "LRATCatcher.Comparator.cover_cakelpr"
+  ],
+  "enable_nanoda": true
+}

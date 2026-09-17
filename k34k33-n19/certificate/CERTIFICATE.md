@@ -33,3 +33,12 @@ before), the DIMACS parser and the file-vs-encoder bridge O7 (kept only as a cro
 **Reproduce:** `scripts/certify/comparator_setup.sh` (toolchain, pinned), then
 `lake env comparator Comparator/lrat-catcher-fallback.json`; the cake_lpr pass is
 `scripts/certify/cakelpr_encoder_pass.py` over `lratcatch-export-encoder` output.
+
+## Addendum 2026-09-17: the statement about colorings
+
+`faithful/` holds a second Comparator check that goes past the CNF. Its challenge states
+R(K_{3,4}, K_{3,3}) = 19 directly: no 2-colouring of K_19 avoids K_{3,4} in colour 0 and K_{3,3} in
+colour 1, and some 2-colouring of K_18 does. The solution (`../lean/FaithfulK34K33Comparator.lean`)
+combines `encoded_unsat` above with the encoding-soundness bridge from `sbsound` and a kernel-checked
+K_18 witness. Permitted axioms were exactly the five listed above (three standard + `leaves_cakelpr`
++ `cover_cakelpr`); nanoda and the Lean kernel both accepted. See `faithful/README.md`.

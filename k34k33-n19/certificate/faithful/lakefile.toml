@@ -1,0 +1,29 @@
+name = "sbsound"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["Sbsound"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.30.0"
+
+[[lean_lib]]
+name = "Sbsound"
+
+# --- Comparator workspace only (2026-09-17): the lrat-catcher modules behind
+# LRATCatcher.Comparator.encoded_unsat are vendored under LRATCatcher/ so that Comparator's sandboxed
+# build writes only to this project's .lake. Not part of the lean-sb repository.
+[[lean_lib]]
+name = "LRATCatcher"
+roots = ["LRATCatcher.ComparatorUnsatFallback"]
+globs = ["LRATCatcher.+"]
+
+[[lean_lib]]
+name = "Faithful"
