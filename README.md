@@ -1,7 +1,18 @@
 # ramsey-cells
 
 Colorings for small graph Ramsey cells, with the encoder, an independent checker, and the
-scripts that redo the work. Unconfirmed, not peer reviewed. Nothing here is a claim.
+scripts that redo the work.
+
+Status: **computation records, not peer reviewed.** Unconfirmed; nothing here is a claim.
+**Produced by AI models** under the direction of the repository owner; see
+[`AI_DISCLOSURE.md`](AI_DISCLOSURE.md).
+
+> [!IMPORTANT]
+> This repository contains AI-produced, computer-checked results that no human has digested. For the
+> refutations it is a **warrant** for the stated verdicts: machine-checked certificates, not a
+> human-readable proof. We do not regard the questions as settled by it. We welcome a human-readable
+> treatment, and credit belongs to whoever writes one. Questions, checks and corrections:
+> [GitHub issues](https://github.com/alejandrozarco/ramsey-cells/issues).
 
 | cell | DS1 rev #18 | deposited | |
 |---|---|---|---|
