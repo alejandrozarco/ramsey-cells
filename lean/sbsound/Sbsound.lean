@@ -1,0 +1,21 @@
+-- Root of the sbsound library: every module the deposited theorems use.
+import Sbsound.BiCounter
+import Sbsound.BipBridge
+import Sbsound.Codegree
+import Sbsound.CodegreeEncode
+import Sbsound.EncodeSound
+import Sbsound.EncoderVendored
+import Sbsound.Portfolio
+import Sbsound.SBChain
+import Sbsound.SBClauses
+import Sbsound.SBCore
+import Sbsound.SBDegree
+import Sbsound.SBDegreeClauses
+import Sbsound.SBDegreeVars
+import Sbsound.SBEncode
+import Sbsound.SBGraph
+import Sbsound.SBKeystone
+import Sbsound.Sinz
+import Sbsound.Witness18
+import Sbsound.Witness18Kernel
+import Sbsound.Witness21Kernel

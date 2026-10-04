@@ -127,9 +127,7 @@ compiler; and a reading of `NoKst` against the definition of R(K_{3,4}, K_{3,3})
 direction the upper bound needs is proved (a good coloring would satisfy the formula), not
 the converse.
 
-The bridge is part of a separate Lean development, `sbsound`, whose sources are not in this
-repository (`../REVIEWER.md`, section 5). `lean/FaithfulK34K33.lean` can be read here, but
-it cannot yet be rebuilt from this repository alone.
+The bridge is in `../lean/sbsound/` (added 2026-10-04; before that it was not in this repository).
 
 `native_decide` puts the Lean compiler in the trusted base alongside the kernel. One
 implementation, one run, not independently re-derived.
@@ -151,8 +149,7 @@ an independent kernel, accepted the replay (`certificate/faithful/`, which also 
 challenge files, configurations and transcripts). For that statement the trusted base is the
 kernel (either one), cake_lpr's checker, the printer and cube list behind the files cake_lpr
 read, Comparator's own tooling, and a reading of the challenge statement. The bridge and the
-kernel witness are in `sbsound`, so this run also cannot yet be repeated from this repository
-alone.
+kernel witness are in `../lean/sbsound/`.
 
 ## Files
 

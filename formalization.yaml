@@ -1,0 +1,105 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml (v0.4): repo-root metadata for formalization projects.
+
+version: "v0.4"
+
+project:
+  name: "ramsey-cells: small two-colour graph Ramsey cells"
+  description: >-
+    Computation records for small graph Ramsey cells: colorings (lower bounds) and cube-and-conquer
+    refutations (upper bounds), with encoders, checkers and certificates. An AI-produced warrant for the
+    refutations, meaning machine-checked certificates that no human has digested. For two cells the value is a
+    Lean theorem about colorings, checked by Comparator: R(K_{3,4}, K_{3,3}) = 19 and
+    R(K_{3,5}, K_{2,5}) = 22. Each composes (a) the encoder's CNF is unsatisfiable, resting on two named axioms
+    for cake_lpr verdicts on files printed from the Lean terms; (b) lean/sbsound: unsatisfiability implies no
+    good coloring (encoding and vertex-lex symmetry breaking); (c) an explicit coloring checked by
+    `decide +kernel`.
+  authors:
+    - "alejandrozarco (repository owner; directed the work)"
+    - "Claude Opus 5, Claude Opus 5.5, Claude Fable 5.1 (Anthropic), AI models that produced the code, certificates and Lean files"
+  responsible_maintainers:
+    - "alejandrozarco"
+  license: "MIT for lean/sbsound and lean/lrat-catcher (the latter a fork of Stefan Szeider's lrat-catcher, MIT)"
+
+sources:
+  - title: "Small Ramsey Numbers (Dynamic Survey DS1, revision 18)"
+    authors: ["S. P. Radziszowski"]
+    id: "Electron. J. Combin., Dynamic Survey DS1"
+    type: "article"
+    relationship: "other"
+    note: "Source of the bounds each cell is compared against."
+    author_endorsement: "not-contacted"
+
+related_formalizations:
+  - id: "https://github.com/leansolving/lrat-catcher"
+    revision: "4ec2168"
+    relationship: "builds-on"
+    note: "lean/lrat-catcher is a fork (MIT) with the encoders, cube covers and Comparator modules added."
+  - id: "Kirchweger, Manrique, Szeider: Formally Verified Graph Generation with SAT Modulo Symmetries and Lean (IJCAR 2026)"
+    relationship: "other"
+    note: "An end-to-end verified pipeline with dynamic symmetry breaking. Not used here."
+
+classification:
+  arxiv: ["math.CO", "cs.LO"]
+  msc2020: ["05C55", "05D10", "03B35", "68V15"]
+
+status:
+  scope: >-
+    The values R(K_{3,4}, K_{3,3}) = 19 and R(K_{3,5}, K_{2,5}) = 22 as theorems about 2-colorings. The other
+    refutations are certified as statements about the encoder's CNF only.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound", "plus two named cake_lpr verdict axioms per result (below)"]
+  main_results:
+    - declaration: "LRATCatcher.FaithfulC.k34k33_eq_19"
+      file: "k34k33-n19/lean/FaithfulK34K33Comparator.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound", "LRATCatcher.Comparator.leaves_cakelpr", "LRATCatcher.Comparator.cover_cakelpr"]
+      comparator_config: "k34k33-n19/certificate/faithful/faithful-value-kernel.json"
+      literature_dependencies: []
+    - declaration: "LRATCatcher.FaithfulK35K25.k35k25_eq_22"
+      file: "k35k25-n22/lean/FaithfulK35K25Comparator.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound", "LRATCatcher.Comparator.K35K25.leaves_cakelpr", "LRATCatcher.Comparator.K35K25.cover_cakelpr"]
+      comparator_config: "k35k25-n22/certificate/faithful/faithful-value-k35k25.json"
+      literature_dependencies: []
+  notes: >-
+    The two named axioms of each result stand for cake_lpr (CakeML-verified LRAT checker) verdicts on the leaf
+    files and the cover file printed from the Lean terms; the ledgers are in each cell's certificate/. Comparator
+    accepted both results in the Lean kernel and in nanoda (transcripts in certificate/faithful/). In lean/sbsound
+    the bridge theorem and the two kernel-checked witnesses use the three standard axioms only; the library also keeps
+    an earlier proof, SB.Witness18.witness18, that uses native_decide and is not used by either result.
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["claude-opus-5", "claude-opus-5-5", "claude-fable-5-1"]
+      framework: "Claude Code"
+      tool_setup: >-
+        Coordinated Claude sessions and sub-agents with terminal access. CaDiCaL, march_cu, lrat-trim, lrat-check
+        and cake_lpr for the searches and proof checking; Lean 4 v4.30.0 + Mathlib; Comparator, lean4export and
+        nanoda for the Comparator checks.
+      cost:
+        wall_time: "2026-08-23 to 2026-10-04"
+        spend_usd: "subscription-based usage"
+        hardware: "Apple-silicon laptop; Linux workstation (6 cores, 19 GB RAM); cloud and free-tier VMs for searches"
+      prompting_notes: >-
+        The owner set goals and decided on scope, publication and wording. The agents planned and executed.
+    - method: "agent"
+      models: ["claude-opus-5-5", "claude-fable-5-1", "gpt-6-astra"]
+      framework: "Claude Code; OpenAI Codex CLI (gpt-6-astra)"
+      tool_setup: "Separate read-only reviewer instances."
+      prompting_notes: "Reviews of artefacts, statements and publication text; see AI_DISCLOSURE.md and review/."
+  spend_usd: "subscription-based usage (not separately metered)"
+  notes: "See AI_DISCLOSURE.md."
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "Claude Opus 5.5 (read-only reviewer instances)"
+    - "Claude Fable 5.1"
+    - "gpt-6-astra (OpenAI)"
+    - "an OpenAI GPT model, run by the owner (review/2026-09-05/)"
+  notes: >-
+    No human expert has checked this work. The questions are not regarded as settled by this warrant (README).
+    Comments and checks are welcome via GitHub issues.

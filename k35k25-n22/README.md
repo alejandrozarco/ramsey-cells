@@ -45,10 +45,36 @@ encoding. Unconfirmed, not peer reviewed. Nothing here is a claim.
    The proofs themselves are not archived (3.1 TB); a third party re-solves each leaf with
    `../tools/cert_pass.py`, or `../tools/proof_archive.py` to keep the proofs.
 
-## What is not in this repository
+## The value, stated about colorings (2026-10-04)
 
-The theorem that the encoder's unsatisfiability implies that no coloring exists — the encoding's
-faithfulness and the soundness of the lex-leader symmetry breaking — is a separate Lean
-development (`sbsound`, private at the time of writing). `certificate/Encoder.lean` is the Lean
-transcription of `gen_ramsey.py`; `diff` of its printed output against `instance/k35k25_n22.cnf`
-shows identical clause bodies (see `../REVIEWER.md`).
+`lean/FaithfulK35K25Comparator.lean` proves
+
+```
+theorem k35k25_eq_22 :
+    (¬ ∃ a : EColouring 22 2, NoKst a 0 3 5 ∧ NoKst a 1 2 5) ∧
+    (∃ a : EColouring 21 2, NoKst a 0 3 5 ∧ NoKst a 1 2 5)
+```
+
+Lean's colors 0 and 1 are colors 1 and 2 on this page. It combines three pieces:
+
+* `encoded_unsat` (item 3 above), resting on the two cake_lpr verdict axioms;
+* `SB.BipBridge.no_colouring_of_toCNFV_unsat` from `../lean/sbsound/`: if the encoder's formula is
+  unsatisfiable, no coloring of K_n avoids the two patterns. It covers the codegree counters and the
+  vertex-lex symmetry-breaking clauses, with the three standard axioms only;
+* `SB.Witness21.witness21_kernel` from `../lean/sbsound/`: the K_21 coloring of
+  `../k35k25-lb22/witness/`, checked by `decide +kernel`.
+
+`#print axioms` for `no_good_colouring_K22` and `k35k25_eq_22`: `propext`, `Classical.choice`,
+`Quot.sound`, `LRATCatcher.Comparator.K35K25.cover_cakelpr`, `LRATCatcher.Comparator.K35K25.leaves_cakelpr`.
+Comparator accepted both statements with exactly these permitted axioms, in the Lean kernel and in
+nanoda (`certificate/faithful/`).
+
+`certificate/Encoder.lean` is the Lean transcription of `gen_ramsey.py`; `diff` of its printed output
+against `instance/k35k25_n22.cnf` shows identical clause bodies (see `../REVIEWER.md`). The run used
+`../lean/lrat-catcher/LRATCatcher/Encoder.lean`, which equals `certificate/Encoder.lean` on its first 167
+lines and in the definition of `k35k25_n22`, and appends further definitions.
+
+What this leaves outside Lean: the kernel; cake_lpr and the files it read (printed from the Lean terms
+by the DIMACS printer, with the cube list as embedded text); Comparator's tooling; and a reading of
+`NoKst` against the definition of R(K_{3,5}, K_{2,5}). Only the direction the upper bound needs is
+proved (a good coloring would satisfy the formula), not the converse.

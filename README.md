@@ -34,7 +34,11 @@ Start with [VERIFY.md](VERIFY.md) for the shortest path to checking the two stro
 
 A coloring of K_n gives R > n. Checking one needs only the definition of subgraph
 containment. The refutation needs more: a faithful encoding, sound symmetry breaking, and an
-exhaustive search. Each directory says which parts are machine-checked.
+exhaustive search. Each directory says which parts are machine-checked. For
+R(K_{3,4}, K_{3,3}) = 19 and R(K_{3,5}, K_{2,5}) = 22 all three are composed into one Lean theorem
+about colorings, checked by Comparator (`k34k33-n19/certificate/faithful/`,
+`k35k25-n22/certificate/faithful/`); the encoding and symmetry-breaking step is
+[`lean/sbsound/`](lean/sbsound/).
 
 [`REVIEWER.md`](REVIEWER.md) says how to check each kind of entry, with the tool versions used.
 

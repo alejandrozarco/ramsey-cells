@@ -126,13 +126,16 @@ axioms match the challenge file.
 The certified theorem is that the CNF built by `LRATCatcher.Encoder.<cell>` — a Lean
 transcription of `tools/gen_ramsey.py` — is unsatisfiable. That it equals the deposited instance
 is checked by `diff` (§2). That its unsatisfiability implies no coloring exists (faithfulness of
-the codegree/Sinz encoding and soundness of the lex-leader symmetry breaking) is proved in a
-separate Lean development, `sbsound`, not public at the time of writing; the transcripts of its
-own Comparator check (three standard axioms only) can be provided on request. For K_{3,4}/K_{3,3}
-at n = 19 the two halves have since been composed and checked together: Comparator accepted the
-value as a statement about colorings with the three standard axioms and the two cake_lpr verdicts
-only (`k34k33-n19/certificate/faithful/`, 2026-09-17). That run imports `sbsound`, so it cannot yet
-be repeated from this repository.
+the codegree/Sinz encoding and soundness of the lex-leader symmetry breaking) is proved in the Lean
+development `lean/sbsound/` (since 2026-10-04 in this repository; three standard axioms only). For
+two cells the halves are composed and checked together, the value stated about colorings, with the
+three standard axioms and the two cake_lpr verdicts only:
+
+* K_{3,4}/K_{3,3}, n = 19: `k34k33-n19/certificate/faithful/` (2026-09-17);
+* K_{3,5}/K_{2,5}, n = 22: `k35k25-n22/certificate/faithful/` (2026-10-04).
+
+For the other refutations the composition has not been run; their certified statement is the one
+above, about the encoder's CNF.
 
 ## 6. External review
 

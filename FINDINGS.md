@@ -191,6 +191,19 @@ certify that the cubes cover everything. That last step is not optional — the 
 certificate, not the splitter's internal behaviour, is what makes the decomposition a proof.
 
 
+
+## 2026-10-04
+
+* `lean/sbsound/`: the Lean development behind the encoding step is now in this repository (MIT). It proves
+  that unsatisfiability of the encoder's CNF (`encodeBip`: codegree counters and vertex-lex symmetry
+  breaking) implies that no 2-coloring avoids the two patterns, with the three standard axioms only, and holds
+  the K_18 and K_21 witnesses checked by `decide +kernel`. Before this, `k34k33-n19/certificate/faithful/`
+  could not be rerun from this repository.
+* `k35k25-n22/`: R(K_{3,5}, K_{2,5}) = 22 stated about colorings (`lean/FaithfulK35K25Comparator.lean`).
+  Comparator accepted `k35k25_eq_22` and `no_good_colouring_K22` with permitted axioms `propext`,
+  `Quot.sound`, `Classical.choice` and the cell's two cake_lpr verdicts, in the Lean kernel and in nanoda
+  (`certificate/faithful/`).
+
 ## 2026-09-05
 
 * `k35k25-n22/`: a cube-and-conquer search at n = 22 for R(K_{3,5}, K_{2,5}) finished with every

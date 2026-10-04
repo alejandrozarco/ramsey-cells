@@ -39,9 +39,7 @@ LRAT checker, accepted the 571 leaf files and the cover file printed from the Le
   `decide +kernel`. The table is read from one natural number with `Nat.testBit`, proved equal to
   the table on all 324 vertex pairs, and the codegree condition is counted over ordered triples.
 
-The bridge and the kernel witness are in the separate Lean development `sbsound`, which is not in
-this repository (`../../../REVIEWER.md`, section 5). These files show exactly what was checked, but
-the run cannot yet be repeated from this repository alone.
+The bridge and the kernel witness are in `../../../lean/sbsound/` (added 2026-10-04).
 
 ## How it was run
 
