@@ -1,0 +1,4 @@
+{"hist": "6,14,2", "root": 8, "comp": "5,3,0", "H": [[2, 9], [3, 8], [4, 7], [5, 6], [8, 9]], "nedges": 5, "rc": 20, "secs": 0.3, "verified": true, "limit": 0, "trim_rc": 20, "check_rc": 0, "proof_bytes": 2002039}
+{"hist": "6,14,2", "root": 8, "comp": "5,3,0", "H": [[2, 9], [3, 6], [4, 5], [7, 8], [8, 9]], "nedges": 5, "rc": 20, "secs": 0.3, "verified": true, "limit": 0, "trim_rc": 20, "check_rc": 0, "proof_bytes": 1721070}
+{"hist": "6,14,2", "root": 8, "comp": "5,3,0", "H": [[3, 9], [4, 8], [5, 6], [7, 8], [7, 9]], "nedges": 5, "rc": 20, "secs": 0.2, "verified": true, "limit": 0, "trim_rc": 20, "check_rc": 0, "proof_bytes": 1797121}
+{"hist": "6,14,2", "root": 8, "comp": "5,3,0", "H": [[5, 9], [6, 8], [7, 8], [7, 9]], "nedges": 4, "rc": 20, "secs": 0.3, "verified": true, "limit": 0, "trim_rc": 20, "check_rc": 0, "proof_bytes": 1831546}

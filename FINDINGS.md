@@ -192,6 +192,14 @@ certificate, not the splitter's internal behaviour, is what makes the decomposit
 
 
 
+## 2026-10-05
+
+* `k28k25-n22/`: the rooted census for R(K_{2,8}, K_{2,5}) at n = 22, as of 2026-10-05: 23,886 / 23,886 cubes
+  decided against the 781 list files, none satisfiable; 18,490 cubes with a cake_lpr certificate and 5,396 with
+  lrat-trim + lrat-check (a cake_lpr pass over those is running). The degree step is a Lean theorem
+  (`lean/Lemma12.lean`); the covering argument for the lists, a Lean link for the rooted encoder and a Comparator
+  check of the pinned statement are not done. Recorded as a computation, not a result.
+
 ## 2026-10-04
 
 * `lean/sbsound/`: the Lean development behind the encoding step is now in this repository (MIT). It proves

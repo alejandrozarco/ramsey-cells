@@ -1,0 +1,1 @@
+{"hist": "7,8,7", "root": 8, "comp": "3,0,5", "H": [[2, 9], [3, 8], [4, 7], [5, 6], [5, 8], [5, 9], [6, 7], [6, 9], [7, 8]], "nedges": 9, "rc": 20, "secs": 57.5, "verified": true, "limit": 0, "cnf_sha256": "ee9caf051ba4592ba2d53cd191bc9ea3e505139929a1ec6a8eea0e9ec1254994", "trim_rc": 20, "check_rc": 0, "proof_bytes": 93218110, "host": "cloud-census16a"}

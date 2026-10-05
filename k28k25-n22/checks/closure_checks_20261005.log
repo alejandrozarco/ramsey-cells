@@ -1,0 +1,98 @@
+# closure checks, started 2026-10-05T11:29:11Z, host: laptop
+
+=== python3 scripts/referee/check_no_sat.py  [11:29:11]
+OK: no SAT in 33,661 ledger rows across 667 file(s)
+    SAT_FOUND.jsonl: absent (none ever recorded)
+    SAT_*.txt model files: none
+    Note: box stdout logs are a third, independent witness and are not read here;
+    grep them for "*** SAT" or "SAT FOUND" if you want a source this repo did not produce.
+EXIT=0
+
+=== python3 scripts/lemma/census_grades.py  [11:29:12]
+census 23886/23886 decided (100.0%) | cake 18490 lrat 5396 rc20 0 | remaining 0 | monster lists 80 = 1368 cubes | 781 lists
+EXIT=0
+
+=== python3 scripts/fleet/coverage_audit.py --census-lists ''  [11:29:14]
+unverified cubes: 0
+  ORPHANED       0
+EXIT=0
+
+=== python3 scripts/lemma/check_histogram_set.py  [11:29:15]
+OK: 44 histograms == 44 admitted by Lemma12.lean
+OK: 781 list filenames == 781 required by the root/composition rule
+    exact name-by-name match under runs/k28_rooted; nothing missing, nothing extra
+    NOTE: this compares filenames only. It does NOT check the files' contents --
+          781 empty files with the right names would pass. For content, run
+          scripts/lemma/indep_check.py and scripts/lemma/case_inventory.py.
+    (information only, not part of the check: 667 of those 781 lists have a ledger)
+EXIT=0
+
+=== python3.12 scripts/lemma/indep_check.py  [11:29:16]
+8 3,5,0 A 40 4 4 4 0 0.058
+8 4,0,4 A 75 2 2 2 0 0.105
+8 4,1,3 A 115 16 16 16 0 0.115
+8 4,2,2 A 244 55 55 55 0 0.182
+8 4,3,1 A 108 25 25 25 0 0.099
+8 4,4,0 A 50 7 7 7 0 0.053
+8 5,0,3 A 38 7 7 7 0 0.061
+8 5,1,2 A 54 21 21 21 0 0.067
+8 5,2,1 A 77 19 19 19 0 0.079
+8 5,3,0 A 22 4 4 4 0 0.030
+8 6,0,2 A 20 7 7 7 0 0.033
+8 6,1,1 A 20 10 10 10 0 0.033
+8 6,2,0 A 17 4 4 4 0 0.026
+10 0,10,0 B 5325 187 187 187 0 32.334
+10 0,9,1 B 7175 291 291 291 0 42.583
+10 0,8,2 B 30502 1173 1173 1173 0 146.557
+10 0,7,3 B 2757 137 137 137 0 40.425
+10 0,6,4 B 4756 134 134 134 0 36.881
+10 0,5,5 B 0 0 0 0 0 0.011
+10 0,4,6 B 0 0 0 0 0 0.006
+10 0,3,7 B 0 0 0 0 0 0.005
+10 0,2,8 B 0 0 0 0 0 0.003
+10 0,1,9 B 0 0 0 0 0 0.002
+9 0,9,0 B 123 47 47 47 0 0.391
+COMPLETE 53 / 53 families; mismatches 0
+EXIT=0
+
+=== python3 scripts/referee/verify_row.py --sample 200  [11:34:44]
+  ... 0/200 rows checked, 0s elapsed
+  ... 48/200 rows checked, 15s elapsed
+  ... 88/200 rows checked, 31s elapsed
+  ... 129/200 rows checked, 46s elapsed
+  ... 167/200 rows checked, 61s elapsed
+  ... 191/200 rows checked, 76s elapsed
+
+      256  skipped: row predates the fields needed
+      200  REPRODUCED (filtered composition)
+EXIT=0
+
+=== python3 scripts/referee/encoder_equiv_test.py  [11:36:05]
+    orbits under cell-preserving permutations: 1  (group order 2)
+    COMPLETENESS: orbits with no accepted representative: 0 of 1  <- must be 0
+    SOUNDNESS: forbidden colourings accepted: 0 of 600 sampled  <- must be 0
+--- case 9
+  N=6 ['K2x8', 'K2x5'] degs=[2, 2, 2, 2, 3, 3] root=2 comp={2: 1, 3: 1} |H|=0  (540 vars, 1710 clauses, 2^15 colourings)
+    mathematics admits 5
+    orbits under cell-preserving permutations: 3  (group order 2)
+    COMPLETENESS: orbits with no accepted representative: 0 of 3  <- must be 0
+    SOUNDNESS: forbidden colourings accepted: 0 of 600 sampled  <- must be 0
+
+--- negative controls (these MUST fail)
+  N=6 ['K2x3', 'K2x3'] degs=[2, 2, 2, 2, 3, 3] root=2 comp={2: 1, 3: 1} |H|=0  (510 vars, 1672 clauses, 2^15 colourings)
+    mathematics admits 5
+    orbits under cell-preserving permutations: 3  (group order 2)
+    COMPLETENESS: orbits with no accepted representative: 3 of 3  <- must be 0
+    SOUNDNESS: forbidden colourings accepted: 0 of 600 sampled  <- must be 0
+    over-constrained encoder -> correctly FAILED
+  N=6 ['K2x3', 'K2x3'] degs=[2, 2, 2, 2, 3, 3] root=2 comp={2: 1, 3: 1} |H|=0  (510 vars, 37 clauses, 2^15 colourings)
+    mathematics admits 5
+    orbits under cell-preserving permutations: 3  (group order 2)
+    COMPLETENESS: orbits with no accepted representative: 0 of 3  <- must be 0
+    SOUNDNESS: forbidden colourings accepted: 16 of 600 sampled  <- must be 0
+    under-constrained encoder -> correctly FAILED
+
+RESULT: PASS
+EXIT=0
+
+# done 2026-10-05T11:39:09Z
