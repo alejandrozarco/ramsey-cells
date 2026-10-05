@@ -8,7 +8,7 @@ project:
   description: >-
     Computation records for small graph Ramsey cells: colorings (lower bounds) and cube-and-conquer
     refutations (upper bounds), with encoders, checkers and certificates. An AI-produced warrant for the
-    refutations, meaning machine-checked certificates that no human has digested. For two cells the value is a
+    refutations, meaning machine-checked certificates that no human has digested. For five cells the value is a
     Lean theorem about colorings, checked by Comparator: R(K_{3,4}, K_{3,3}) = 19,
     R(K_{3,5}, K_{2,5}) = 22, R(K_{2,11}, K_{2,4}) = 26, R(K_{2,11}, K_{2,3}) = 22 and R(K_{3,5}, K_{2,4}) = 19. Each composes (a) the encoder's CNF is unsatisfiable, resting on two named axioms
     for cake_lpr verdicts on files printed from the Lean terms; (b) lean/sbsound: unsatisfiability implies no
@@ -85,9 +85,9 @@ status:
   notes: >-
     The two named axioms of each result stand for cake_lpr (CakeML-verified LRAT checker) verdicts on the leaf
     files and the cover file printed from the Lean terms; the ledgers are in each cell's certificate/. Comparator
-    accepted both results in the Lean kernel and in nanoda (transcripts in certificate/faithful/). In lean/sbsound
+    accepted each result in the Lean kernel and in nanoda (transcripts in certificate/faithful/). In lean/sbsound
     the bridge theorem and the kernel-checked witnesses use the three standard axioms only; the library also keeps
-    an earlier proof, SB.Witness18.witness18, that uses native_decide and is not used by either result.
+    an earlier proof, SB.Witness18.witness18, that uses native_decide and is not used by any of these results.
 
 automation:
   methods:
