@@ -19,3 +19,6 @@ import Sbsound.Sinz
 import Sbsound.Witness18
 import Sbsound.Witness18Kernel
 import Sbsound.Witness21Kernel
+import Sbsound.Witness25Kernel
+import Sbsound.Witness21bKernel
+import Sbsound.Witness18bKernel

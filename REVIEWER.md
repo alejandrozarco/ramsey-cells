@@ -132,7 +132,9 @@ two cells the halves are composed and checked together, the value stated about c
 three standard axioms and the two cake_lpr verdicts only:
 
 * K_{3,4}/K_{3,3}, n = 19: `k34k33-n19/certificate/faithful/` (2026-09-17);
-* K_{3,5}/K_{2,5}, n = 22: `k35k25-n22/certificate/faithful/` (2026-10-04).
+* K_{3,5}/K_{2,5}, n = 22: `k35k25-n22/certificate/faithful/` (2026-10-04);
+* K_{2,11}/K_{2,4}, n = 26; K_{2,11}/K_{2,3}, n = 22; K_{3,5}/K_{2,4}, n = 19: each cell's
+  `certificate/faithful/` (2026-10-05).
 
 For the other refutations the composition has not been run; their certified statement is the one
 above, about the encoder's CNF.

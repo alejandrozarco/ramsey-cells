@@ -55,3 +55,19 @@ Left, vertices in their original order 1..18. Right, the same coloring with vert
 ```
 python3 ../tools/check_ramsey.py witness/witness_k35k24_n18.txt K3x5,K2x4
 ```
+
+## The value, stated about colorings (2026-10-05)
+
+`lean/FaithfulK35K24Comparator.lean` proves `k35k24_eq_19`:
+
+```
+(¬ ∃ a : EColouring 19 2, NoKst a 0 3 5 ∧ NoKst a 1 2 4) ∧
+(∃ a : EColouring 18 2, NoKst a 0 3 5 ∧ NoKst a 1 2 4)
+```
+
+(Lean's colors 0 and 1 are colors 1 and 2 on this page.) It composes this cell's `encoded_unsat` (two named
+cake_lpr verdict axioms), the encoding bridge of `../lean/sbsound/` and the K_18 coloring checked by
+`decide +kernel`. Comparator accepted both `k35k24_eq_19` and the refutation alone with permitted axioms
+`propext`, `Quot.sound`, `Classical.choice` and the two cake_lpr verdicts, in the Lean kernel and in nanoda
+(`certificate/faithful/`). What stays outside Lean is as for `../k35k25-n22/`: the kernel, cake_lpr and the
+files it read, Comparator's tooling, and a reading of `NoKst` against the definition of the Ramsey number.

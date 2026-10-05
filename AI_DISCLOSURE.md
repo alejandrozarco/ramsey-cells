@@ -35,13 +35,12 @@ AI reviews are not peer review, and no human expert has checked this work. For t
   checked proof. Where a cell's `certificate/` says so, the leaves and the cover were re-checked by cake_lpr, a
   CakeML-verified LRAT checker.
 - Lean 4 and Comparator: where a cell carries a Comparator transcript, the kernel and nanoda accept the statement
-  with the axioms that transcript lists. For `k34k33-n19/` and `k35k25-n22/` the encoding step and the value as one
-  theorem about colorings are also checked (the cells' `certificate/faithful/`), using `lean/sbsound/`.
+  with the axioms that transcript lists. For `k34k33-n19/`, `k35k25-n22/`, `k211k24-n26/`, `k211k23-n22/` and `k35k24-n19/`
+  the encoding step and the value as one theorem about colorings are also checked (the cells' `certificate/faithful/`), using `lean/sbsound/`.
 
 What remains to be trusted:
 - that each encoder states "a coloring avoiding both subgraphs exists" and nothing stronger, and that its symmetry
-  breaking is sound; this is machine-checked (`lean/sbsound/`) and composed with the refutation for `k34k33-n19/` and
-  `k35k25-n22/`, and is otherwise the code as reviewed;
+  breaking is sound; this is machine-checked (`lean/sbsound/`) and composed with the refutation for the five cells above, and is otherwise the code as reviewed;
 - the named external axioms in each `certificate/` (the cake_lpr or LRAT verdicts on the files printed from the Lean
   terms), and the checkers that produced them;
 - that the Lean statement files express the intended theorems, and the Lean kernel and toolchain;

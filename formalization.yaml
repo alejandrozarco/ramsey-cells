@@ -9,8 +9,8 @@ project:
     Computation records for small graph Ramsey cells: colorings (lower bounds) and cube-and-conquer
     refutations (upper bounds), with encoders, checkers and certificates. An AI-produced warrant for the
     refutations, meaning machine-checked certificates that no human has digested. For two cells the value is a
-    Lean theorem about colorings, checked by Comparator: R(K_{3,4}, K_{3,3}) = 19 and
-    R(K_{3,5}, K_{2,5}) = 22. Each composes (a) the encoder's CNF is unsatisfiable, resting on two named axioms
+    Lean theorem about colorings, checked by Comparator: R(K_{3,4}, K_{3,3}) = 19,
+    R(K_{3,5}, K_{2,5}) = 22, R(K_{2,11}, K_{2,4}) = 26, R(K_{2,11}, K_{2,3}) = 22 and R(K_{3,5}, K_{2,4}) = 19. Each composes (a) the encoder's CNF is unsatisfiable, resting on two named axioms
     for cake_lpr verdicts on files printed from the Lean terms; (b) lean/sbsound: unsatisfiability implies no
     good coloring (encoding and vertex-lex symmetry breaking); (c) an explicit coloring checked by
     `decide +kernel`.
@@ -45,7 +45,8 @@ classification:
 
 status:
   scope: >-
-    The values R(K_{3,4}, K_{3,3}) = 19 and R(K_{3,5}, K_{2,5}) = 22 as theorems about 2-colorings. The other
+    The values R(K_{3,4}, K_{3,3}) = 19, R(K_{3,5}, K_{2,5}) = 22, R(K_{2,11}, K_{2,4}) = 26,
+    R(K_{2,11}, K_{2,3}) = 22 and R(K_{3,5}, K_{2,4}) = 19 as theorems about 2-colorings. The other
     refutations are certified as statements about the encoder's CNF only.
   sorry_count: 0
   sorry_in_definitions: 0
@@ -63,11 +64,29 @@ status:
       axioms: ["propext", "Classical.choice", "Quot.sound", "LRATCatcher.Comparator.K35K25.leaves_cakelpr", "LRATCatcher.Comparator.K35K25.cover_cakelpr"]
       comparator_config: "k35k25-n22/certificate/faithful/faithful-value-k35k25.json"
       literature_dependencies: []
+    - declaration: "LRATCatcher.FaithfulK211K24.k211k24_eq_26"
+      file: "k211k24-n26/lean/FaithfulK211K24Comparator.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound", "LRATCatcher.Comparator.K211K24.leaves_cakelpr", "LRATCatcher.Comparator.K211K24.cover_cakelpr"]
+      comparator_config: "k211k24-n26/certificate/faithful/faithful-value-k211k24.json"
+      literature_dependencies: []
+    - declaration: "LRATCatcher.FaithfulK211K23.k211k23_eq_22"
+      file: "k211k23-n22/lean/FaithfulK211K23Comparator.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound", "LRATCatcher.Comparator.K211K23.leaves_cakelpr", "LRATCatcher.Comparator.K211K23.cover_cakelpr"]
+      comparator_config: "k211k23-n22/certificate/faithful/faithful-value-k211k23.json"
+      literature_dependencies: []
+    - declaration: "LRATCatcher.FaithfulK35K24.k35k24_eq_19"
+      file: "k35k24-n19/lean/FaithfulK35K24Comparator.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound", "LRATCatcher.Comparator.K35K24.leaves_cakelpr", "LRATCatcher.Comparator.K35K24.cover_cakelpr"]
+      comparator_config: "k35k24-n19/certificate/faithful/faithful-value-k35k24.json"
+      literature_dependencies: []
   notes: >-
     The two named axioms of each result stand for cake_lpr (CakeML-verified LRAT checker) verdicts on the leaf
     files and the cover file printed from the Lean terms; the ledgers are in each cell's certificate/. Comparator
     accepted both results in the Lean kernel and in nanoda (transcripts in certificate/faithful/). In lean/sbsound
-    the bridge theorem and the two kernel-checked witnesses use the three standard axioms only; the library also keeps
+    the bridge theorem and the kernel-checked witnesses use the three standard axioms only; the library also keeps
     an earlier proof, SB.Witness18.witness18, that uses native_decide and is not used by either result.
 
 automation:

@@ -52,3 +52,19 @@ the printed inputs `base_encoder.cnf.xz`, `prefixes.tsv.xz`, `negcubes.cnf.xz`, 
 Every archived proof was accepted by lrat-check and by cake_lpr on the second solve (1,313/1,313).
 To check leaf i: rebuild `leaf_i.cnf` from prefixes line i and the base body, `xz -d leaf_i.lrat.xz`,
 then `cake_lpr leaf_i.cnf leaf_i.lrat`.
+
+## The value, stated about colorings (2026-10-05)
+
+`lean/FaithfulK211K23Comparator.lean` proves `k211k23_eq_22`:
+
+```
+(¬ ∃ a : EColouring 22 2, NoKst a 0 2 11 ∧ NoKst a 1 2 3) ∧
+(∃ a : EColouring 21 2, NoKst a 0 2 11 ∧ NoKst a 1 2 3)
+```
+
+(Lean's colors 0 and 1 are colors 1 and 2 on this page.) It composes this cell's `encoded_unsat` (two named
+cake_lpr verdict axioms), the encoding bridge of `../lean/sbsound/` and the K_21 coloring checked by
+`decide +kernel`. Comparator accepted both `k211k23_eq_22` and the refutation alone with permitted axioms
+`propext`, `Quot.sound`, `Classical.choice` and the two cake_lpr verdicts, in the Lean kernel and in nanoda
+(`certificate/faithful/`). What stays outside Lean is as for `../k35k25-n22/`: the kernel, cake_lpr and the
+files it read, Comparator's tooling, and a reading of `NoKst` against the definition of the Ramsey number.
