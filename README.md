@@ -8,11 +8,12 @@ Status: **computation records, not peer reviewed.** Unconfirmed; nothing here is
 [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md).
 
 > [!IMPORTANT]
-> This repository contains AI-produced, computer-checked results that no human has digested. For the
-> refutations it is a **warrant** for the stated verdicts: machine-checked certificates, not a
-> human-readable proof. We do not regard the questions as settled by it. We welcome a human-readable
-> treatment, and credit belongs to whoever writes one. Questions, checks and corrections:
-> [GitHub issues](https://github.com/alejandrozarco/ramsey-cells/issues).
+> This repository is a public, timestamped, AI-produced **warrant** for the Ramsey-number verdicts stated in
+> the table below (bounds from the Dynamic Survey DS1, revision 18): machine-checked certificates that no human
+> has yet digested. We do not regard the questions as settled by it. Independent verification and
+> human-readable expositions are welcome, and credit for a human-readable proof belongs to whoever writes one.
+> To refer to the computational results, please cite this repository (no archived release yet). Questions,
+> checks and corrections: [GitHub issues](https://github.com/alejandrozarco/ramsey-cells/issues).
 
 | cell | DS1 rev #18 | deposited | |
 |---|---|---|---|
