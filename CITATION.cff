@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "To refer to the computational results, please cite this repository as below. Not peer reviewed. Produced by AI models under the direction of the repository owner (see AI_DISCLOSURE.md)."
+title: "ramsey-cells: computation records and Lean/Comparator certificates for small two-colour graph Ramsey numbers (unreviewed)"
+type: software
+authors:
+  - name: alejandrozarco
+repository-code: "https://github.com/alejandrozarco/ramsey-cells"
+abstract: >-
+  Computation records for small two-colour graph Ramsey numbers from the cells of Radziszowski's Dynamic Survey
+  DS1 (revision 18): colorings, cube-and-conquer refutations, encoders, independent checkers and certificates. For
+  five cells the value is one Lean 4 theorem about 2-colorings, accepted by Comparator in the Lean kernel and in
+  nanoda, resting on the three standard axioms and two named cake_lpr verdicts. AI-produced, not peer reviewed.
+keywords:
+  - Ramsey numbers
+  - complete bipartite graphs
+  - SAT solving
+  - Lean 4
+  - formal verification
+license: MIT
+references:
+  - type: article
+    title: "Small Ramsey Numbers"
+    authors:
+      - given-names: Stanisław P.
+        family-names: Radziszowski
+    journal: "Electronic Journal of Combinatorics"
+    notes: "Dynamic Survey DS1, revision 18 (2026)"
+    doi: "10.37236/21"
+  - type: software
+    title: "lrat-catcher"
+    authors:
+      - given-names: Stefan
+        family-names: Szeider
+    repository-code: "https://github.com/leansolving/lrat-catcher"

@@ -1,0 +1,35 @@
+{
+  "title": "ramsey-cells: computation records and Lean/Comparator certificates for small two-colour graph Ramsey numbers (unreviewed)",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "alejandrozarco"
+    }
+  ],
+  "description": "<p>Computation records for small two-colour graph Ramsey numbers from the cells of Radziszowski's Dynamic Survey DS1 (revision 18): colorings (lower bounds) and cube-and-conquer refutations (upper bounds), with encoders, independent checkers and certificates. For R(K_{3,4}, K_{3,3}) = 19, R(K_{3,5}, K_{2,5}) = 22, R(K_{2,11}, K_{2,4}) = 26, R(K_{2,11}, K_{2,3}) = 22 and R(K_{3,5}, K_{2,4}) = 19 the value is one Lean 4 theorem about 2-colorings, accepted by Comparator in the Lean kernel and in nanoda, with the three standard axioms and two named axioms standing for cake_lpr verdicts on the leaf and cover files printed from the Lean terms. The directory k28k25-n22 records a complete rooted census for R(K_{2,8}, K_{2,5}) at n = 22; its formal verification is in progress. AI-produced, not peer reviewed.</p><p>A public, timestamped, AI-produced warrant: machine-checked certificates that no human has yet digested. We do not regard the questions as settled by it; independent verification and human-readable expositions are welcome.</p>",
+  "keywords": [
+    "Ramsey numbers",
+    "complete bipartite graphs",
+    "SAT solving",
+    "cube-and-conquer",
+    "LRAT",
+    "cake_lpr",
+    "Lean 4",
+    "formal verification",
+    "computer-assisted proof"
+  ],
+  "notes": "Not peer reviewed. Produced by AI models (Claude Opus 5, Claude Opus 5.5, Claude Fable 5.1; reviews by these models and gpt-6-astra) under the direction of the repository owner; see AI_DISCLOSURE.md. Code is MIT-licensed and data and text are CC BY 4.0 (see LICENSE). lean/lrat-catcher is a fork of Stefan Szeider's lrat-catcher (MIT). Large leaf-proof archives are attached to GitHub releases of the repository and are not part of this record.",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/leansolving/lrat-catcher",
+      "relation": "isDerivedFrom",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.37236/21",
+      "relation": "references",
+      "resource_type": "publication-article"
+    }
+  ],
+  "license": "MIT"
+}
