@@ -12,7 +12,8 @@ Status: **computation records, not peer reviewed.** Unconfirmed; nothing here is
 > the table below (bounds from the Dynamic Survey DS1, revision 18): machine-checked certificates that no human
 > has yet digested. We do not regard the questions as settled by it. Independent verification and
 > human-readable expositions are welcome, and credit for a human-readable proof belongs to whoever writes one.
-> To refer to the computational results, please cite this repository (no archived release yet). Questions,
+> To refer to the computational results, please cite the archived repository
+> ([10.5281/zenodo.23196590](https://doi.org/10.5281/zenodo.23196590)). Questions,
 > checks and corrections: [GitHub issues](https://github.com/alejandrozarco/ramsey-cells/issues).
 
 | cell | DS1 rev #18 | deposited | |

@@ -4,6 +4,7 @@ title: "ramsey-cells: computation records and Lean/Comparator certificates for s
 type: software
 authors:
   - name: alejandrozarco
+doi: "10.5281/zenodo.23196590"
 repository-code: "https://github.com/alejandrozarco/ramsey-cells"
 abstract: >-
   Computation records for small two-colour graph Ramsey numbers from the cells of Radziszowski's Dynamic Survey
