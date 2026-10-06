@@ -204,6 +204,8 @@ certificate, not the splitter's internal behaviour, is what makes the decomposit
   lrat-trim + lrat-check (a cake_lpr pass over those is running). The degree step is a Lean theorem
   (`lean/Lemma12.lean`); the covering argument for the lists, a Lean link for the rooted encoder and a Comparator
   check of the pinned statement are not done. Recorded as a computation, not a result.
+  Update 2026-10-06: the cake_lpr pass re-solved and checked 5,375 of those cubes; grades now cake_lpr 23,865,
+  lrat-check 21 (proofs over 4 GiB, being re-checked).
 
 ## 2026-10-04
 

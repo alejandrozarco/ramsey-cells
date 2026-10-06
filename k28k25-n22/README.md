@@ -1,4 +1,4 @@
-# R(K_{2,8}, K_{2,5}): rooted census at n = 22 (status 2026-10-05)
+# R(K_{2,8}, K_{2,5}): rooted census at n = 22 (status 2026-10-06)
 
 Status: **computation record, not peer reviewed.** Unconfirmed; nothing here is a claim. **Produced by AI
 models** under the direction of the repository owner; see [`../AI_DISCLOSURE.md`](../AI_DISCLOSURE.md).
@@ -29,10 +29,10 @@ Each cube was encoded by `scripts/lemma/rooted_encode.py` and refuted by CaDiCaL
 Cubes that did not finish within a cap were split recursively (`scripts/lemma/split_certify.py`); the
 row of such a cube records its children and their verdicts in the field `split`.
 
-| check (run from this directory) | result on 2026-10-05 |
+| check (run from this directory) | result |
 |---|---|
-| `python3 scripts/lemma/census_grades.py` | 23,886 / 23,886 cubes decided against the 781 list files; certificate grades: cake_lpr 18,490, lrat-check 5,396, solver only 0 |
-| `python3 scripts/referee/check_no_sat.py` | no SAT in 33,661 ledger rows across 667 files; no SAT record, no model file |
+| `python3 scripts/lemma/census_grades.py` | 23,886 / 23,886 cubes decided against the 781 list files; certificate grades: cake_lpr 23,865, lrat-check 21, solver only 0 (2026-10-06) |
+| `python3 scripts/referee/check_no_sat.py` | no SAT in 39,036 ledger rows across 667 files; no SAT record, no model file (2026-10-06) |
 | `python3 scripts/lemma/check_histogram_set.py` | the 44 histograms and 781 list names match, name for name (names only) |
 | `python3.12 scripts/lemma/indep_check.py` | a second, independent enumeration of the lists: 53 / 53 families, 0 mismatches |
 | `python3 scripts/referee/verify_row.py --sample 200` | 200 sampled rows: the CNF rebuilt from the encoder hashes to the recorded `cnf_sha256` |
@@ -42,10 +42,11 @@ The complete output of these checks on the working copy is in `checks/closure_ch
 
 Certificate grades, per cube, as `census_grades.py` counts them:
 
-* **cake_lpr (18,490 cubes)**: the proof was accepted by cake_lpr, the CakeML-verified LRAT checker;
-* **lrat-check (5,396 cubes)**: accepted by `lrat-trim` and `lrat-check` at solve time. These were solved
-  before cake_lpr was added to the pipeline, and proofs are not retained. They are being re-solved and
-  checked by cake_lpr (started 2026-10-05).
+* **cake_lpr (23,865 cubes)**: the proof was accepted by cake_lpr, the CakeML-verified LRAT checker;
+* **lrat-check (21 cubes)**: accepted by `lrat-trim` and `lrat-check` at solve time. 5,396 cubes were
+  solved before cake_lpr was added to the pipeline; they were re-solved and checked by cake_lpr on
+  2026-10-05/06 (rows marked `synced_from: arm-vm`). The remaining 21 have proofs larger than 4 GiB and are
+  being re-checked with a larger memory budget.
 
 `verify_row.py` skips rows written before the fields it needs (`cnf_sha256`, encoder stamps) existed.
 
@@ -71,7 +72,7 @@ variables `CADICAL`, `TRIM`, `CHECK`, `CAKE`.
 
 ## Not yet done
 
-* **The cake_lpr pass over the 5,396 lrat-check cubes** (in progress).
+* **cake_lpr for the last 21 cubes** (large proofs; in progress).
 * **The argument that the 781 lists cover every good coloring.** The degree step is the Lean theorem
   above. The rest is a hand proof, checked by two independent enumerations (`check_histogram_set.py`,
   `indep_check.py`) but not formalised and not yet deposited.
