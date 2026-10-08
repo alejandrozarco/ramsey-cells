@@ -25,8 +25,8 @@ certificates into Lean 4 by reflection. Our additions, all under the same licens
   axioms. These are the same files as in each cell's `certificate/` directory.
 
 Not included: the `Generated/` directory of earlier per-chunk reflection modules (16 GB, superseded
-by the Comparator route), upstream tests and showcases, and the private `sbsound` development that
-proves the encoders faithful and the symmetry breaking sound (see `../../REVIEWER.md` section 5).
+by the Comparator route), and upstream tests and showcases. The proofs that the encoders are faithful
+and the symmetry breaking sound are in `../sbsound/` (see `../../REVIEWER.md` section 5).
 
 Note on K_{3,4}/K_{3,3}: its certified solution module is `ComparatorUnsatFallback.lean` with the
 configuration `Comparator/lrat-catcher-fallback.json` (two external verdict axioms, like every later

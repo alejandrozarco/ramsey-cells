@@ -35,10 +35,9 @@ cd lean/lrat-catcher && lake build LRATCatcher.ComparatorUnsatK211K24 LRATCatche
    `k211k24-n26/certificate/PASS_lrat-catcher-k211k24_2026-09-06.log`. The two external axioms are the
    cake_lpr verdicts of step 3.
 
-What is NOT machine-checked publicly: that the encoder is faithful to "2-colouring of K_26 avoiding
-both graphs" and that vertex-lex symmetry breaking loses no colouring. Both are argued in
-`REVIEWER.md` section 5 and proved in a private Lean development; the public chain ends at
-"this CNF is unsatisfiable".
+That the encoder is faithful to "2-colouring of K_26 avoiding both graphs" and that vertex-lex symmetry
+breaking loses no colouring is argued in `REVIEWER.md` section 5 and proved in Lean in `lean/sbsound/`;
+the statement about colourings is checked by Comparator in `k211k24-n26/certificate/faithful/`.
 
 ## 2. R(K_{3,5}, K_{2,5}) = 22
 
@@ -52,9 +51,9 @@ both graphs" and that vertex-lex symmetry breaking loses no colouring. Both are 
 ```
 cd k35k25-n22 && python3 ../tools/verify_close.py instance/k35k25_n22.cnf instance/k35k25_n22_d10.icnf tree --check-all
 ```
-The Comparator statement passed (`certificate/PASS_lrat-catcher-k35k25_2026-09-05.log`); the cake_lpr
-pass over all 137,350 Lean-printed leaves is running (`certificate/cake_lpr_ledger_IN_PROGRESS.jsonl`
-is a snapshot) and its complete ledger replaces that file when it ends. Re-solving every leaf yourself
+The Comparator statement passed (`certificate/PASS_lrat-catcher-k35k25_2026-09-05.log`); cake_lpr
+accepted all 137,350 Lean-printed leaves and the cover (`certificate/k35k25_cakelpr_encoder_ledger.jsonl`),
+and the statement about colourings is checked in `certificate/faithful/`. Re-solving every leaf yourself
 is about 40 CPU-hours with `tools/cert_pass.py`; proofs for this cell are not archived (about 3 TB raw).
 
 ## What independent review has already done

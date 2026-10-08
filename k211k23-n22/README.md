@@ -23,8 +23,8 @@ and nanoda both accept; see `certificate/CERTIFICATE_k211k23.md`).
 
 The refutation needs the encoding to be faithful, the symmetry breaking to be sound, and the cube cover
 to be exhaustive. The cover is machine-checked (above). The encoding and the vertex-lex symmetry
-breaking are argued in the private Lean development described in `../REVIEWER.md` section 5; the
-public chain ends at "this CNF is unsatisfiable".
+breaking are proved in Lean in `../lean/sbsound/` (`../REVIEWER.md` section 5), and the statement about
+colourings is checked by Comparator in `certificate/faithful/`.
 
 Method note: the same cell under the degree-ordering formula of `k28k25-n22/` measured about twenty
 times more expensive in a sampled cube protocol (see `../FINDINGS.md`, 2026-09-06); the deposited
