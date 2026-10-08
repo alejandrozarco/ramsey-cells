@@ -39,6 +39,7 @@ contains no `sorry`. Its one use of `native_decide` is the earlier proof `witnes
 * `k211k24-n26/lean/FaithfulK211K24Comparator.lean`: $`R(K_{2,11}, K_{2,4}) = 26`$.
 * `k211k23-n22/lean/FaithfulK211K23Comparator.lean`: $`R(K_{2,11}, K_{2,3}) = 22`$.
 * `k35k24-n19/lean/FaithfulK35K24Comparator.lean`: $`R(K_{3,5}, K_{2,4}) = 19`$.
+* `k28k25-n22/lean/FaithfulK28K25Comparator.lean`: $`R(K_{2,8}, K_{2,5}) = 22`$ (rooted census; see below).
 
 Each composes `no_colouring_of_toCNFV_unsat` with the cell's `encoded_unsat` (from `lean/lrat-catcher`,
 resting on two named cake_lpr verdict axioms) and the cell's kernel-checked witness. The Comparator
@@ -47,6 +48,29 @@ checks are in the cells' `certificate/faithful/` directories.
 `Sbsound/EncoderVendored.lean` is a copy of the encoder definitions up to `encodeBip`
 (`k34k33-n19/lean/Encoder.lean`, sha256 `f633f9b8…`), with the namespace changed. The composing files
 prove the copy equal to `LRATCatcher.Encoder.encodeBip` (`encodeBip_eq`).
+
+## The rooted census of $`R(K_{2,8}, K_{2,5})`$ at $`n = 22`$ (added 2026-10-08)
+
+The five cells above use `encodeBip`. The cell `k28k25-n22/` was searched as a census of 23,886 cubes under a
+different encoder (`rooted_encode.py`), so its proof has its own modules:
+
+| path | content |
+|---|---|
+| `Lemma12.lean` | every colour-2 degree of a good colouring of $`K_{22}`$ is 8, 9 or 10; the 44 admissible degree histograms |
+| `RootedLemmas/` | the census lemmas: complement identity, deficit sum, interval and budget bounds, threshold sum, filters (i)–(iii), in the forms the encoder and the list generator compute |
+| `LRATCatcher/RootedEncoder.lean` | the Lean rooted encoder `LRATCatcher.Rooted.rootedFormula` and its DIMACS printer; byte-identical to `../lrat-catcher/LRATCatcher/RootedEncoder.lean`, same module name (library `LRATCatcherRootedEncoder`) |
+| `RootedBridge/` | soundness of every clause family of `rootedFormula`: the truthful assignment of a good colouring in canonical form satisfies it (`no_canon_of_unsat`, `no_canon_of_children_unsat` for split cubes) |
+| `RootedM4/` | the canonical form: `cellsOf` semantics for all 781 cases (`decide +kernel`), relabelling, two-stage lex leader, the H-cover from 53 family certificates (`CoverData/`, `CoverChecks/`), and the named axiom `cover_cakelpr` (`CoverAxiom.lean`) |
+| `RootedM5/` | the cube table as data (`Data/`), its kernel checks (`Checks/`, `Fam/`, `Keys.lean`), the named axioms `direct_cakelpr`, `leaves_cakelpr` (`Axioms.lean`), the composition (`Final.lean`, `Close.lean`, `Attached.lean`) and the $`K_{21}`$ witness (`Witness21.lean`) |
+| `RootedM5Print.lean` | the printer `m5-print` that writes the cube and leaf files from the Lean rows (hash binding, `k28k25-n22/runs/k28_rooted/m5_final/`) |
+
+No file contains `sorry`, `admit` or `native_decide`. These modules are not in the default target. Some of
+them are expensive: the kernel evaluation in `RootedM4/Cells.lean` took about an hour on a laptop, and the
+53 `RootedM4/CoverChecks/` modules and the `RootedM5/Checks/` modules need several hours and up to about
+9 GB per module; build them one module per call (`lake build RootedM5.Close`, `lake build RootedM5.Attached`,
+...). Comments in these files name the private working tree (`lean-sb`, `ramsey/runs/k28_rooted/...`):
+`lean-sb` is this directory, and the files under `ramsey/runs/k28_rooted/` are in
+`k28k25-n22/runs/k28_rooted/` of this repository, where deposited.
 
 ## Build
 

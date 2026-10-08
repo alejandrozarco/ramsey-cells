@@ -16,3 +16,37 @@ rev = "v4.30.0"
 
 [[lean_lib]]
 name = "Sbsound"
+
+# Lemma 1.2 degree lemma (root-level module) and the M1 rooted-census lemmas that import it.
+[[lean_lib]]
+name = "Lemma12"
+
+[[lean_lib]]
+name = "RootedLemmas"
+globs = ["RootedLemmas.+"]
+
+# M3: soundness bridge for the rooted census encoder (vendored encoder + clause-family lemmas).
+[[lean_lib]]
+name = "RootedBridge"
+globs = ["RootedBridge.+"]
+
+# M3: byte-identical copy of lrat-catcher's LRATCatcher/RootedEncoder.lean (same module name, so a
+# combined LEAN_PATH sees one module); RootedBridge proves its theorems about LRATCatcher.Rooted.*.
+[[lean_lib]]
+name = "LRATCatcherRootedEncoder"
+roots = ["LRATCatcher.RootedEncoder"]
+
+# M4: the rooted canonical form (cellsOf semantics, relabelling, the two-stage lex leader, coverage).
+[[lean_lib]]
+name = "RootedM4"
+globs = ["RootedM4.+"]
+
+# M5: the cube table (core-only data + printer binding), kernel checks, verdict axioms, final composition.
+[[lean_lib]]
+name = "RootedM5"
+globs = ["RootedM5.+"]
+
+# M5: prints the cube table's CNFs from the Lean rows (binding of the ledger hashes to the Lean terms).
+[[lean_exe]]
+name = "m5-print"
+root = "RootedM5Print"

@@ -8,12 +8,15 @@ project:
   description: >-
     Computation records for small graph Ramsey cells: colorings (lower bounds) and cube-and-conquer
     refutations (upper bounds), with encoders, checkers and certificates. An AI-produced warrant for the
-    refutations, meaning machine-checked certificates that no human has digested. For five cells the value is a
+    refutations, meaning machine-checked certificates that no human has digested. For six cells the value is a
     Lean theorem about colorings, checked by Comparator: R(K_{3,4}, K_{3,3}) = 19,
-    R(K_{3,5}, K_{2,5}) = 22, R(K_{2,11}, K_{2,4}) = 26, R(K_{2,11}, K_{2,3}) = 22 and R(K_{3,5}, K_{2,4}) = 19. Each composes (a) the encoder's CNF is unsatisfiable, resting on two named axioms
+    R(K_{3,5}, K_{2,5}) = 22, R(K_{2,11}, K_{2,4}) = 26, R(K_{2,11}, K_{2,3}) = 22, R(K_{3,5}, K_{2,4}) = 19 and
+    R(K_{2,8}, K_{2,5}) = 22. The first five compose (a) the encoder's CNF is unsatisfiable, resting on two named axioms
     for cake_lpr verdicts on files printed from the Lean terms; (b) lean/sbsound: unsatisfiability implies no
     good coloring (encoding and vertex-lex symmetry breaking); (c) an explicit coloring checked by
-    `decide +kernel`.
+    `decide +kernel`. R(K_{2,8}, K_{2,5}) = 22 rests on a census of 23,886 cubes under a rooted encoder; its proof
+    in lean/sbsound covers the census lemmas, the coverage of the census, the soundness of the rooted encoder and
+    the cube table, with three named cake_lpr verdict axioms (H-cover, direct cubes, split leaves).
   authors:
     - "alejandrozarco (repository owner; directed the work)"
     - "Claude Opus 5, Claude Opus 5.5, Claude Fable 5.1 (Anthropic), AI models that produced the code, certificates and Lean files"
@@ -46,11 +49,12 @@ classification:
 status:
   scope: >-
     The values R(K_{3,4}, K_{3,3}) = 19, R(K_{3,5}, K_{2,5}) = 22, R(K_{2,11}, K_{2,4}) = 26,
-    R(K_{2,11}, K_{2,3}) = 22 and R(K_{3,5}, K_{2,4}) = 19 as theorems about 2-colorings. The other
+    R(K_{2,11}, K_{2,3}) = 22, R(K_{3,5}, K_{2,4}) = 19 and R(K_{2,8}, K_{2,5}) = 22 as theorems about
+    2-colorings. The other
     refutations are certified as statements about the encoder's CNF only.
   sorry_count: 0
   sorry_in_definitions: 0
-  axioms: ["propext", "Classical.choice", "Quot.sound", "plus two named cake_lpr verdict axioms per result (below)"]
+  axioms: ["propext", "Classical.choice", "Quot.sound", "plus two named cake_lpr verdict axioms per result, three for R(K_{2,8}, K_{2,5}) (below)"]
   main_results:
     - declaration: "LRATCatcher.FaithfulC.k34k33_eq_19"
       file: "k34k33-n19/lean/FaithfulK34K33Comparator.lean"
@@ -82,9 +86,18 @@ status:
       axioms: ["propext", "Classical.choice", "Quot.sound", "LRATCatcher.Comparator.K35K24.leaves_cakelpr", "LRATCatcher.Comparator.K35K24.cover_cakelpr"]
       comparator_config: "k35k24-n19/certificate/faithful/faithful-value-k35k24.json"
       literature_dependencies: []
+    - declaration: "LRATCatcher.FaithfulC.k28k25_eq_22"
+      file: "k28k25-n22/lean/FaithfulK28K25Comparator.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound", "SB.Rooted.M4.CoverData.cover_cakelpr", "SB.Rooted.M5.direct_cakelpr", "SB.Rooted.M5.leaves_cakelpr"]
+      comparator_config: "k28k25-n22/certificate/faithful/faithful-value-k28k25.json"
+      literature_dependencies: []
   notes: >-
     The two named axioms of each result stand for cake_lpr (CakeML-verified LRAT checker) verdicts on the leaf
-    files and the cover file printed from the Lean terms; the ledgers are in each cell's certificate/. Comparator
+    files and the cover file printed from the Lean terms; the ledgers are in each cell's certificate/. For
+    R(K_{2,8}, K_{2,5}) the three named axioms stand for cake_lpr verdicts on the 53 H-cover files, the 22,457
+    directly refuted cube files and the 126,351 leaf files of 1,429 split cubes, all printed from the Lean
+    terms; the ledgers and the hash binding are in k28k25-n22/runs/k28_rooted/. Comparator
     accepted each result in the Lean kernel and in nanoda (transcripts in certificate/faithful/). In lean/sbsound
     the bridge theorem and the kernel-checked witnesses use the three standard axioms only; the library also keeps
     an earlier proof, SB.Witness18.witness18, that uses native_decide and is not used by any of these results.
@@ -99,7 +112,7 @@ automation:
         and cake_lpr for the searches and proof checking; Lean 4 v4.30.0 + Mathlib; Comparator, lean4export and
         nanoda for the Comparator checks.
       cost:
-        wall_time: "2026-08-23 to 2026-10-04"
+        wall_time: "2026-08-23 to 2026-10-08"
         spend_usd: "subscription-based usage"
         hardware: "Apple-silicon laptop; Linux workstation (6 cores, 19 GB RAM); cloud and free-tier VMs for searches"
       prompting_notes: >-

@@ -1,0 +1,9 @@
+{
+ "rows": 23886,
+ "bound": 23886,
+ "files_bound": 148808,
+ "by": {
+  "direct True": 22457,
+  "split True": 1429
+ }
+}

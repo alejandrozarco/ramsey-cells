@@ -22,7 +22,10 @@ stops at 10). Nine directories hold colourings, which need only the definition o
 subgraph containment to check. Six hold refutations (K_{3,4}/K_{3,3} at 19, K_{3,5}/K_{2,4} at 19,
 K_{3,5}/K_{2,5} at 22, K_{2,11}/K_{2,3} at 22, K_{2,11}/K_{2,4} at 26, and, added 2026-09-08,
 K_{3,5}/K_{3,3} at 21); each says in its own directory exactly which parts are machine-checked, which
-are certified by an independent verified checker, and which are argued informally.
+are certified by an independent verified checker, and which are argued informally. A further directory,
+`k28k25-n22/` (added 2026-10-05), holds the rooted census of K_{2,8}/K_{2,5} at 22, a search split into
+23,886 cubes rather than one formula; since 2026-10-08 it also holds a Comparator-checked Lean theorem for
+the value (see the entry of that date).
 
 The K_{3,5}/K_{3,3} refutation differs from the other five: its formula carries 39,369 symmetry-breaking
 clauses extracted once by smsg (SAT Modulo Symmetries) instead of the static lex-leader clauses, each
@@ -190,7 +193,22 @@ Refutations are cube-and-conquer: split the formula into cubes, refute each, and
 certify that the cubes cover everything. That last step is not optional — the coverage
 certificate, not the splitter's internal behaviour, is what makes the decomposition a proof.
 
+## 2026-10-08
 
+* `k28k25-n22/`: R(K_{2,8}, K_{2,5}) = 22 stated about colorings (`lean/FaithfulK28K25Comparator.lean`, theorems
+  `no_good_colouring_K22` and `k28k25_eq_22`) against the statement fixed on 2026-09-27
+  (`statement/ChallengeK22.lean`, unchanged). Comparator accepted `k28k25_eq_22` in the Lean kernel and in nanoda
+  with permitted axioms `propext`, `Quot.sound`, `Classical.choice` and three named cake_lpr verdicts:
+  `cover_cakelpr` (53 H-cover CNFs), `direct_cakelpr` (22,457 cubes) and `leaves_cakelpr` (126,351 leaves of
+  1,429 split cubes). Only the value configuration was run; it contains the refutation.
+  The Lean sources (census lemmas, coverage of the census by the 781 lists, soundness of every clause family of
+  the rooted encoder, the cube table and its kernel checks) are added to `lean/sbsound/`, the Lean rooted encoder
+  and its printer to `lean/lrat-catcher/`. Every one of the 148,808 cube and leaf files printed from the Lean
+  table has the sha256 of a cake_lpr-verified ledger row or leaf (`runs/k28_rooted/m5_final/`). Census grades:
+  cake_lpr 23,886 / 23,886; the 21 cubes with proofs over 4 GiB were checked with a larger memory budget (19), or
+  re-solved by splitting (2: `5_10_7_r8_c242` lines 49 and 70). This supersedes the entry of 2026-10-05, whose
+  open items (the covering argument, a Lean link for the rooted encoder, a Comparator check) are now formalised.
+  Not peer reviewed.
 
 ## 2026-10-05
 

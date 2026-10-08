@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Faithful.ChallengeK22Ax",
+  "solution_module": "Faithful.SolutionK28K25",
+  "theorem_names": [
+    "LRATCatcher.FaithfulC.k28k25_eq_22"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice",
+    "SB.Rooted.M4.CoverData.cover_cakelpr",
+    "SB.Rooted.M5.direct_cakelpr",
+    "SB.Rooted.M5.leaves_cakelpr"
+  ],
+  "enable_nanoda": true
+}

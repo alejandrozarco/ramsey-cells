@@ -1,0 +1,21 @@
+{
+ "cases": 781,
+ "families": 53,
+ "listed_word_slots": 23886,
+ "list_lines": 23886,
+ "rows_seen": {
+  "direct rows": 27837,
+  "split rows": 1440
+ },
+ "tally": {
+  "direct": 22457,
+  "direct O1": 60,
+  "direct O2": 17898,
+  "direct O3": 4499,
+  "split": 1429,
+  "split O2": 12,
+  "split O3": 1417
+ },
+ "pending": [],
+ "problems": []
+}

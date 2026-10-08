@@ -26,7 +26,7 @@ Status: **computation records, not peer reviewed.** Unconfirmed; nothing here is
 | R(K_{3,5}, K_{2,5}) | 21-23 | K_21 + refutation at n=22 | [`k35k25-lb22/`](k35k25-lb22/), [`k35k25-n22/`](k35k25-n22/) |
 | R(B_5, B_9) | >= 28 | K_28 | [`b5b9-lb29/`](b5b9-lb29/) |
 | R(K_{3,4}, K_{3,3}) | 19-20 | refutation at n=19 | [`k34k33-n19/`](k34k33-n19/) |
-| R(K_{2,8}, K_{2,5}) | 22-23 | K_21 + rooted census at n=22, complete as a computation; verification in progress (see its README) | [`k28k25-n22/`](k28k25-n22/) |
+| R(K_{2,8}, K_{2,5}) | 22-23 | K_21 + rooted census at n=22 (23,886 cubes) | [`k28k25-n22/`](k28k25-n22/) |
 | R(K_{3,5}, K_{2,4}) | 19-20 | K_18 + refutation at n=19 | [`k35k24-n19/`](k35k24-n19/) |
 | R(K_{2,11}, K_{2,3}) | >= 22 | refutation at n=22 | [`k211k23-n22/`](k211k23-n22/) |
 | R(K_{3,5}, K_{3,3}) | 21-24 | refutation at n=21 (SMS-clause formula; one grade below the other refutations, see its README) | [`k35k33-n21/`](k35k33-n21/) |
@@ -41,7 +41,9 @@ exhaustive search. Each directory says which parts are machine-checked. For
 R(K_{3,4}, K_{3,3}) = 19, R(K_{3,5}, K_{2,5}) = 22, R(K_{2,11}, K_{2,4}) = 26, R(K_{2,11}, K_{2,3}) = 22 and
 R(K_{3,5}, K_{2,4}) = 19 all three are composed into one Lean theorem about colorings, checked by
 Comparator (each cell's `certificate/faithful/`); the encoding and symmetry-breaking step is
-[`lean/sbsound/`](lean/sbsound/).
+[`lean/sbsound/`](lean/sbsound/). For R(K_{2,8}, K_{2,5}) = 22 the search is a census of 23,886 cubes
+under a rooted encoder; its Lean theorem about colorings, also checked by Comparator, includes the coverage
+of the census and the soundness of that encoder (`k28k25-n22/`, sources in `lean/sbsound/`).
 
 [`REVIEWER.md`](REVIEWER.md) says how to check each kind of entry, with the tool versions used.
 

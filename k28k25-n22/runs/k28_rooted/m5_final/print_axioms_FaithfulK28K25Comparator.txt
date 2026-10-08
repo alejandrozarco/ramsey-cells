@@ -1,0 +1,12 @@
+'LRATCatcher.FaithfulC.no_good_colouring_K22' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ SB.Rooted.M5.direct_cakelpr,
+ SB.Rooted.M5.leaves_cakelpr,
+ SB.Rooted.M4.CoverData.cover_cakelpr]
+'LRATCatcher.FaithfulC.k28k25_eq_22' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ SB.Rooted.M5.direct_cakelpr,
+ SB.Rooted.M5.leaves_cakelpr,
+ SB.Rooted.M4.CoverData.cover_cakelpr]

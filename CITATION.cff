@@ -9,8 +9,9 @@ repository-code: "https://github.com/alejandrozarco/ramsey-cells"
 abstract: >-
   Computation records for small two-colour graph Ramsey numbers from the cells of Radziszowski's Dynamic Survey
   DS1 (revision 18): colorings, cube-and-conquer refutations, encoders, independent checkers and certificates. For
-  five cells the value is one Lean 4 theorem about 2-colorings, accepted by Comparator in the Lean kernel and in
-  nanoda, resting on the three standard axioms and two named cake_lpr verdicts. AI-produced, not peer reviewed.
+  six cells the value is one Lean 4 theorem about 2-colorings, accepted by Comparator in the Lean kernel and in
+  nanoda, resting on the three standard axioms and two named cake_lpr verdicts (three for R(K_{2,8}, K_{2,5})).
+  AI-produced, not peer reviewed.
 keywords:
   - Ramsey numbers
   - complete bipartite graphs

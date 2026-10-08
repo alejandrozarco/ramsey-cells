@@ -12,6 +12,10 @@ certificates into Lean 4 by reflection. Our additions, all under the same licens
   `lake exe lratcatch-export-encoder <cell> cubes.icnf outDir --prefixes` prints the base CNF and one
   prefix line per cube; every certificate's `base_encoder.cnf` hash quoted in a README is the hash of
   that printed file.
+* `LRATCatcher/RootedEncoder.lean`, `ExportRooted.lean` (added 2026-10-08) — a Lean port of the rooted
+  census encoder of `k28k25-n22/` (`scripts/lemma/rooted_encode.py` and its dependencies, all option sets,
+  split children) and the printer `lake exe lratcatch-export-rooted`, whose output is byte-identical to the
+  Python encoder's. The same file is in `../sbsound/LRATCatcher/`, where its soundness is proved.
 * `LRATCatcher/Cover.lean`, `MixedCover.lean`, `EncodedUnsat.lean` — cube covers as data
   (`parseICnf`), `cover_unsat` (leaves unsat + negated cubes unsat ⇒ formula unsat) and its mixed
   variant for trees whose leaves were solved under two formulas implied by one target.

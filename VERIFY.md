@@ -92,3 +92,21 @@ python3 tools/export_prefixes.py k35k33-n21/instance/k35k33_n21_sms.cnf k35k33-n
 cp k35k33-n21/instance/k35k33_n21_sms.cnf base_encoder.cnf
 CADICAL=... CAKE_LPR=... WORKERS=16 CHECKERS=3 python3 tools/cert_pass.py
 ```
+
+## 4. R(K_{2,8}, K_{2,5}) = 22 — rooted census (added 2026-10-08)
+
+Lower bound 22 is published (Van Overberghe); a K_21 coloring found here independently:
+`python3 tools/check_any.py k28k25-n22/witness/witness_k2x8k2x5_n21.txt K2x8,K2x5`.
+
+**Upper bound** (seconds each, from `k28k25-n22/`): the 781 lists, the ledgers and the cube table agree.
+```
+cd k28k25-n22
+python3 scripts/lemma/census_grades.py          # 23,886 / 23,886 cubes, cake_lpr 23,886
+python3 scripts/referee/check_no_sat.py
+python3 scripts/lemma/check_histogram_set.py
+python3 scripts/referee/check_cube_table.py     # every list line -> one cake_lpr-verified ledger row, hashes bound
+```
+The theorem `k28k25_eq_22` (`k28k25-n22/lean/FaithfulK28K25Comparator.lean`) passed Comparator with three named
+cake_lpr verdict axioms (`k28k25-n22/certificate/faithful/`). Replaying it needs the modules of `lean/sbsound/`
+listed there (several hours and up to about 9 GB per module). Replaying a verdict: print the cube or leaf with
+`m5-print` (`k28k25-n22/README.md`, *Checks*), solve with CaDiCaL, check with cake_lpr; proofs are not archived.

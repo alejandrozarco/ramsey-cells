@@ -136,6 +136,17 @@ three standard axioms and the two cake_lpr verdicts only:
 * K_{2,11}/K_{2,4}, n = 26; K_{2,11}/K_{2,3}, n = 22; K_{3,5}/K_{2,4}, n = 19: each cell's
   `certificate/faithful/` (2026-10-05).
 
+K_{2,8}/K_{2,5}, n = 22 (`k28k25-n22/certificate/faithful/`, 2026-10-08) is built differently: the search
+is a census of 23,886 cubes under the rooted encoder `rooted_encode.py`, not one `encodeBip` formula. Its Lean
+proof (in `lean/sbsound/`: `Lemma12.lean`, `RootedLemmas/`, `RootedBridge/`, `RootedM4/`, `RootedM5/`)
+covers the census lemmas, the coverage of every good coloring by a listed cube (with 53 H-cover CNFs), the
+soundness of each clause family of the Lean port of the encoder (`LRATCatcher/RootedEncoder.lean`, whose
+printed CNFs are byte-identical to the Python encoder's), and the cube table. It rests on the three standard
+axioms and three named cake_lpr verdicts (H-cover, direct cubes, split leaves); the verdicts are bound to the
+Lean terms by printing every cube and leaf file from the Lean table and matching its sha256 against the
+cake_lpr-verified ledgers (`k28k25-n22/runs/k28_rooted/m5_final/`, `scripts/referee/check_cube_table.py`).
+Comparator ran the value configuration only, which contains the refutation.
+
 For the other refutations the composition has not been run; their certified statement is the one
 above, about the encoder's CNF.
 
