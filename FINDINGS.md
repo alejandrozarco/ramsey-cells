@@ -193,6 +193,14 @@ Refutations are cube-and-conquer: split the formula into cubes, refute each, and
 certify that the cubes cover everything. That last step is not optional — the coverage
 certificate, not the splitter's internal behaviour, is what makes the decomposition a proof.
 
+## 2026-10-09
+
+* `k28k25-n22/README.md`: context section on the eight cases left open in Table I of Lortz and Mengersen
+  (J. Graph Theory 43 (2003) 252–268), who conjectured (p. 268) that each value equals the upper bound of their
+  table. The cell here is one of the eight (21/23 there). In the seven others the value now recorded equals that
+  upper bound (three by unpublished results, two by colorings in this repository); a value of 22 here would be
+  the one case where it does not. Not peer reviewed.
+
 ## 2026-10-08
 
 * `k28k25-n22/`: R(K_{2,8}, K_{2,5}) = 22 stated about colorings (`lean/FaithfulK28K25Comparator.lean`, theorems

@@ -32,6 +32,29 @@ the rooted encoder for every clause family. The sources are in `../lean/sbsound/
 `RootedLemmas/`, `RootedBridge/`, `RootedM4/`, `RootedM5/`, and `Lemma12.lean`) and
 `../lean/lrat-catcher/LRATCatcher/RootedEncoder.lean`.
 
+## Context: the open cases of Lortz and Mengersen (2003)
+
+Lortz and Mengersen tabulated $`r(K_{2,m}, K_{2,n})`$ for $`2 \le m, n \le 10`$ (Table I of R. Lortz, I. Mengersen,
+*Off-diagonal and asymptotic results on the Ramsey number $`r(K_{2,m}, K_{2,n})`$*, J. Graph Theory 43 (2003)
+252–268, doi:10.1002/jgt.10118). They determined all 45 entries except eight, whose lower bounds came from
+monotonicity alone (p. 267), and conjectured (p. 268) that in each of the eight the value equals the upper
+bound of their table. Their entry for this cell is 21/23. Status of the eight:
+
+| cell | Table I (2003) | DS1 rev #18 | source of the value |
+|---|---|---|---|
+| $`r(K_{2,5}, K_{2,8})`$ | 21/23 | 22–23 | this directory: 22, if the theorem above is correct |
+| $`r(K_{2,5}, K_{2,9})`$ | 22/25 | 25* | Shao (unpublished, marked * in DS1) |
+| $`r(K_{2,6}, K_{2,8})`$ | 24/25 | 25 | lower bound by Van Overberghe (DS1: VO-LoM3) |
+| $`r(K_{2,6}, K_{2,9})`$ | 24/27 | 27* | Shao (unpublished, marked * in DS1) |
+| $`r(K_{2,6}, K_{2,10})`$ | 27/29 | 27–29 | the coloring of $`K_{28}`$ in [`../k2x10-k2x6-lb29/`](../k2x10-k2x6-lb29/) would give 29 |
+| $`r(K_{2,7}, K_{2,9})`$ | 28/29 | 29* | Shao (unpublished, marked * in DS1) |
+| $`r(K_{2,7}, K_{2,10})`$ | 28/31 | 29–31 | the coloring of $`K_{30}`$ in [`../k2x10-k2x7-lb31/`](../k2x10-k2x7-lb31/) would give 31 |
+| $`r(K_{2,8}, K_{2,10})`$ | 32/33 | 33 | lower bound by Van Overberghe (DS1: VO-LoM3) |
+
+In the seven other cases the value found equals the upper bound of Table I. If the value here is 22, it is
+below the upper bound 23, and the conjecture does not hold in this case. Two of the seven rows rest on the
+unreviewed colorings of this repository, and three on unpublished results.
+
 ## The census
 
 A good coloring of $`K_{22}`$ would have every color-2 degree in $`\{8, 9, 10\}`$, at most 7 vertices of
