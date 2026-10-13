@@ -5,8 +5,13 @@ nothing here is a claim. **Produced by AI models** under the direction of the re
 [`../AI_DISCLOSURE.md`](../AI_DISCLOSURE.md).
 
 DS1 rev #18 lists $`R(K_{2,8}, K_{2,5})`$ as 22–23. A good coloring of $`K_{21}`$ (color 1 with no
-$`K_{2,8}`$, color 2 with no $`K_{2,5}`$) is in `witness/`; the lower bound 22 is already published
-(Van Overberghe), and this coloring was found here independently (`witness/`, header line).
+$`K_{2,8}`$, color 2 with no $`K_{2,5}`$) is in `witness/` (found here, `witness/`, header line). The lower
+bound 22 appears in DS1 revisions 13 (2011) to 15 (2017), the earliest we checked being 13, as "22* − 23", the asterisk marking an
+unpublished result improving on Lortz and Mengersen (2003), whose table gives 21/23; from revision 16 (2021)
+on it is printed as 22–23 without the asterisk and with the reference [LoM3] only. We have not found a
+published coloring of $`K_{21}`$ for this cell. (Earlier versions of this page, and a comment in
+`statement/ChallengeK22.lean`, attributed the bound to Van Overberghe; that attribution was wrong. The
+challenge file is kept byte-identical, so its comment is not edited.)
 
 This directory records a search for a good coloring of $`K_{22}`$ that found none, and a Lean theorem
 about colorings built on it. `lean/FaithfulK28K25Comparator.lean` proves

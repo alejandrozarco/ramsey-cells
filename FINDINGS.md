@@ -193,6 +193,14 @@ Refutations are cube-and-conquer: split the formula into cubes, refute each, and
 certify that the cubes cover everything. That last step is not optional — the coverage
 certificate, not the splitter's internal behaviour, is what makes the decomposition a proof.
 
+## 2026-10-14
+
+* Correction, `k28k25-n22/`: the lower bound $`R(K_{2,8}, K_{2,5}) \ge 22`$ was attributed to Van Overberghe in the
+  cell README and in a comment of `statement/ChallengeK22.lean`. DS1 revisions 13–15 (2011–2017; earlier revisions not checked) print the entry as
+  "22* − 23", marking 22 as an unpublished improvement on Lortz and Mengersen (2003); revisions 16–18 print 22–23 with
+  [LoM3] only. The source of 22 is not identified here; the K_21 coloring in `k28k25-n22/witness/` proves it. The
+  README is corrected; the challenge file is unchanged (it is fixed).
+
 ## 2026-10-09
 
 * `k28k25-n22/README.md`: context section on the eight cases left open in Table I of Lortz and Mengersen
