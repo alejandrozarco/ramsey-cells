@@ -53,7 +53,7 @@ bound of their table. Their entry for this cell is 21/23. Status of the eight:
 | $`r(K_{2,6}, K_{2,9})`$ | 24/27 | 27* | Shao (unpublished, marked * in DS1) |
 | $`r(K_{2,6}, K_{2,10})`$ | 27/29 | 27–29 | the coloring of $`K_{28}`$ in [`../k2x10-k2x6-lb29/`](../k2x10-k2x6-lb29/) would give 29 |
 | $`r(K_{2,7}, K_{2,9})`$ | 28/29 | 29* | Shao (unpublished, marked * in DS1) |
-| $`r(K_{2,7}, K_{2,10})`$ | 28/31 | 29–31 | the coloring of $`K_{30}`$ in [`../k2x10-k2x7-lb31/`](../k2x10-k2x7-lb31/) would give 31 |
+| $`r(K_{2,7}, K_{2,10})`$ | 28/31 | 29–31 | lower bound 29 by Van Overberghe (DS1: VO-LoM3); the coloring of $`K_{30}`$ in [`../k2x10-k2x7-lb31/`](../k2x10-k2x7-lb31/) would give 31 |
 | $`r(K_{2,8}, K_{2,10})`$ | 32/33 | 33 | lower bound by Van Overberghe (DS1: VO-LoM3) |
 
 In the seven other cases the value found equals the upper bound of Table I. If the value here is 22, it is
