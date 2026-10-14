@@ -8,7 +8,7 @@ A 2-coloring of K_28. DS1 rev #18 Table IXa prints `>= 28` for this cell; 5.3(k)
 `<= 30`. A coloring of K_28 gives R > 28, i.e. **>= 29**. Unconfirmed, not peer reviewed.
 
 Note this cell is actively worked: Table IXa took three papers in 2026. Treat the deposit as
-a coloring, not a priority claim.
+a coloring, not a claim to be first.
 
 ## The coloring
 
