@@ -53,7 +53,7 @@ Four cells are closed, because the colouring here meets the published Lortz-Meng
 **R(K2,12; K2,7) = 35**, **R(K2,12; K2,8) = 37**, **R(K2,13; K2,9) = 41**, **R(K2,14; K2,9) = 43**.
 
 The other sixteen are windows of width 1 to 3. In those the upper bound comes from evaluating Lortz and Mengersen's
-Lemmas 2.2 and 2.3 at these parameters, which lands 1 to 6 below their own general bound 2n+2m-3; the lower bound is the
+Lemmas 2.2 and 2.3 at these parameters, which lands 1 to 5 below their own general bound 2n+2m-3; the lower bound is the
 colouring deposited here. The colourings are the new objects; the upper bounds are arithmetic on published inequalities. Closing one needs either a colouring
 of K_(upper-1) or a refutation at upper-1 vertices.
 
@@ -68,13 +68,15 @@ N-1. It can only find colourings that happen to be that symmetric, so a miss pro
 Every file here was checked twice: by `tools/check_any.py` and by an independent recount of common neighbours against
 the codegree caps, done in a different program from the one that produced it.
 
-## Priority
+## Prior work
 
-The full text of Lortz and Mengersen has not been read: "Off-diagonal and asymptotic results on the Ramsey number
-r(K_{2,m}, K_{2,n})", J. Graph Theory 43 (2003) 252-268; "Bounds on Ramsey numbers of certain complete bipartite
-graphs", Results Math. 41 (2002) 140-149; and "Further Ramsey numbers for small complete bipartite graphs",
-Ars Combin. 79 (2006) 195-203. Those papers discuss equality cases for this family, so an earlier construction for any
-of these cells cannot be excluded. The upper bounds here are NOT a new lemma: an independent check on 2026-09-10
+The two Lortz–Mengersen papers that concern this family were read in full on 2026-09-10: "Off-diagonal and asymptotic
+results on the Ramsey number r(K_{2,m}, K_{2,n})", J. Graph Theory 43 (2003) 252-268, and "Bounds on Ramsey numbers of
+certain complete bipartite graphs", Results Math. 41 (2002) 140-149. The 2003 paper tabulates m, n <= 10 only; its
+equality cases from strongly regular graphs (Corollary 3.1) determine exactly one cell in rows 12-15,
+r(K_{2,7}, K_{2,13}) = 37, which is not among the twenty here. Their "Further Ramsey numbers for small complete
+bipartite graphs", Ars Combin. 79 (2006) 195-203, treats graphs K_{l,n} with l + n <= 7 and so none of these cells.
+The upper bounds here are NOT a new lemma: an independent check on 2026-09-10
 reimplemented Lemmas 2.2 and 2.3 straight from the paper and reproduced every one of them. The flag-algebra and
 semidefinite-programming method of Lidicky and Pfender (SIAM Review 68 (2026) 385-403) gives upper bounds for other
 complete bipartite cells but does not treat any R(K_{2,m}, K_{2,n}); it has not been aimed at this family.
