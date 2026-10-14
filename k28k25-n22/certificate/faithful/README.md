@@ -86,7 +86,9 @@ The 365 Lean files in the import closure of the challenge and the solution, and 
 `RootedM5Print.lean`, had the same sha256 on the run machine as in the source commit. The published copies in
 `../../../lean/sbsound/` are byte-identical to them except for comments in three files, where machine paths and a
 host name were removed for publication: `Lemma12.lean`, `RootedM5/FamDefs.lean` (this deposit) and
-`Sbsound/EncoderVendored.lean` (as published earlier). `LRATCatcher/RootedEncoder.lean` is byte-identical to
+`Sbsound/EncoderVendored.lean` (as published earlier). The header comment of `Lemma12.lean` was also updated on
+2026-10-14 (it had said that the d <= 6 and d >= 12 exclusions were cited, though the file proves them); the change
+is to comments only. `LRATCatcher/RootedEncoder.lean` is byte-identical to
 `../../../lean/lrat-catcher/LRATCatcher/RootedEncoder.lean`.
 The workspace also held further `Sbsound` modules that are outside the import closure.
 

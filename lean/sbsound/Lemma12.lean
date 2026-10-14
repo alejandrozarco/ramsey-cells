@@ -1,5 +1,5 @@
 /-
-  LEMMA 1.2 FOR R(K_{2,8}, K_{2,5}) AT N = 22 — BOTH HAND ARGUMENTS, MACHINE-CHECKED.
+  LEMMA 1.2 FOR R(K_{2,8}, K_{2,5}) AT N = 22 — THE DEGREE LEMMA, MACHINE-CHECKED.
 
       Colouring.degree_seven_impossible  : (K.blueNbr v).card ≠ 7
       Colouring.degree_eleven_impossible : (K.blueNbr v).card ≠ 11
@@ -9,14 +9,16 @@
   declaration reports [propext, Classical.choice, Quot.sound].
 
   WHY THIS MATTERS. The census enumerates blue degrees {8,9,10} only. `counting_bound.py 22 4 7`
-  admits {7,...,11}; d = 6 and d = 12 fall to Lortz-Mengersen's published inequalities. The gap at
-  d = 7 and d = 11 was carried by TWO HAND ARGUMENTS, and REPRODUCE.md names them the weakest link
-  in the whole cell: if either is wrong the census enumerates the wrong space, every certificate
-  below it stays valid, and nothing downstream can detect it. Those two are what this file closes.
+  admits {7,...,11}; d <= 6 and d >= 12 fall to Lortz-Mengersen's published inequalities (their
+  Lemma 2.2). The exclusion of d = 7 and d = 11 needs a further argument; if any of these exclusions
+  were wrong the census would enumerate the wrong space while every certificate below it stayed valid.
 
-  SCOPE, precisely. This file proves the two hand arguments. It does NOT formalize the d <= 6 and
-  d >= 12 exclusions, which are Lortz-Mengersen Lemmas 2.2 and 2.3 and are cited, not reproved.
-  "Degrees lie in {8,9,10}" therefore still rests on published results plus this file.
+  SCOPE. This file proves the whole degree lemma. `degree_seven_impossible` and
+  `degree_eleven_impossible` exclude d = 7 and d = 11; `degree_gt_six` and `degree_lt_twelve` prove
+  the d <= 6 and d >= 12 exclusions from the Lortz-Mengersen counting inequality (`counting_13`);
+  `degree_in_eight_nine_ten` combines the four. The file also proves the class bounds and the 44
+  histograms (`histogram_in_admissible`, `admissibleHistograms_card`). (An earlier version of this
+  header said that the d <= 6 and d >= 12 exclusions were cited, not reproved; that is no longer so.)
 
   d = 7 IS NOT A SEPARATE ARGUMENT. The hand proof presents it as its own thirteen steps, working in
   BLUE on the red neighbourhood T, where d = 11 works in RED on the blue neighbourhood S. Swapping
