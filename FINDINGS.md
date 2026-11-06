@@ -311,7 +311,7 @@ certificate, not the splitter's internal behaviour, is what makes the decomposit
   3.3.2(j) gives `<= 27`; our K_25 coloring (`k2x11-k2x4-lb26/`) had made it 26-27. A cube-and-conquer
   refutation at n = 26 in the deposited encoding (402 top cubes, 49 resplit over three levels, 10,017
   leaves, every leaf UNSAT with a checked LRAT proof, cover refuted with a checked proof, 48,416
-  core-seconds) closes it at 26. Both bounds are ours. Certificate complete in `certificate/`:
+  core-seconds) closes it at 26 (the upper bound also follows from Lortz-Mengersen Lemmas 2.2/2.3, see the cell README). Certificate complete in `certificate/`:
   cake_lpr ledger (10,017 leaves + cover, all VERIFIED), leaf hashes recomputed on a second machine,
   Comparator PASS transcript (Lean kernel and nanoda).
 * Two more K_{2,11} cells are being run the same way at their current lower bounds (n = 28, 30),

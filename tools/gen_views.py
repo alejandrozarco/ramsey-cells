@@ -122,10 +122,10 @@ def matrix(name, n, col, spec, cell):
                      for A in combinations(V, a))
             o.append(f"# color {gi}: largest common neighborhood of an {a}-set is {mx};"
                      f" {b} would force {lab}")
-    o.append("# The solid block at the top left, where present, is static symmetry breaking in")
-    o.append("# the formula showing through: the search was restricted to lex-minimal")
-    o.append("# representatives, which sorts vertex 1's neighborhood. It is a fingerprint of")
-    o.append("# the search, not a property of the coloring.")
+    o.append("# A solid block at the top left, if there is one, comes from static symmetry")
+    o.append("# breaking in the search formula (lex-minimal representatives sort vertex 1's")
+    o.append("# neighborhood). It is a fingerprint of the search, not a property of the")
+    o.append("# coloring. The witness header names the search that found this coloring.")
     return "\n".join(o) + "\n"
 
 

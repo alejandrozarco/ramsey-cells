@@ -6,8 +6,10 @@ gives <= 27 (n = 11, s = 7). Our coloring of K_25 in `../k2x11-k2x4-lb26/` raise
 26, so the cell was open at 26-27, one wide: a refutation at n = 26 closes it and a coloring of
 K_26 would have closed it at 27.
 
-**Both bounds are ours.** The lower bound is the K_25 coloring in `../k2x11-k2x4-lb26/` (checkable
-by subgraph containment alone). `instance/` holds the formula for n = 26 in the deposited encoding
+**The lower bound is ours**: the K_25 coloring in `../k2x11-k2x4-lb26/` (checkable by subgraph
+containment alone). The upper bound 26 also follows by hand from Lemmas 2.2 and 2.3 of Lortz and
+Mengersen (J. Graph Theory 43 (2003)) evaluated at these parameters; the refutation here establishes
+it independently by computer. `instance/` holds the formula for n = 26 in the deposited encoding
 (`tools/gen_ramsey.py 26 K2x11,K2x4 --vertex-lex`), `tree/` the cube tree of its refutation: 402 top
 cubes (march_cu, depth 10), 49 cubes resplit at depth 8 (cap 120 s) over three levels, 10,017 leaves,
 every leaf UNSAT with its LRAT proof checked at solve time (lrat-trim, lrat-check), 0 SAT, 48,416

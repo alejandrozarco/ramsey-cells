@@ -42,7 +42,7 @@
 #
 # color 1: largest common neighborhood of a colour-1 EDGE is 4; 5 would force B_5
 # color 2: largest common neighborhood of a colour-2 EDGE is 8; 9 would force B_9
-# The solid block at the top left, where present, is static symmetry breaking in
-# the formula showing through: the search was restricted to lex-minimal
-# representatives, which sorts vertex 1's neighborhood. It is a fingerprint of
-# the search, not a property of the coloring.
+# A solid block at the top left, if there is one, comes from static symmetry
+# breaking in the search formula (lex-minimal representatives sort vertex 1's
+# neighborhood). It is a fingerprint of the search, not a property of the
+# coloring. The witness header names the search that found this coloring.

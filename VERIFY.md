@@ -4,16 +4,24 @@ Unconfirmed, not peer reviewed. Nothing here is a claim; these are the artifacts
 that let a third party re-derive each statement. Python 3, a C compiler (for CaDiCaL / lrat-trim /
 lrat-check) and, for the last step only, Lean 4 (`elan`) are the prerequisites. Times are for one core.
 
-## 1. R(K_{2,11}, K_{2,4}) = 26 — both bounds ours
+## 1. R(K_{2,11}, K_{2,4}) = 26 — lower bound ours
 
 **Lower bound, R ≥ 26** (seconds). A 2-colouring of K_25 with no K_{2,11} in colour 1 and no
 K_{2,4} in colour 2: `k2x11-k2x4-lb26/witness/witness_k2x11k2x4_n25.txt` (lines `i j colour`).
 ```
 python3 tools/check_any.py k2x11-k2x4-lb26/witness/witness_k2x11k2x4_n25.txt K2x11,K2x4
 ```
-Any checker of subgraph containment will do; nothing else is assumed.
+Any checker of subgraph containment will do; nothing else is assumed. A second, separately written
+checker: `python3 tools/recheck.py k2x11-k2x4-lb26/witness/witness_k2x11k2x4_n25.txt 11 4 bip`.
 
-**Upper bound, R ≤ 26** (the formula for n = 26 is unsatisfiable).
+**Upper bound, R ≤ 26, by hand** (seconds). Lemmas 2.2 and 2.3 of Lortz and Mengersen (J. Graph Theory
+43 (2003) 252-268) evaluated at these parameters exclude every vertex degree split at n = 26:
+```
+python3 tools/lm_upper.py
+```
+(prints the smallest excluded n for each listed pair, among them `R(K2,11;K2,4)  lemmas <= 26`).
+
+**Upper bound, R ≤ 26, by computer** (the formula for n = 26 is unsatisfiable).
 1. The formula: `k211k24-n26/instance/k211k24_n26.cnf` (codegree counters + vertex-lex breaking).
    Regenerate and compare (minutes): `python3 tools/gen_ramsey.py 26 K2x11,K2x4 --vertex-lex`.
 2. Tree and cover (minutes): every leaf verdict is in `k211k24-n26/tree/ledger.jsonl`; this re-proves

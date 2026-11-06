@@ -39,7 +39,7 @@
 #
 # color 1: largest common neighborhood of an 2-set is 10; 11 would force K_{2,11}
 # color 2: largest common neighborhood of an 2-set is 3; 4 would force K_{2,4}
-# The solid block at the top left, where present, is static symmetry breaking in
-# the formula showing through: the search was restricted to lex-minimal
-# representatives, which sorts vertex 1's neighborhood. It is a fingerprint of
-# the search, not a property of the coloring.
+# A solid block at the top left, if there is one, comes from static symmetry
+# breaking in the search formula (lex-minimal representatives sort vertex 1's
+# neighborhood). It is a fingerprint of the search, not a property of the
+# coloring. The witness header names the search that found this coloring.
