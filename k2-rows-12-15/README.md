@@ -15,6 +15,15 @@ of them with the arbiter in this repository, which is written from the definitio
 
 A colouring of K_N with neither forbidden subgraph proves R > N, hence R >= N+1.
 
+## Status update (2026-11-23)
+
+Four of the sixteen windows below are now settled exactly by Quantavane (A. Canli), who credit this directory for
+the windows: R(K2,12; K2,3) = 23, R(K2,13; K2,3) = 25, R(K2,14; K2,3) = 26 and R(K2,12; K2,4) = 27. Each value has
+a colouring at the lower end (for R(K2,12; K2,4), a new colouring of K_26) and a SAT refutation checked by cake_lpr at
+the upper end. See https://quantavane.com/exact-values/ and
+https://github.com/arhancanli/quantavane-zarankiewicz-ramsey-cells. We have not independently checked their proofs.
+The table below is unchanged and remains the record of the windows as deposited here.
+
 ## The cells
 
 `prev` is the best lower bound previously on record. `LM` is the Lortz-Mengersen general bound
